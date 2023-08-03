@@ -20,6 +20,7 @@ class LoginView: UIView {
         return label
     }()
     
+    
     private let smallLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Regular", size: 17)
