@@ -11,7 +11,7 @@ import UIKit
 
 class LoginView: UIView {
     
-    private let bigLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 34)
         label.textColor = UIColor(red: 0.078, green: 0.078, blue: 0.078, alpha: 1)
@@ -21,7 +21,7 @@ class LoginView: UIView {
     }()
     
     
-    private let smallLabel: UILabel = {
+    private let subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFProDisplay-Regular", size: 17)
         label.textColor = UIColor(red: 0.547, green: 0.547, blue: 0.547, alpha: 1)
@@ -105,7 +105,7 @@ class LoginView: UIView {
         return label
     }()
     
-    private let loginGoogle: UIButton = {
+    private let loginGoogleButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login with Google", for: .normal)
         button.setTitleColor(UIColor(red: 0.078, green: 0.078, blue: 0.078, alpha: 1), for: .normal)
@@ -118,7 +118,7 @@ class LoginView: UIView {
         return button
     }()
     
-    private let loginApple: UIButton = {
+    private let loginAppleButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login with Apple", for: .normal)
         button.setTitleColor(UIColor(red: 0.078, green: 0.078, blue: 0.078, alpha: 1), for: .normal)
@@ -145,6 +145,23 @@ class LoginView: UIView {
         return image
     }()
     
+    private let signupLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Don't have account yet ?"
+        label.font = UIFont(name: "SFProDisplay-Regular", size: 15)
+        
+        return label
+    }()
+    
+    private let signupButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Sign Up", for: .normal)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 15)
+        button.setTitleColor(UIColor(red: 0.078, green: 0.078, blue: 0.078, alpha: 1), for: .normal)
+
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -161,8 +178,8 @@ class LoginView: UIView {
     }
     
     func setupViews(){
-        addSubview(bigLabel)
-        addSubview(smallLabel)
+        addSubview(titleLabel)
+        addSubview(subTitleLabel)
         addSubview(emailField)
         addSubview(passwordField)
         addSubview(forgotButton)
@@ -170,21 +187,23 @@ class LoginView: UIView {
         addSubview(lineLeft)
         addSubview(lineRight)
         addSubview(orLabel)
-        addSubview(loginGoogle)
-        addSubview(loginApple)
+        addSubview(loginGoogleButton)
+        addSubview(loginAppleButton)
         addSubview(googleIcon)
         addSubview(appleIcon)
+        addSubview(signupLabel)
+        addSubview(signupButton)
     }
     
     func setupConstraints(){
-        bigLabel.snp.makeConstraints{ make in
+        titleLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(180 * UIScreen.main.bounds.height / 852)
             make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
             make.trailing.equalToSuperview().inset(107 * UIScreen.main.bounds.width / 393)
             make.bottom.equalToSuperview().inset(631 * UIScreen.main.bounds.height / 852)
         }
         
-        smallLabel.snp.makeConstraints{ make in
+        subTitleLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(229 * UIScreen.main.bounds.height / 852)
             make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
             make.trailing.equalToSuperview().inset(235 * UIScreen.main.bounds.width / 393)
@@ -240,14 +259,14 @@ class LoginView: UIView {
             make.bottom.equalToSuperview().inset(307 * UIScreen.main.bounds.height / 852)
         }
         
-        loginGoogle.snp.makeConstraints{ make in
+        loginGoogleButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(569 * UIScreen.main.bounds.height / 852)
             make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
             make.trailing.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
             make.bottom.equalToSuperview().inset(235 * UIScreen.main.bounds.height / 852)
         }
         
-        loginApple.snp.makeConstraints{ make in
+        loginAppleButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(633 * UIScreen.main.bounds.height / 852)
             make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
             make.trailing.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
@@ -255,17 +274,31 @@ class LoginView: UIView {
         }
         
         googleIcon.snp.makeConstraints{ make in
-            make.top.equalTo(loginGoogle.snp.top).inset(12 * UIScreen.main.bounds.height / 852)
-            make.leading.equalTo(loginGoogle.snp.leading).inset(24 * UIScreen.main.bounds.width / 393)
-            make.trailing.equalTo(loginGoogle.snp.trailing).inset(313 * UIScreen.main.bounds.width / 393)
-            make.bottom.equalTo(loginGoogle.snp.bottom).inset(12 * UIScreen.main.bounds.height / 852)
+            make.top.equalTo(loginGoogleButton.snp.top).inset(12 * UIScreen.main.bounds.height / 852)
+            make.leading.equalTo(loginGoogleButton.snp.leading).inset(24 * UIScreen.main.bounds.width / 393)
+            make.trailing.equalTo(loginGoogleButton.snp.trailing).inset(313 * UIScreen.main.bounds.width / 393)
+            make.bottom.equalTo(loginGoogleButton.snp.bottom).inset(12 * UIScreen.main.bounds.height / 852)
         }
         
         appleIcon.snp.makeConstraints{ make in
-            make.top.equalTo(loginApple.snp.top).inset(12 * UIScreen.main.bounds.height / 852)
-            make.leading.equalTo(loginApple.snp.leading).inset(24 * UIScreen.main.bounds.width / 393)
-            make.trailing.equalTo(loginApple.snp.trailing).inset(313 * UIScreen.main.bounds.width / 393)
-            make.bottom.equalTo(loginApple.snp.bottom).inset(12 * UIScreen.main.bounds.height / 852)
+            make.top.equalTo(loginAppleButton.snp.top).inset(12 * UIScreen.main.bounds.height / 852)
+            make.leading.equalTo(loginAppleButton.snp.leading).inset(24 * UIScreen.main.bounds.width / 393)
+            make.trailing.equalTo(loginAppleButton.snp.trailing).inset(313 * UIScreen.main.bounds.width / 393)
+            make.bottom.equalTo(loginAppleButton.snp.bottom).inset(12 * UIScreen.main.bounds.height / 852)
+        }
+        
+        signupLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(758 * UIScreen.main.bounds.height / 852)
+            make.leading.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
+//            make.trailing.equalToSuperview().inset(16 * UIScreen.main.bounds.width / 393)
+            make.bottom.equalToSuperview().inset(76 * UIScreen.main.bounds.height / 852)
+        }
+        
+        signupButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(758 * UIScreen.main.bounds.height / 852)
+            make.leading.equalTo(signupLabel.snp.trailing).offset(-10)
+            make.trailing.equalToSuperview().inset(146 * UIScreen.main.bounds.width / 393)
+            make.bottom.equalToSuperview().inset(76 * UIScreen.main.bounds.height / 852)
         }
     }
 }
