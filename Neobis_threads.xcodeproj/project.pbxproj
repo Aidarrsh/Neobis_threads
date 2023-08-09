@@ -24,6 +24,12 @@
 		1C3893DC2A7A6D84003D2CC8 /* SFPRODISPLAYHEAVYITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 1C3893D32A7A6D84003D2CC8 /* SFPRODISPLAYHEAVYITALIC.OTF */; };
 		1C3893DD2A7A6D84003D2CC8 /* SFPRODISPLAYSEMIBOLDITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 1C3893D42A7A6D84003D2CC8 /* SFPRODISPLAYSEMIBOLDITALIC.OTF */; };
 		1C3893DE2A7A6D84003D2CC8 /* SFPRODISPLAYTHINITALIC.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 1C3893D52A7A6D84003D2CC8 /* SFPRODISPLAYTHINITALIC.OTF */; };
+		1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */; };
+		1CAA2BE52A8237C100C3FD70 /* ForgotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */; };
+		1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */; };
+		1CAA2BED2A837D1700C3FD70 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */; };
+		1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */; };
+		1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BF02A83889000C3FD70 /* OTPView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +50,12 @@
 		1C3893D32A7A6D84003D2CC8 /* SFPRODISPLAYHEAVYITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYHEAVYITALIC.OTF; sourceTree = "<group>"; };
 		1C3893D42A7A6D84003D2CC8 /* SFPRODISPLAYSEMIBOLDITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYSEMIBOLDITALIC.OTF; sourceTree = "<group>"; };
 		1C3893D52A7A6D84003D2CC8 /* SFPRODISPLAYTHINITALIC.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYTHINITALIC.OTF; sourceTree = "<group>"; };
+		1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenions + NSObject.swift"; sourceTree = "<group>"; };
+		1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotVC.swift; sourceTree = "<group>"; };
+		1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotView.swift; sourceTree = "<group>"; };
+		1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
+		1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIFont.swift"; sourceTree = "<group>"; };
+		1CAA2BF02A83889000C3FD70 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +90,7 @@
 		1C3893AC2A7A5B79003D2CC8 /* Neobis_threads */ = {
 			isa = PBXGroup;
 			children = (
+				1CAA2BE02A8234FC00C3FD70 /* Extensions */,
 				1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */,
 				1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */,
 				1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */,
@@ -93,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				1C3893C82A7A5D2E003D2CC8 /* Login */,
+				1CAA2BE32A8237A900C3FD70 /* Forgot password */,
+				1CAA2BEA2A837CD800C3FD70 /* OTP */,
 			);
 			path = "Authenfication Screens";
 			sourceTree = "<group>";
@@ -101,7 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				1C3893B12A7A5B79003D2CC8 /* LoginVC.swift */,
-				1C3893C92A7A5DD6003D2CC8 /* LoginView.swift */,
+				1CAA2BE62A8237C500C3FD70 /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -128,6 +143,57 @@
 				1C3893D02A7A6D84003D2CC8 /* SFPRODISPLAYULTRALIGHTITALIC.OTF */,
 			);
 			path = SFPRO;
+			sourceTree = "<group>";
+		};
+		1CAA2BE02A8234FC00C3FD70 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */,
+				1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1CAA2BE32A8237A900C3FD70 /* Forgot password */ = {
+			isa = PBXGroup;
+			children = (
+				1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */,
+				1CAA2BE72A8237CC00C3FD70 /* View */,
+			);
+			path = "Forgot password";
+			sourceTree = "<group>";
+		};
+		1CAA2BE62A8237C500C3FD70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C3893C92A7A5DD6003D2CC8 /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CAA2BE72A8237CC00C3FD70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CAA2BEA2A837CD800C3FD70 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */,
+				1CAA2BEB2A837D0700C3FD70 /* View */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		1CAA2BEB2A837D0700C3FD70 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CAA2BF02A83889000C3FD70 /* OTPView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +285,14 @@
 			files = (
 				1C3893B22A7A5B79003D2CC8 /* LoginVC.swift in Sources */,
 				1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */,
+				1CAA2BED2A837D1700C3FD70 /* OTPVC.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
+				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
+				1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */,
+				1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */,
 				1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */,
+				1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */,
+				1CAA2BE52A8237C100C3FD70 /* ForgotVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

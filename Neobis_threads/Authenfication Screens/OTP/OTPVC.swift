@@ -1,24 +1,24 @@
 //
-//  ViewController.swift
+//  OTPVC.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 2/8/23.
+//  Created by Айдар Шарипов on 9/8/23.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
-class LoginVC: UIViewController {
+class OTPVC: UIViewController {
     
-    private let contentView = LoginView()
-
+    private let contentView = OTPView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
     }
     
-    func setupView(){
+    func setupView() {
         view.addSubview(contentView)
         
         contentView.snp.makeConstraints{ make in
@@ -26,4 +26,3 @@ class LoginVC: UIViewController {
         }
     }
 }
-
