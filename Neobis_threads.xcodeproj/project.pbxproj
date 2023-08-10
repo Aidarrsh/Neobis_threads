@@ -56,6 +56,8 @@
 		1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIFont.swift"; sourceTree = "<group>"; };
 		1CAA2BF02A83889000C3FD70 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.debug.xcconfig"; sourceTree = "<group>"; };
+		AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.release.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,11 +73,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15C3DDB041EF8A01701EFCD9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1C3893A12A7A5B79003D2CC8 = {
 			isa = PBXGroup;
 			children = (
 				1C3893AC2A7A5B79003D2CC8 /* Neobis_threads */,
 				1C3893AB2A7A5B79003D2CC8 /* Products */,
+				810D60142330C7EDBAB3430F /* Pods */,
+				15C3DDB041EF8A01701EFCD9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,13 +101,13 @@
 		1C3893AC2A7A5B79003D2CC8 /* Neobis_threads */ = {
 			isa = PBXGroup;
 			children = (
-				1CAA2BE02A8234FC00C3FD70 /* Extensions */,
 				1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */,
 				1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */,
 				1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */,
 				1C3893B62A7A5B7B003D2CC8 /* Assets.xcassets */,
 				1C3893B82A7A5B7B003D2CC8 /* LaunchScreen.storyboard */,
 				1C3893CB2A7A6D61003D2CC8 /* Fonts */,
+				1CAA2BE02A8234FC00C3FD70 /* Extensions */,
 				1C3893BB2A7A5B7B003D2CC8 /* Info.plist */,
 			);
 			path = Neobis_threads;
@@ -196,6 +207,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		810D60142330C7EDBAB3430F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */,
+				AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -203,6 +223,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C3893BE2A7A5B7B003D2CC8 /* Build configuration list for PBXNativeTarget "Neobis_threads" */;
 			buildPhases = (
+				9801FD2F6762A66B8BCDAFFD /* [CP] Check Pods Manifest.lock */,
 				1C3893A62A7A5B79003D2CC8 /* Sources */,
 				1C3893A72A7A5B79003D2CC8 /* Frameworks */,
 				1C3893A82A7A5B79003D2CC8 /* Resources */,
@@ -277,6 +298,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9801FD2F6762A66B8BCDAFFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Neobis_threads-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1C3893A62A7A5B79003D2CC8 /* Sources */ = {
@@ -426,6 +472,7 @@
 		};
 		1C3893BF2A7A5B7B003D2CC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -453,6 +500,7 @@
 		};
 		1C3893C02A7A5B7B003D2CC8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

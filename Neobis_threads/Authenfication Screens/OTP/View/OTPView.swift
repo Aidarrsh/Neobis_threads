@@ -20,7 +20,6 @@ class OTPView: UIView {
         return label
     }()
     
-    
     private let subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 17)
@@ -57,6 +56,15 @@ class OTPView: UIView {
         return button
     }()
     
+    private let sendAgainButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Send again", for: .normal)
+        button.setTitleColor(UIColor(named: "Black"), for: .normal)
+        button.titleLabel?.font = UIFont.sfBold(ofSize: 15)
+        
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -77,6 +85,7 @@ class OTPView: UIView {
         addSubview(subTitleLabel)
         addSubview(codeField)
         addSubview(verifyButton)
+        addSubview(sendAgainButton)
     }
     
     func setupConstraints() {
@@ -106,6 +115,13 @@ class OTPView: UIView {
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 411))
+        }
+        
+        sendAgainButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 459))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 158))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 159))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 375))
         }
     }
 }
