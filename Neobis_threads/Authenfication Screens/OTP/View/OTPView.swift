@@ -8,6 +8,7 @@
 import Foundation
 import SnapKit
 import UIKit
+import AEOTPTextField
 
 class OTPView: UIView {
     
@@ -45,7 +46,7 @@ class OTPView: UIView {
         return field
     }()
     
-    private let verifyButton: UIButton = {
+    let verifyButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
         button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
@@ -63,6 +64,12 @@ class OTPView: UIView {
         button.titleLabel?.font = UIFont.sfBold(ofSize: 15)
         
         return button
+    }()
+    
+    let otpTextField: AEOTPTextField = {
+        let textField = AEOTPTextField()
+        
+        return textField
     }()
     
     override init(frame: CGRect) {
@@ -86,6 +93,7 @@ class OTPView: UIView {
         addSubview(codeField)
         addSubview(verifyButton)
         addSubview(sendAgainButton)
+        addSubview(otpTextField)
     }
     
     func setupConstraints() {
@@ -103,10 +111,17 @@ class OTPView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 603))
         }
         
-        codeField.snp.makeConstraints { make in
+//        codeField.snp.makeConstraints { make in
+//            make.top.equalToSuperview().inset(flexibleHeight(to: 281))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 523))
+//        }
+        
+        otpTextField.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 281))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 121))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 523))
         }
         

@@ -30,6 +30,7 @@
 		1CAA2BED2A837D1700C3FD70 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */; };
 		1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */; };
 		1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BF02A83889000C3FD70 /* OTPView.swift */; };
+		DF47E4066ADE76715B452441 /* Pods_Neobis_threads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIFont.swift"; sourceTree = "<group>"; };
 		1CAA2BF02A83889000C3FD70 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.debug.xcconfig"; sourceTree = "<group>"; };
+		A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neobis_threads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.release.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 			files = (
 				1C3893C32A7A5C3A003D2CC8 /* SnapKit in Frameworks */,
 				1C3893C62A7A5C4E003D2CC8 /* Alamofire in Frameworks */,
+				DF47E4066ADE76715B452441 /* Pods_Neobis_threads.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 		15C3DDB041EF8A01701EFCD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +231,7 @@
 				1C3893A62A7A5B79003D2CC8 /* Sources */,
 				1C3893A72A7A5B79003D2CC8 /* Frameworks */,
 				1C3893A82A7A5B79003D2CC8 /* Resources */,
+				E6EAD644E856E3312A430A15 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -266,7 +271,7 @@
 			);
 			mainGroup = 1C3893A12A7A5B79003D2CC8;
 			packageReferences = (
-				1C3893C12A7A5C3A003D2CC8 /* XCRemoteSwiftPackageReference "Snapkit" */,
+				1C3893C12A7A5C3A003D2CC8 /* XCRemoteSwiftPackageReference "Snapkit.git" */,
 				1C3893C42A7A5C4E003D2CC8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 1C3893AB2A7A5B79003D2CC8 /* Products */;
@@ -320,6 +325,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6EAD644E856E3312A430A15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -550,7 +572,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1C3893C12A7A5C3A003D2CC8 /* XCRemoteSwiftPackageReference "Snapkit" */ = {
+		1C3893C12A7A5C3A003D2CC8 /* XCRemoteSwiftPackageReference "Snapkit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Snapkit/Snapkit.git";
 			requirement = {
@@ -571,7 +593,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		1C3893C22A7A5C3A003D2CC8 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1C3893C12A7A5C3A003D2CC8 /* XCRemoteSwiftPackageReference "Snapkit" */;
+			package = 1C3893C12A7A5C3A003D2CC8 /* XCRemoteSwiftPackageReference "Snapkit.git" */;
 			productName = SnapKit;
 		};
 		1C3893C52A7A5C4E003D2CC8 /* Alamofire */ = {
