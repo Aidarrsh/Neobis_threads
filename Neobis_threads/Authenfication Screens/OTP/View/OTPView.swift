@@ -12,7 +12,7 @@ import AEOTPTextField
 
 class OTPView: UIView {
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 34)
         label.textColor = UIColor(named: "Black")
@@ -21,7 +21,7 @@ class OTPView: UIView {
         return label
     }()
     
-    private let subTitleLabel: UILabel = {
+    private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 17)
         label.textColor = UIColor(named: "Grey")
@@ -30,7 +30,7 @@ class OTPView: UIView {
         return label
     }()
     
-    private let codeField: UITextField = {
+    private lazy var codeField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -57,7 +57,7 @@ class OTPView: UIView {
         return button
     }()
     
-    private let sendAgainButton: UIButton = {
+    private lazy var sendAgainButton: UIButton = {
         let button = UIButton()
         button.setTitle("Send again", for: .normal)
         button.setTitleColor(UIColor(named: "Black"), for: .normal)

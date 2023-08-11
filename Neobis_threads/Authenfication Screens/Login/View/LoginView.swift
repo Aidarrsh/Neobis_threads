@@ -11,7 +11,7 @@ import UIKit
 
 class LoginView: UIView {
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 34)
         label.textColor = UIColor(named: "Black")
@@ -21,7 +21,7 @@ class LoginView: UIView {
     }()
     
     
-    private let subTitleLabel: UILabel = {
+    private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 17)
         label.textColor = UIColor(named: "Grey")
@@ -30,7 +30,7 @@ class LoginView: UIView {
         return label
     }()
     
-    private let emailField: UITextField = {
+    private lazy var emailField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -46,7 +46,7 @@ class LoginView: UIView {
         return field
     }()
     
-    private let passwordField: UITextField = {
+    private lazy var passwordField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -62,7 +62,7 @@ class LoginView: UIView {
         return field
     }()
     
-    private let forgotButton: UIButton = {
+    private lazy var forgotButton: UIButton = {
         let button = UIButton()
         button.setTitle("Forgot password ?", for: .normal)
         button.setTitleColor(UIColor(named: "Black"), for: .normal)
@@ -71,7 +71,7 @@ class LoginView: UIView {
         return button
     }()
     
-    private let loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
         button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
@@ -82,21 +82,21 @@ class LoginView: UIView {
         return button
     }()
     
-    private let lineLeft: UIView = {
+    private lazy var lineLeft: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "GreyBorder")
         
         return view
     }()
     
-    private let lineRight: UIView = {
+    private lazy var lineRight: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "GreyBorder")
         
         return view
     }()
     
-    private let orLabel: UILabel = {
+    private lazy var orLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 15)
         label.textColor = UIColor(named: "Black")
@@ -105,7 +105,7 @@ class LoginView: UIView {
         return label
     }()
     
-    private let loginGoogleButton: UIButton = {
+    private lazy var loginGoogleButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login with Google", for: .normal)
         button.setTitleColor(UIColor(named: "Black"), for: .normal)
@@ -118,7 +118,7 @@ class LoginView: UIView {
         return button
     }()
     
-    private let loginAppleButton: UIButton = {
+    private lazy var loginAppleButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login with Apple", for: .normal)
         button.setTitleColor(UIColor(named: "Black"), for: .normal)
@@ -131,21 +131,21 @@ class LoginView: UIView {
         return button
     }()
     
-    private let googleIcon: UIImageView = {
+    private lazy var googleIcon: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "google")
         
         return image
     }()
     
-    private let appleIcon: UIImageView = {
+    private lazy var appleIcon: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "apple")
         
         return image
     }()
     
-    private let signupLabel: UILabel = {
+    private lazy var signupLabel: UILabel = {
         let label = UILabel()
         label.text = "Don't have account yet ?"
         label.font = UIFont.sfRegular(ofSize: 15)
@@ -153,7 +153,7 @@ class LoginView: UIView {
         return label
     }()
     
-    private let signupButton: UIButton = {
+    private lazy var signupButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.sfBold(ofSize: 15)

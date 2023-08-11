@@ -11,7 +11,7 @@ import UIKit
 
 class ForgotView: UIView {
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 34)
         label.textColor = UIColor(named: "Black")
@@ -21,7 +21,7 @@ class ForgotView: UIView {
     }()
     
     
-    private let subTitleLabel: UILabel = {
+    private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 17)
         label.textColor = UIColor(named: "Grey")
@@ -30,7 +30,7 @@ class ForgotView: UIView {
         return label
     }()
     
-    private let emailField: UITextField = {
+    private lazy var emailField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -46,7 +46,7 @@ class ForgotView: UIView {
         return field
     }()
     
-    private let continueButton: UIButton = {
+    private lazy var continueButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
         button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
