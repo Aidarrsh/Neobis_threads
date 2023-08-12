@@ -4,8 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFPRODISPLAYMEDIUM.ttf</string>
 		<string>SFPRODISPLAYREGULAR.OTF</string>
 		<string>SFPRODISPLAYBOLD.OTF</string>
+		<string>FontsFree-Net-SFProDisplay-Semibold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

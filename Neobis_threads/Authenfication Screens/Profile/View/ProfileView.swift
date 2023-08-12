@@ -44,10 +44,10 @@ class ProfileView: UIView {
         return label
     }()
     
-    private lazy var profilePicture: UIImageView = {
+    let profilePicture: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .red
-        image.layer.cornerRadius = 35 * UIScreen.main.bounds.height / 852
+        image.layer.cornerRadius = 35 * UIScreen.main.bounds.width / 393
         
         return image
     }()
@@ -59,6 +59,45 @@ class ProfileView: UIView {
         button.setTitleColor(UIColor(named: "GreyLabel"), for: .normal)
         
         return button
+    }()
+    
+    private lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit profile", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.sfSemiBold(ofSize: 15)
+        button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
+        button.layer.borderColor = UIColor(named: "GreyButtonBorder")?.cgColor
+        button.layer.borderWidth = 1
+        
+        return button
+    }()
+    
+    private lazy var shareButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Share profile", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.sfSemiBold(ofSize: 15)
+        button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
+        button.layer.borderColor = UIColor(named: "GreyButtonBorder")?.cgColor
+        button.layer.borderWidth = 1
+        
+        return button
+    }()
+    
+    private lazy var threadLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.sfMedium(ofSize: 15)
+        label.text = "Threads"
+        
+        return label
+    }()
+    
+    private lazy var dividerLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -83,6 +122,10 @@ class ProfileView: UIView {
         addSubview(domainLabel)
         addSubview(profilePicture)
         addSubview(followersLabel)
+        addSubview(editButton)
+        addSubview(shareButton)
+        addSubview(threadLabel)
+        addSubview(dividerLine)
     }
     
     func setupConstraints() {
@@ -116,8 +159,8 @@ class ProfileView: UIView {
         profilePicture.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 114))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 307))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 668))
+            make.width.equalTo(flexibleWidth(to: 70))
+            make.height.equalTo(flexibleWidth(to: 70))
         }
         
         followersLabel.snp.makeConstraints{ make in
@@ -125,6 +168,33 @@ class ProfileView: UIView {
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
 //            make.trailing.equalToSuperview().inset(flexibleWidth(to: 305))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 638))
+        }
+        
+        editButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 234))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 582))
+        }
+        
+        shareButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 234))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 205))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 582))
+        }
+        
+        threadLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 294))
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 531))
+        }
+        
+        dividerLine.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 330))
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 521))
         }
     }
 }

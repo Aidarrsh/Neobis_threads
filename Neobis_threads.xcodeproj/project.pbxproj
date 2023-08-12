@@ -31,12 +31,16 @@
 		1C3CEAAC2A8770C400466A58 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAAB2A8770C400466A58 /* TabBarController.swift */; };
 		1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAAF2A87713C00466A58 /* ProfileViewController.swift */; };
 		1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAB12A87715D00466A58 /* ProfileView.swift */; };
+		1C7470CE2A8793CF00FAFA88 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470CD2A8793CF00FAFA88 /* EditProfileViewController.swift */; };
+		1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470CF2A8793DD00FAFA88 /* EditProfileView.swift */; };
+		1C7470D42A879E5900FAFA88 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470D32A879E5900FAFA88 /* BorderedTextField.swift */; };
 		1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */; };
 		1CAA2BE52A8237C100C3FD70 /* ForgotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */; };
 		1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */; };
 		1CAA2BED2A837D1700C3FD70 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */; };
 		1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */; };
 		1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BF02A83889000C3FD70 /* OTPView.swift */; };
+		1CC6273E2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */; };
 		DF47E4066ADE76715B452441 /* Pods_Neobis_threads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,12 +69,16 @@
 		1C3CEAAB2A8770C400466A58 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1C3CEAAF2A87713C00466A58 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1C3CEAB12A87715D00466A58 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		1C7470CD2A8793CF00FAFA88 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		1C7470CF2A8793DD00FAFA88 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		1C7470D32A879E5900FAFA88 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
 		1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenions + NSObject.swift"; sourceTree = "<group>"; };
 		1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotVC.swift; sourceTree = "<group>"; };
 		1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotView.swift; sourceTree = "<group>"; };
 		1CAA2BEC2A837D1700C3FD70 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIFont.swift"; sourceTree = "<group>"; };
 		1CAA2BF02A83889000C3FD70 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.debug.xcconfig"; sourceTree = "<group>"; };
 		A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neobis_threads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.release.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,12 +128,12 @@
 			isa = PBXGroup;
 			children = (
 				1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */,
-				1C3CEAAD2A87712000466A58 /* Profile */,
 				1C3CEAAA2A87707200466A58 /* TabBar */,
 				1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */,
 				1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */,
 				1C3893B62A7A5B7B003D2CC8 /* Assets.xcassets */,
 				1C3893B82A7A5B7B003D2CC8 /* LaunchScreen.storyboard */,
+				1C7470D12A879E3600FAFA88 /* Custom */,
 				1C3893CB2A7A6D61003D2CC8 /* Fonts */,
 				1CAA2BE02A8234FC00C3FD70 /* Extensions */,
 				1C3893BB2A7A5B7B003D2CC8 /* Info.plist */,
@@ -141,6 +149,8 @@
 				1CAA2BEA2A837CD800C3FD70 /* OTP */,
 				1C3CEA9E2A863E4D00466A58 /* Sign up */,
 				1C3CEAA42A8658E100466A58 /* Create new password */,
+				1C3CEAAD2A87712000466A58 /* Profile */,
+				1C7470CB2A8793B000FAFA88 /* Edit profile */,
 			);
 			path = "Authenfication Screens";
 			sourceTree = "<group>";
@@ -165,6 +175,7 @@
 		1C3893CC2A7A6D69003D2CC8 /* SFPRO */ = {
 			isa = PBXGroup;
 			children = (
+				1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */,
 				1C3893CF2A7A6D84003D2CC8 /* SFPRODISPLAYBLACKITALIC.OTF */,
 				1C3893CD2A7A6D84003D2CC8 /* SFPRODISPLAYBOLD.OTF */,
 				1C3893D32A7A6D84003D2CC8 /* SFPRODISPLAYHEAVYITALIC.OTF */,
@@ -235,6 +246,39 @@
 				1C3CEAB12A87715D00466A58 /* ProfileView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1C7470CB2A8793B000FAFA88 /* Edit profile */ = {
+			isa = PBXGroup;
+			children = (
+				1C7470CD2A8793CF00FAFA88 /* EditProfileViewController.swift */,
+				1C7470CC2A8793BF00FAFA88 /* View */,
+			);
+			path = "Edit profile";
+			sourceTree = "<group>";
+		};
+		1C7470CC2A8793BF00FAFA88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C7470CF2A8793DD00FAFA88 /* EditProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1C7470D12A879E3600FAFA88 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				1C7470D22A879E3E00FAFA88 /* BorderedTextField */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		1C7470D22A879E3E00FAFA88 /* BorderedTextField */ = {
+			isa = PBXGroup;
+			children = (
+				1C7470D32A879E5900FAFA88 /* BorderedTextField.swift */,
+			);
+			path = BorderedTextField;
 			sourceTree = "<group>";
 		};
 		1CAA2BE02A8234FC00C3FD70 /* Extensions */ = {
@@ -365,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC6273E2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf in Resources */,
 				1C3893DC2A7A6D84003D2CC8 /* SFPRODISPLAYHEAVYITALIC.OTF in Resources */,
 				1C3893D72A7A6D84003D2CC8 /* SFPRODISPLAYREGULAR.OTF in Resources */,
 				1C3893D82A7A6D84003D2CC8 /* SFPRODISPLAYBLACKITALIC.OTF in Resources */,
@@ -436,14 +481,17 @@
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
 				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
 				1CAA2BED2A837D1700C3FD70 /* OTPVC.swift in Sources */,
+				1C7470CE2A8793CF00FAFA88 /* EditProfileViewController.swift in Sources */,
 				1C3CEAA72A8658FF00466A58 /* PasswordVewController.swift in Sources */,
 				1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
 				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
+				1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */,
 				1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */,
 				1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */,
 				1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */,
 				1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */,
+				1C7470D42A879E5900FAFA88 /* BorderedTextField.swift in Sources */,
 				1CAA2BE52A8237C100C3FD70 /* ForgotVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +639,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,6 +668,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
