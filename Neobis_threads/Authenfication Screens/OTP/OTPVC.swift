@@ -20,13 +20,6 @@ class OTPVC: UIViewController {
         setupView()
     }
     
-    func configureOTPTextField() {
-        contentView.otpTextField.otpDelegate = self
-        contentView.otpTextField.configure(with: 4)
-        contentView.otpTextField.otpFilledBorderColor = UIColor(named: "GreyBorder") ?? .gray
-        contentView.otpTextField.otpDefaultBorderColor = UIColor(named: "GreyBorder") ?? .gray
-    }
-    
     func addTargets() {
         contentView.verifyButton.addTarget(self, action: #selector(verifyButtonTapped), for: .touchUpInside)
     }
@@ -47,5 +40,12 @@ class OTPVC: UIViewController {
 extension OTPVC: AEOTPTextFieldDelegate {
     func didUserFinishEnter(the code: String) {
         return
+    }
+    
+    func configureOTPTextField() {
+        contentView.otpTextField.otpDelegate = self
+        contentView.otpTextField.configure(with: 4)
+        contentView.otpTextField.otpFilledBorderColor = UIColor(named: "GreyBorder") ?? .gray
+        contentView.otpTextField.otpDefaultBorderColor = UIColor(named: "GreyBorder") ?? .gray
     }
 }

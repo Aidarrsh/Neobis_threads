@@ -28,6 +28,9 @@
 		1C3CEAA32A863E9D00466A58 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAA22A863E9D00466A58 /* SignupView.swift */; };
 		1C3CEAA72A8658FF00466A58 /* PasswordVewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAA62A8658FF00466A58 /* PasswordVewController.swift */; };
 		1C3CEAA92A86590A00466A58 /* PasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAA82A86590A00466A58 /* PasswordView.swift */; };
+		1C3CEAAC2A8770C400466A58 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAAB2A8770C400466A58 /* TabBarController.swift */; };
+		1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAAF2A87713C00466A58 /* ProfileViewController.swift */; };
+		1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CEAB12A87715D00466A58 /* ProfileView.swift */; };
 		1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */; };
 		1CAA2BE52A8237C100C3FD70 /* ForgotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */; };
 		1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */; };
@@ -59,6 +62,9 @@
 		1C3CEAA22A863E9D00466A58 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		1C3CEAA62A8658FF00466A58 /* PasswordVewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordVewController.swift; sourceTree = "<group>"; };
 		1C3CEAA82A86590A00466A58 /* PasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordView.swift; sourceTree = "<group>"; };
+		1C3CEAAB2A8770C400466A58 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1C3CEAAF2A87713C00466A58 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1C3CEAB12A87715D00466A58 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenions + NSObject.swift"; sourceTree = "<group>"; };
 		1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotVC.swift; sourceTree = "<group>"; };
 		1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotView.swift; sourceTree = "<group>"; };
@@ -114,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */,
+				1C3CEAAD2A87712000466A58 /* Profile */,
+				1C3CEAAA2A87707200466A58 /* TabBar */,
 				1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */,
 				1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */,
 				1C3893B62A7A5B7B003D2CC8 /* Assets.xcassets */,
@@ -200,6 +208,31 @@
 			isa = PBXGroup;
 			children = (
 				1C3CEAA82A86590A00466A58 /* PasswordView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1C3CEAAA2A87707200466A58 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1C3CEAAB2A8770C400466A58 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		1C3CEAAD2A87712000466A58 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1C3CEAAF2A87713C00466A58 /* ProfileViewController.swift */,
+				1C3CEAAE2A87712B00466A58 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		1C3CEAAE2A87712B00466A58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C3CEAB12A87715D00466A58 /* ProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -398,10 +431,13 @@
 				1C3CEAA32A863E9D00466A58 /* SignupView.swift in Sources */,
 				1C3CEAA92A86590A00466A58 /* PasswordView.swift in Sources */,
 				1C3893B22A7A5B79003D2CC8 /* LoginVC.swift in Sources */,
+				1C3CEAAC2A8770C400466A58 /* TabBarController.swift in Sources */,
 				1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */,
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
+				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
 				1CAA2BED2A837D1700C3FD70 /* OTPVC.swift in Sources */,
 				1C3CEAA72A8658FF00466A58 /* PasswordVewController.swift in Sources */,
+				1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
 				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
 				1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */,
