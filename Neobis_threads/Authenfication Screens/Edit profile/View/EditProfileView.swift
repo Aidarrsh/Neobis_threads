@@ -11,16 +11,18 @@ import UIKit
 
 class EditProfileView: UIView {
     
-    private lazy var profilePicture: UIImageView = {
+    lazy var profilePicture: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPicture")
         image.backgroundColor = UIColor(named: "GreyButtonBorder")
         image.layer.cornerRadius = 35 * UIScreen.main.bounds.height / 852
+        image.clipsToBounds = true 
+        image.contentMode = .scaleAspectFill
         
         return image
     }()
     
-    private lazy var editPhotoButton: UIButton = {
+    let editPhotoButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit photo", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
@@ -91,7 +93,7 @@ class EditProfileView: UIView {
     
     private lazy var linkTextField: BorderedTextField = {
         let field = BorderedTextField()
-        field.placeholder = "+ Write link"
+        field.placeholder = "+ Add link"
         
         return field
     }()
@@ -109,6 +111,20 @@ class EditProfileView: UIView {
         toggle.onTintColor = .black
         
         return toggle
+    }()
+    
+    lazy var bottomSheet: CustomBottomSheet = {
+        let view = CustomBottomSheet()
+        
+        return view
+    }()
+    
+    lazy var overlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.isHidden = true
+        
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -139,6 +155,8 @@ class EditProfileView: UIView {
         addSubview(linkTextField)
         addSubview(privateProfileLabel)
         addSubview(toggleProfilePrivat)
+        addSubview(overlayView)
+        addSubview(bottomSheet)
     }
     
     func setupConstraints() {
@@ -232,5 +250,36 @@ class EditProfileView: UIView {
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 32))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 140))
         }
+        
+        bottomSheet.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(flexibleHeight(to: 171))
+            make.top.equalToSuperview().offset(UIScreen.main.bounds.height)
+        }
+        
+        overlayView.snp.makeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func presentBottomSheet() {
+        
+        layoutIfNeeded()
+        
+        overlayView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.bottomSheet.frame.origin.y -= self.bottomSheet.frame.height
+        }
+    }
+    
+    func dismissBottomSheet() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomSheet.frame.origin.y += self.bottomSheet.frame.height
+        }) { _ in
+            self.bottomSheet.removeFromSuperview()
+        }
+        
+        overlayView.isHidden = true
     }
 }

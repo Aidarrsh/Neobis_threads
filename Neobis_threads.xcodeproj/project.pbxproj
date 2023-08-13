@@ -34,6 +34,7 @@
 		1C7470CE2A8793CF00FAFA88 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470CD2A8793CF00FAFA88 /* EditProfileViewController.swift */; };
 		1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470CF2A8793DD00FAFA88 /* EditProfileView.swift */; };
 		1C7470D42A879E5900FAFA88 /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470D32A879E5900FAFA88 /* BorderedTextField.swift */; };
+		1C7470D72A88CBDB00FAFA88 /* CustomBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470D62A88CBDB00FAFA88 /* CustomBottomSheet.swift */; };
 		1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */; };
 		1CAA2BE52A8237C100C3FD70 /* ForgotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */; };
 		1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */; };
@@ -72,6 +73,7 @@
 		1C7470CD2A8793CF00FAFA88 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1C7470CF2A8793DD00FAFA88 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		1C7470D32A879E5900FAFA88 /* BorderedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
+		1C7470D62A88CBDB00FAFA88 /* CustomBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomSheet.swift; sourceTree = "<group>"; };
 		1CAA2BE12A82352600C3FD70 /* Extenions + NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenions + NSObject.swift"; sourceTree = "<group>"; };
 		1CAA2BE42A8237C100C3FD70 /* ForgotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotVC.swift; sourceTree = "<group>"; };
 		1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		1C7470D12A879E3600FAFA88 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				1C7470D52A88CBC300FAFA88 /* CustomBottomSheet */,
 				1C7470D22A879E3E00FAFA88 /* BorderedTextField */,
 			);
 			path = Custom;
@@ -279,6 +282,14 @@
 				1C7470D32A879E5900FAFA88 /* BorderedTextField.swift */,
 			);
 			path = BorderedTextField;
+			sourceTree = "<group>";
+		};
+		1C7470D52A88CBC300FAFA88 /* CustomBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				1C7470D62A88CBDB00FAFA88 /* CustomBottomSheet.swift */,
+			);
+			path = CustomBottomSheet;
 			sourceTree = "<group>";
 		};
 		1CAA2BE02A8234FC00C3FD70 /* Extensions */ = {
@@ -484,6 +495,7 @@
 				1C7470CE2A8793CF00FAFA88 /* EditProfileViewController.swift in Sources */,
 				1C3CEAA72A8658FF00466A58 /* PasswordVewController.swift in Sources */,
 				1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */,
+				1C7470D72A88CBDB00FAFA88 /* CustomBottomSheet.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
 				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
 				1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */,
