@@ -14,26 +14,32 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         tabBar.frame.size.height = 83
-        tabBar.tintColor = .red
-        tabBar.backgroundColor = .black
+        tabBar.tintColor = .black
+//        tabBar.backgroundColor = .black
         setupTabBar()
     }
     
     func setupTabBar() {
         
-        let vc = ProfileViewController()
+        let vc5 = ProfileViewController()
         
-        vc.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "main")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
+        vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ProfileTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
         
         
-        let vc1 = createVC(vc: UIViewController(), itemName: "", itemImage: "Main2")
+        let vc1 = createVC(vc: UIViewController(), itemName: "", itemImage: "HomeTab")
         vc1.view.backgroundColor = .white
         
-        let vc2 = createVC(vc: UIViewController(), itemName: "", itemImage: "Main3")
+        let vc2 = createVC(vc: UIViewController(), itemName: "", itemImage: "SearchTab")
         vc2.view.backgroundColor = .white
         
-        viewControllers = [vc, vc1, vc2]
+        let vc3 = createVC(vc: UIViewController(), itemName: "", itemImage: "WriteTab")
+        vc3.view.backgroundColor = .white
+        
+        let vc4 = createVC(vc: UIViewController(), itemName: "", itemImage: "ActivityTab")
+        vc4.view.backgroundColor = .white
+        
+        viewControllers = [vc1, vc2, vc3, vc4, vc5]
     }
     
     func createVC(vc: UIViewController, itemName: String, itemImage: String) -> UINavigationController {

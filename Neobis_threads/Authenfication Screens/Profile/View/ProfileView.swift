@@ -46,7 +46,7 @@ class ProfileView: UIView {
     
     let profilePicture: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .red
+        image.image = UIImage(named: "DefaulProfilePhoto")
         image.layer.cornerRadius = 35 * UIScreen.main.bounds.width / 393
         
         return image
@@ -100,6 +100,32 @@ class ProfileView: UIView {
         return view
     }()
     
+    private lazy var repostImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "RepostIcon")
+        
+        return image
+    }()
+    
+    private lazy var repostLabel: UILabel = {
+        let label = UILabel()
+        label.text = "You reposted"
+        label.textColor = UIColor(named: "GreyLabel")
+        label.font = UIFont.sfRegular(ofSize: 15)
+        
+        return label
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "MyCellReuseIdentifier")
+        
+        return collectionView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -110,7 +136,8 @@ class ProfileView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        
+        collectionView.dataSource = self
+        collectionView.delegate = self
         setupViews()
         setupConstraints()
     }
@@ -126,16 +153,19 @@ class ProfileView: UIView {
         addSubview(shareButton)
         addSubview(threadLabel)
         addSubview(dividerLine)
+        addSubview(repostImage)
+        addSubview(repostLabel)
+        addSubview(collectionView)
     }
     
     func setupConstraints() {
         professionLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 126))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-//            make.height.equalTo(flexibleHeight(to: 22))
-//            make.width.equalTo(flexibleWidth(to: 128))
-//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 249))
-//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 704))
+            //            make.height.equalTo(flexibleHeight(to: 22))
+            //            make.width.equalTo(flexibleWidth(to: 128))
+            //            make.trailing.equalToSuperview().inset(flexibleWidth(to: 249))
+            //            make.bottom.equalToSuperview().inset(flexibleHeight(to: 704))
         }
         
         nicknameLabel.snp.makeConstraints{ make in
@@ -166,7 +196,7 @@ class ProfileView: UIView {
         followersLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 196))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 305))
+            //            make.trailing.equalToSuperview().inset(flexibleWidth(to: 305))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 638))
         }
         
@@ -196,5 +226,48 @@ class ProfileView: UIView {
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 521))
         }
+        
+        repostImage.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 352.5))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 24))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 349))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 479.5))
+        }
+        
+        repostLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 349))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 54))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 256))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 476))
+        }
+        
+        collectionView.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 380))
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
+        }
+    }
+}
+
+extension ProfileView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // MARK: - UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2 // Number of cells
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomCell
+        
+        // Configure the cell
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = 393 * UIScreen.main.bounds.width / 393
+        let cellHeight = 106 * UIScreen.main.bounds.height / 852
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
