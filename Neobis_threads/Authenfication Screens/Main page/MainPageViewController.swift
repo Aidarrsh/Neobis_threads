@@ -1,16 +1,16 @@
 //
-//  ForgotVC.swift
+//  MainPageViewController.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 8/8/23.
+//  Created by Айдар Шарипов on 15/8/23.
 //
 
-import SnapKit
+import Foundation
 import UIKit
+import SnapKit
 
-class ForgotVC: UIViewController {
-    
-    private let contentView = ForgotView()
+class MainPageViewController: UIViewController {
+    private let contentView = MainPageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()

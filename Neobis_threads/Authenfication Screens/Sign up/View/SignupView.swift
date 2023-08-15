@@ -124,7 +124,7 @@ class SignupView: UIView {
         return button
     }()
     
-    private lazy var createAccountButton: UIButton = {
+    lazy var createAccountButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
         button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852

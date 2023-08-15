@@ -62,7 +62,7 @@ class LoginView: UIView {
         return field
     }()
     
-    private lazy var forgotButton: UIButton = {
+    lazy var forgotButton: UIButton = {
         let button = UIButton()
         button.setTitle("Forgot password ?", for: .normal)
         button.setTitleColor(UIColor(named: "Black"), for: .normal)
@@ -153,7 +153,7 @@ class LoginView: UIView {
         return label
     }()
     
-    private lazy var signupButton: UIButton = {
+    lazy var signupButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.sfBold(ofSize: 15)

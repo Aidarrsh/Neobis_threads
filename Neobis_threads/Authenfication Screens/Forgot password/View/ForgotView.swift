@@ -46,7 +46,7 @@ class ForgotView: UIView {
         return field
     }()
     
-    private lazy var continueButton: UIButton = {
+    lazy var continueButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
         button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852

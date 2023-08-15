@@ -1,21 +1,26 @@
 //
-//  PasswordVewController.swift
+//  ForgotVC.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 11/8/23.
+//  Created by Айдар Шарипов on 8/8/23.
 //
 
 import SnapKit
 import UIKit
 
-class PasswordViewController: UIViewController {
+class ForgotViewController: UIViewController {
     
-    private let contentView = PasswordView()
+    private let contentView = ForgotView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addTargets()
         setupView()
+    }
+    
+    func addTargets() {
+        contentView.continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
     }
     
     func setupView() {
@@ -32,5 +37,11 @@ class PasswordViewController: UIViewController {
     
     @objc func backPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func continueButtonTapped() {
+        let vc = OTPViewController()
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

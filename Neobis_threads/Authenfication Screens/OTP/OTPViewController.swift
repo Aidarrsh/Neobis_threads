@@ -9,7 +9,7 @@ import SnapKit
 import UIKit
 import AEOTPTextField
 
-class OTPVC: UIViewController {
+class OTPViewController: UIViewController {
     
     private let contentView = OTPView()
     
@@ -25,6 +25,9 @@ class OTPVC: UIViewController {
     }
     
     func setupView() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "BackIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backPressed))
+        self.navigationItem.leftBarButtonItem = backButton
+        
         view.addSubview(contentView)
         
         contentView.snp.makeConstraints{ make in
@@ -32,12 +35,16 @@ class OTPVC: UIViewController {
         }
     }
     
+    @objc func backPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func verifyButtonTapped() {
         print(contentView.otpTextField.text ?? "")
     }
 }
 
-extension OTPVC: AEOTPTextFieldDelegate {
+extension OTPViewController: AEOTPTextFieldDelegate {
     func didUserFinishEnter(the code: String) {
         return
     }
