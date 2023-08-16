@@ -27,7 +27,6 @@ class EditProfileView: UIView {
         button.setTitle("Edit photo", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = UIFont.sfSemiBold(ofSize: 14)
-        
         return button
     }()
     
@@ -126,7 +125,11 @@ class EditProfileView: UIView {
         
         return view
     }()
-    
+
+    // func change....(newImage: UIImage) {
+        // self.image = newImage
+    // }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -157,6 +160,7 @@ class EditProfileView: UIView {
         addSubview(toggleProfilePrivat)
         addSubview(overlayView)
         addSubview(bottomSheet)
+        // forEach
     }
     
     func setupConstraints() {
