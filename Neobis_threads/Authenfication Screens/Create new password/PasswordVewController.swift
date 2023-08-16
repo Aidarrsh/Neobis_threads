@@ -20,11 +20,14 @@ class PasswordViewController: UIViewController {
     
     func setupView() {
         
-        let backButton = UIBarButtonItem(image: UIImage(named: "BackIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backPressed))
+        let backButton = UIBarButtonItem(image: UIImage(named: "BackIcon")?.withRenderingMode(.alwaysOriginal), 
+                                         style: .plain, 
+                                         target: self, 
+                                         action: #selector(backPressed))
+        
         self.navigationItem.leftBarButtonItem = backButton
-        
-        view.addSubview(contentView)
-        
+        view.addSubview(contentView) 
+        // make in make -> $0.
         contentView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
         }
