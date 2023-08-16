@@ -61,7 +61,7 @@ class ProfileView: UIView {
         return button
     }()
     
-    private lazy var editButton: UIButton = {
+    lazy var editButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit profile", for: .normal)
         button.setTitleColor(.black, for: .normal)

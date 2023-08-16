@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addTargets()
         setupView()
     }
     
@@ -24,5 +24,16 @@ class ProfileViewController: UIViewController {
         contentView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func addTargets() {
+        contentView.editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func editButtonTapped() {
+        let vc = EditProfileViewController()
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }

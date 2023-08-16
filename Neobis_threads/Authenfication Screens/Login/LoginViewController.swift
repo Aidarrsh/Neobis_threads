@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
     func addTargets() {
         contentView.forgotButton.addTarget(self, action: #selector(forgotButtonTapped), for: .touchUpInside)
         contentView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
+        contentView.loginButton.addTarget(self, action: #selector(loginButton), for: .touchUpInside)
     }
     
     @objc func forgotButtonTapped() {
@@ -42,6 +43,13 @@ class LoginViewController: UIViewController {
         let vc = SignupViewController()
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func loginButton() {
+        let vc = TabBarController()
+        
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }
 

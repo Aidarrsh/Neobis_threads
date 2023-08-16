@@ -59,7 +59,23 @@ class LoginView: UIView {
         field.leftView = paddingView
         field.leftViewMode = .always
         
+        field.rightView = passwordSecureButton
+        field.rightViewMode = .always
+        
+        
         return field
+    }()
+    
+    private lazy var passwordSecureButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let eyeOpenImage = UIImage(named: "eyeClosed")?.withRenderingMode(.alwaysOriginal)
+        let eyeClosedImage = UIImage(named: "eye")?.withRenderingMode(.alwaysOriginal)
+        button.setImage(eyeOpenImage, for: .normal)
+        button.setImage(eyeClosedImage, for: .selected)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        button.addTarget(self, action: #selector(togglePasswordSecureEntry), for: .touchUpInside)
+        
+        return button
     }()
     
     lazy var forgotButton: UIButton = {
@@ -71,7 +87,7 @@ class LoginView: UIView {
         return button
     }()
     
-    private lazy var loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
         button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
@@ -299,6 +315,12 @@ class LoginView: UIView {
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 146))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 76))
         }
+    }
+    
+    @objc private func togglePasswordSecureEntry(sender: UIButton) {
+        passwordField.isSecureTextEntry.toggle()
+        let imageName = passwordField.isSecureTextEntry ? "eye" : "eyeClosed"
+        sender.setImage(UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal), for: .normal)
     }
 
 }
