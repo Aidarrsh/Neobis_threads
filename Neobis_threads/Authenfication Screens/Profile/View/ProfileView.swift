@@ -116,14 +116,13 @@ class ProfileView: UIView {
         return label
     }()
     
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "MyCellReuseIdentifier")
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.register(CustomProfileCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
         
-        return collectionView
+        return tableView
     }()
     
     override init(frame: CGRect) {
@@ -136,8 +135,8 @@ class ProfileView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         setupViews()
         setupConstraints()
     }
@@ -155,7 +154,7 @@ class ProfileView: UIView {
         addSubview(dividerLine)
         addSubview(repostImage)
         addSubview(repostLabel)
-        addSubview(collectionView)
+        addSubview(tableView)
     }
     
     func setupConstraints() {
@@ -241,33 +240,32 @@ class ProfileView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 476))
         }
         
-        collectionView.snp.makeConstraints{ make in
+        tableView.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 380))
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
         }
     }
+    
+    let model = ["Innovation sets leaders apart from followers.", "When I look at you, I see someone who’s working hard"]
 }
 
-extension ProfileView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    // MARK: - UICollectionViewDataSource
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2 // Number of cells
+extension ProfileView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return model.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomProfileCell
         
-        // Configure the cell
-        
+        cell.threadLabel.text = model[indexPath.row]
+        if indexPath.row%2==0{
+        }
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = 393 * UIScreen.main.bounds.width / 393
-        let cellHeight = 106 * UIScreen.main.bounds.height / 852
-        return CGSize(width: cellWidth, height: cellHeight)
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

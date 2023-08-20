@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class MainPageView: UIView {
+class HomeView: UIView {
     
     private lazy var threadIcon: UIImageView = {
         let image = UIImageView()
@@ -50,6 +50,15 @@ class MainPageView: UIView {
         return view
     }()
     
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.register(CustomHomeCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
+        
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -71,6 +80,7 @@ class MainPageView: UIView {
         addSubview(leftSectionBottomLine)
         addSubview(followingSection)
         addSubview(rightSectionBottomLine)
+        addSubview(tableView)
     }
     
     func setupConstraints() {
@@ -107,6 +117,12 @@ class MainPageView: UIView {
             make.leading.equalToSuperview().inset(flexibleWidth(to: 197))
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 699))
+        }
+        
+        tableView.snp.makeConstraints{ make in
+            make.top.equalTo(leftSectionBottomLine.snp.bottom).offset(flexibleHeight(to: 20))
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
         }
     }
 }

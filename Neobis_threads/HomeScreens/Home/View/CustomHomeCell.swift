@@ -1,19 +1,20 @@
 //
-//  CustomCell.swift
+//  CustomMainCell.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 13/8/23.
+//  Created by Айдар Шарипов on 19/8/23.
 //
 
+import Foundation
 import UIKit
 import SnapKit
 
-class CustomCell: UICollectionViewCell {
+class CustomHomeCell: UITableViewCell {
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "AvatarOne")
-        image.contentMode = .scaleAspectFit // Ensure that the content of the image view scales properly
+        image.contentMode = .scaleAspectFit
         
         return image
     }()
@@ -26,13 +27,22 @@ class CustomCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var textLabel: UILabel = {
+    lazy var threadLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 15)
-        label.text = "Innovation sets leaders apart from followers."
+        label.text = "Innovation sets leaders apart from followers. asdasdasddasfsafasfasfsdafsafdsafsf"
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         
         return label
+    }()
+
+    lazy var postImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "SteveJobsImage")
+        image.contentMode = .scaleAspectFit
         
+        return image
     }()
     
     lazy var likeIcon: UIImageView = {
@@ -81,9 +91,9 @@ class CustomCell: UICollectionViewCell {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupViews()
         setupConstraints()
     }
@@ -95,7 +105,8 @@ class CustomCell: UICollectionViewCell {
     func setupViews() {
         addSubview(avatarImage)
         addSubview(usernameLabel)
-        addSubview(textLabel)
+        addSubview(threadLabel)
+        addSubview(postImage)
         addSubview(likeIcon)
         addSubview(commentIcon)
         addSubview(repostIcon)
@@ -109,63 +120,73 @@ class CustomCell: UICollectionViewCell {
             make.top.equalToSuperview().inset(flexibleHeight(to: 3))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 12))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 345))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 67))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 413))
         }
-        
+
         usernameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 227))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 88))
+            make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }
-        
-        textLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 21))
+
+        threadLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(21)
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 65))
+//            make.height.equalTo(40) //  sfasfasdfasfsadfsdafsafasdf
+//            make.bottom.equalTo(postImage.snp.top).inset(flexibleHeight(to: 10))
+        }
+        
+        postImage.snp.makeConstraints{ make in
+            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
+//            make.height.equalTo(40) //  sfasfasdfasfsadfsdafsafasdf
+//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 65))
         }
         
         likeIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 56))
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 313))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
-        
+
         commentIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 56))
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 96))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 277))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
-        
+
         repostIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 56))
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 132))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 241))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
-        
+
         sendIcon.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 56))
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 168))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
-        
+
         timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 352))
+            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 21))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 88))
+            make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }
-        
+
         likesLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 88))
+            make.top.equalTo(likeIcon.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
             make.bottom.equalToSuperview()
         }
     }
 }
+

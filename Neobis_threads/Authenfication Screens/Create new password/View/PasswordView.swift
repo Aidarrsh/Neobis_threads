@@ -137,8 +137,8 @@ class PasswordView: UIView {
         
         subTitleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 229))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            make.leading.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 580))
         }
         
