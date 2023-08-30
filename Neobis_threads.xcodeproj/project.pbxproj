@@ -48,7 +48,16 @@
 		1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */; };
 		1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BF02A83889000C3FD70 /* OTPView.swift */; };
 		1CC198852A92042F002DE8FC /* CustomThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC198842A92042F002DE8FC /* CustomThreadCell.swift */; };
+		1CC198892A93B90D002DE8FC /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC198882A93B90D002DE8FC /* ReplyViewController.swift */; };
+		1CC1988B2A93B91F002DE8FC /* ReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1988A2A93B91F002DE8FC /* ReplyView.swift */; };
 		1CC6273E2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */; };
+		1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */; };
+		1CDCBE0D2A99DD1600A60D85 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE0C2A99DD1600A60D85 /* Service.swift */; };
+		1CDCBE0F2A99F5F800A60D85 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE0E2A99F5F800A60D85 /* LoginViewModel.swift */; };
+		1CDCBE112A9B374D00A60D85 /* CustomReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE102A9B374D00A60D85 /* CustomReplyCell.swift */; };
+		1CDCBE162A9B4E9700A60D85 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE152A9B4E9700A60D85 /* SearchView.swift */; };
+		1CDCBE182A9B4EA100A60D85 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE172A9B4EA100A60D85 /* SearchViewController.swift */; };
+		1CDCBE1A2A9F7B4100A60D85 /* CustomSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE192A9F7B4100A60D85 /* CustomSearchCell.swift */; };
 		DF47E4066ADE76715B452441 /* Pods_Neobis_threads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +103,16 @@
 		1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIFont.swift"; sourceTree = "<group>"; };
 		1CAA2BF02A83889000C3FD70 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
 		1CC198842A92042F002DE8FC /* CustomThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThreadCell.swift; sourceTree = "<group>"; };
+		1CC198882A93B90D002DE8FC /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
+		1CC1988A2A93B91F002DE8FC /* ReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyView.swift; sourceTree = "<group>"; };
 		1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
+		1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		1CDCBE0C2A99DD1600A60D85 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1CDCBE0E2A99F5F800A60D85 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		1CDCBE102A9B374D00A60D85 /* CustomReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomReplyCell.swift; sourceTree = "<group>"; };
+		1CDCBE152A9B4E9700A60D85 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		1CDCBE172A9B4EA100A60D85 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1CDCBE192A9F7B4100A60D85 /* CustomSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchCell.swift; sourceTree = "<group>"; };
 		1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.debug.xcconfig"; sourceTree = "<group>"; };
 		A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neobis_threads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.release.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */,
-				1C7470E22A90D79C00FAFA88 /* HomeScreens */,
+				1C7470E22A90D79C00FAFA88 /* Home Screens */,
 				1C3CEAAA2A87707200466A58 /* TabBar */,
 				1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */,
 				1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */,
@@ -179,13 +197,12 @@
 		1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1CDCBE0B2A99DD0B00A60D85 /* Service */,
 				1C3893C82A7A5D2E003D2CC8 /* Login */,
 				1CAA2BE32A8237A900C3FD70 /* Forgot password */,
 				1CAA2BEA2A837CD800C3FD70 /* OTP */,
 				1C3CEA9E2A863E4D00466A58 /* Sign up */,
 				1C3CEAA42A8658E100466A58 /* Create new password */,
-				1C3CEAAD2A87712000466A58 /* Profile */,
-				1C7470CB2A8793B000FAFA88 /* Edit profile */,
 			);
 			path = "Authenfication Screens";
 			sourceTree = "<group>";
@@ -195,6 +212,7 @@
 			children = (
 				1C3893B12A7A5B79003D2CC8 /* LoginViewController.swift */,
 				1CAA2BE62A8237C500C3FD70 /* View */,
+				1CDCBE0E2A99F5F800A60D85 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -229,6 +247,7 @@
 			children = (
 				1C3CEAA02A863E7400466A58 /* SignupViewController.swift */,
 				1C3CEA9F2A863E6500466A58 /* View */,
+				1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */,
 			);
 			path = "Sign up";
 			sourceTree = "<group>";
@@ -344,13 +363,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1C7470E22A90D79C00FAFA88 /* HomeScreens */ = {
+		1C7470E22A90D79C00FAFA88 /* Home Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1C3CEAAD2A87712000466A58 /* Profile */,
+				1C7470CB2A8793B000FAFA88 /* Edit profile */,
+				1CDCBE122A9B4E7B00A60D85 /* Search */,
+				1CC198862A93B8EC002DE8FC /* Reply */,
 				1C7470DA2A8B702A00FAFA88 /* Home */,
 				1C098A5C2A90D8890073446D /* Thread */,
 			);
-			path = HomeScreens;
+			path = "Home Screens";
 			sourceTree = "<group>";
 		};
 		1CAA2BE02A8234FC00C3FD70 /* Extensions */ = {
@@ -400,6 +423,50 @@
 			isa = PBXGroup;
 			children = (
 				1CAA2BF02A83889000C3FD70 /* OTPView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CC198862A93B8EC002DE8FC /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				1CC198882A93B90D002DE8FC /* ReplyViewController.swift */,
+				1CC198872A93B901002DE8FC /* View */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
+		1CC198872A93B901002DE8FC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CC1988A2A93B91F002DE8FC /* ReplyView.swift */,
+				1CDCBE102A9B374D00A60D85 /* CustomReplyCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1CDCBE0B2A99DD0B00A60D85 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCBE0C2A99DD1600A60D85 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1CDCBE122A9B4E7B00A60D85 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCBE172A9B4EA100A60D85 /* SearchViewController.swift */,
+				1CDCBE142A9B4E8800A60D85 /* View */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		1CDCBE142A9B4E8800A60D85 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCBE152A9B4E9700A60D85 /* SearchView.swift */,
+				1CDCBE192A9F7B4100A60D85 /* CustomSearchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -547,6 +614,7 @@
 			files = (
 				1C3CEAA32A863E9D00466A58 /* SignupView.swift in Sources */,
 				1C3CEAA92A86590A00466A58 /* PasswordView.swift in Sources */,
+				1CDCBE0F2A99F5F800A60D85 /* LoginViewModel.swift in Sources */,
 				1C7470DF2A8B704D00FAFA88 /* HomeView.swift in Sources */,
 				1C7470D92A88F2EC00FAFA88 /* CustomProfileCell.swift in Sources */,
 				1C3893B22A7A5B79003D2CC8 /* LoginViewController.swift in Sources */,
@@ -554,8 +622,11 @@
 				1C3CEAAC2A8770C400466A58 /* TabBarController.swift in Sources */,
 				1C7470E12A90D12100FAFA88 /* CustomHomeCell.swift in Sources */,
 				1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */,
+				1CDCBE162A9B4E9700A60D85 /* SearchView.swift in Sources */,
+				1CC198892A93B90D002DE8FC /* ReplyViewController.swift in Sources */,
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
 				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
+				1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */,
 				1CAA2BED2A837D1700C3FD70 /* OTPViewController.swift in Sources */,
 				1C098A5F2A90D89F0073446D /* ThreadViewController.swift in Sources */,
 				1C7470CE2A8793CF00FAFA88 /* EditProfileViewController.swift in Sources */,
@@ -563,11 +634,16 @@
 				1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */,
 				1C7470D72A88CBDB00FAFA88 /* CustomBottomSheet.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
+				1CC1988B2A93B91F002DE8FC /* ReplyView.swift in Sources */,
 				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
 				1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */,
+				1CDCBE1A2A9F7B4100A60D85 /* CustomSearchCell.swift in Sources */,
+				1CDCBE112A9B374D00A60D85 /* CustomReplyCell.swift in Sources */,
 				1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */,
 				1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */,
+				1CDCBE0D2A99DD1600A60D85 /* Service.swift in Sources */,
 				1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */,
+				1CDCBE182A9B4EA100A60D85 /* SearchViewController.swift in Sources */,
 				1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */,
 				1CC198852A92042F002DE8FC /* CustomThreadCell.swift in Sources */,
 				1C098A612A90D8D10073446D /* ThreadView.swift in Sources */,
