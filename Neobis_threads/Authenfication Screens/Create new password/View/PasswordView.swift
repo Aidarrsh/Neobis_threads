@@ -39,7 +39,8 @@ class PasswordView: UIView {
         field.layer.borderWidth = 1
         field.placeholder = "Password"
         field.font = UIFont.sfRegular(ofSize: 15)
-        
+
+        //delete  paddingView
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: field.frame.height))
         field.leftView = paddingView
         field.leftViewMode = .always
@@ -61,7 +62,8 @@ class PasswordView: UIView {
         
         return button
     }()
-    
+
+    // make custom UITextField 
     private lazy var confirmPasswordField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
@@ -92,7 +94,8 @@ class PasswordView: UIView {
         
         return button
     }()
-    
+
+    //  make custom UIButton
     private lazy var continueAccountButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Black")
@@ -158,12 +161,14 @@ class PasswordView: UIView {
         
         continueAccountButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 477))
+            // make leading.trailing.
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 327))
         }
     }
-    
+
+    // move to custom textfield class
     @objc private func togglePasswordSecureEntry(sender: UIButton) {
         passwordField.isSecureTextEntry.toggle()
         let imageName = passwordField.isSecureTextEntry ? "eye" : "eyeClosed"
