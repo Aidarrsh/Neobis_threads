@@ -11,6 +11,16 @@ import UIKit
 class SignupViewController: UIViewController {
     
     private let contentView = SignupView()
+    var signUpProtocol: SignUpProtocol!
+    
+    init(signUpProtocol: SignUpProtocol) {
+        self.signUpProtocol = signUpProtocol
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +46,23 @@ class SignupViewController: UIViewController {
     }
     
     @objc func createAccountButtonTapped() {
-        let vc = PasswordViewController()
         
-        navigationController?.pushViewController(vc, animated: true)
+        guard let email = contentView.emailField.text,
+              let username = contentView.nameField.text,
+              let password = contentView.passwordField.text,
+              let password2 = contentView.confirmPasswordField.text else {
+            print("Email or password is empty.")
+            return
+        }
+        
+        signUpProtocol.register(email: email, username: username, password: password, password2: password2)
+        print(email, username, password, password2)
+        
+        if signUpProtocol.isRegistered == true {
+            let vc = PasswordViewController()
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func backPressed() {

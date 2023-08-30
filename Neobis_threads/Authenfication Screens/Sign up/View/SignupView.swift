@@ -30,7 +30,7 @@ class SignupView: UIView {
         return label
     }()
     
-    private lazy var emailField: UITextField = {
+    lazy var emailField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -46,7 +46,7 @@ class SignupView: UIView {
         return field
     }()
     
-    private lazy var nameField: UITextField = {
+    lazy var nameField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -62,7 +62,7 @@ class SignupView: UIView {
         return field
     }()
     
-    private lazy var passwordField: UITextField = {
+    lazy var passwordField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
@@ -93,7 +93,7 @@ class SignupView: UIView {
         return button
     }()
     
-    private lazy var confirmPasswordField: UITextField = {
+    lazy var confirmPasswordField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor
