@@ -14,7 +14,7 @@ class CustomSearchCell: UITableViewCell {
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "AvatarOne")
+        image.image = UIImage(named: "AvatarFour")
         image.contentMode = .scaleAspectFit
         
         return image
@@ -22,67 +22,49 @@ class CustomSearchCell: UITableViewCell {
     
     lazy var usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "mountain_mama"
+        label.text = "iamnalimov"
         label.font = UIFont.sfBold(ofSize: 14)
         
         return label
     }()
     
-    lazy var threadLabel: UILabel = {
+    lazy var jobLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 15)
-        label.text = "Innovation sets leaders apart from followers. asdasdasddasfsafasfasfsdafsafdsafsf"
+        label.text = "Art Director"
         label.lineBreakMode = .byWordWrapping
+        label.textColor = UIColor(named: "GreyLabel")
         label.numberOfLines = 0
         
         return label
     }()
 
-    
-    lazy var likeIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "LikeIcon")
-        
-        return image
-    }()
-    
-    lazy var commentIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "CommentIcon")
-        
-        return image
-    }()
-    
-    lazy var repostIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "RepostBlackIcon")
-        
-        return image
-    }()
-    
-    lazy var sendIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "SendIcon")
-        
-        return image
-    }()
-    
-    lazy var timeLabel: UILabel = {
+    lazy var followersLabel: UILabel = {
         let label = UILabel()
-        label.text = "3m"
-        label.textColor = UIColor(named: "GreyLabel")
+        label.text = "49 followers"
         label.font = UIFont.sfRegular(ofSize: 14)
         
         return label
     }()
     
-    lazy var likesLabel: UILabel = {
-        let label = UILabel()
-        label.text = "87 likes"
-        label.font = UIFont.sfRegular(ofSize: 14)
-        label.textColor = UIColor(named: "GreyLabel")
+    lazy var followButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Follow", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.sfMedium(ofSize: 14)
+        button.layer.cornerRadius = 8 * UIScreen.main.bounds.height / 852
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor(named: "GreyButtonBorder")?.cgColor
         
-        return label
+        return button
+    }()
+    
+    private lazy var dividerLine: UIView = {
+        let view = UIView()
+        view.layer.borderWidth = 0.33
+        view.layer.borderColor = UIColor(named: "GreyButtonBorder")?.cgColor
+        
+        return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -99,13 +81,10 @@ class CustomSearchCell: UITableViewCell {
     func setupViews() {
         addSubview(avatarImage)
         addSubview(usernameLabel)
-        addSubview(threadLabel)
-        addSubview(likeIcon)
-        addSubview(commentIcon)
-        addSubview(repostIcon)
-        addSubview(sendIcon)
-        addSubview(timeLabel)
-        addSubview(likesLabel)
+        addSubview(jobLabel)
+        addSubview(followersLabel)
+        addSubview(followButton)
+        addSubview(dividerLine)
     }
     
     func setupConstraints() {
@@ -113,66 +92,35 @@ class CustomSearchCell: UITableViewCell {
             make.top.equalToSuperview().inset(flexibleHeight(to: 3))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 12))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 345))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 67))
         }
 
         usernameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 227))
-            make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
+            make.top.equalToSuperview().offset(flexibleHeight(to: 2))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
         }
 
-        threadLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(21)
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
-//            make.height.equalTo(40) //  sfasfasdfasfsadfsdafsafasdf
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 65))
+        jobLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(22)
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
         }
         
-        likeIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 313))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
+        followersLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(54)
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
         }
-
-        commentIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 96))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 277))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
+        
+        followButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(3)
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 281))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 57))
         }
-
-        repostIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 132))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 241))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
-        }
-
-        sendIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 168))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
-        }
-
-        timeLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 21))
-            make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
-        }
-
-        likesLabel.snp.makeConstraints { make in
-            make.top.equalTo(likeIcon.snp.bottom).offset(flexibleHeight(to: 12))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
-            make.bottom.equalToSuperview()
+        
+        dividerLine.snp.makeConstraints { make in
+            make.top.equalTo(followersLabel.snp.bottom).offset(8.7)
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 64))
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 9))
         }
     }
 }
-
-

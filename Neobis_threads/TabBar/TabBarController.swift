@@ -25,18 +25,21 @@ class TabBarController: UITabBarController {
         
         vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "HomeTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
+        let vc2 = SearchViewController()
+        
+        vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "SearchTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
+        
+        let vc4 = ActivityViewController()
+        
+        vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ActivityTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
+        
         let vc5 = ProfileViewController()
         
         vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ProfileTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
-        let vc2 = createVC(vc: UIViewController(), itemName: "", itemImage: "SearchTab")
-        vc2.view.backgroundColor = .white
-        
         let vc3 = createVC(vc: UIViewController(), itemName: "", itemImage: "WriteTab")
         vc3.view.backgroundColor = .white
-        
-        let vc4 = createVC(vc: UIViewController(), itemName: "", itemImage: "ActivityTab")
-        vc4.view.backgroundColor = .white
+
         
         viewControllers = [vc1, vc2, vc3, vc4, vc5]
     }

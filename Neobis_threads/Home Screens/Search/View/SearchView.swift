@@ -29,7 +29,7 @@ class SearchView: UIView {
         
         return bar
     }()
-
+    
     func createEmptyLeftView(size: CGSize) -> UIView {
         let leftView = UIView(frame: CGRect(origin: .zero, size: size))
         leftView.backgroundColor = .clear
@@ -56,8 +56,6 @@ class SearchView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        tableView.dataSource = self
-        tableView.delegate = self
         setupViews()
         setupConstraints()
     }
@@ -87,23 +85,5 @@ class SearchView: UIView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 104))
         }
-    }
-}
-
-extension SearchView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomSearchCell
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
