@@ -47,6 +47,15 @@
 		1CAA2BED2A837D1700C3FD70 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEC2A837D1700C3FD70 /* OTPViewController.swift */; };
 		1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */; };
 		1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BF02A83889000C3FD70 /* OTPView.swift */; };
+		1CAD5D242AA4827A0029C509 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D232AA4827A0029C509 /* TokenModel.swift */; };
+		1CAD5D282AA489320029C509 /* EditProfileSetDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D272AA489320029C509 /* EditProfileSetDataViewModel.swift */; };
+		1CAD5D2A2AA4937D0029C509 /* EditProfileSetPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D292AA4937D0029C509 /* EditProfileSetPhotoViewModel.swift */; };
+		1CAD5D2C2AA5DE720029C509 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D2B2AA5DE720029C509 /* OTPViewModel.swift */; };
+		1CAD5D2E2AA5EB0C0029C509 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D2D2AA5EB0C0029C509 /* SearchViewModel.swift */; };
+		1CAD5D302AA5F6890029C509 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D2F2AA5F6890029C509 /* UsersModel.swift */; };
+		1CAD5D332AA98D9B0029C509 /* SignupConfirmEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D322AA98D9B0029C509 /* SignupConfirmEmailViewModel.swift */; };
+		1CAD5D372AA9B2BC0029C509 /* ProfileLogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D362AA9B2BC0029C509 /* ProfileLogoutViewModel.swift */; };
+		1CAD5D392AAF02E20029C509 /* SearchGetDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAD5D382AAF02E20029C509 /* SearchGetDataViewModel.swift */; };
 		1CC198852A92042F002DE8FC /* CustomThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC198842A92042F002DE8FC /* CustomThreadCell.swift */; };
 		1CC198892A93B90D002DE8FC /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC198882A93B90D002DE8FC /* ReplyViewController.swift */; };
 		1CC1988B2A93B91F002DE8FC /* ReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1988A2A93B91F002DE8FC /* ReplyView.swift */; };
@@ -66,6 +75,10 @@
 		1CDCBE2B2AA1FA8B00A60D85 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE2A2AA1FA8B00A60D85 /* ActivityView.swift */; };
 		1CDCBE2D2AA1FB1900A60D85 /* CustomCommentsActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE2C2AA1FB1900A60D85 /* CustomCommentsActivityCell.swift */; };
 		1CDCBE2F2AA2060400A60D85 /* CustomRequestActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE2E2AA2060400A60D85 /* CustomRequestActivityCell.swift */; };
+		1CDCBE322AA46F4C00A60D85 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE312AA46F4C00A60D85 /* ProfileViewModel.swift */; };
+		1CDCBE352AA46FC800A60D85 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE342AA46FC800A60D85 /* AuthManager.swift */; };
+		1CE233022AB45A60008590B0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE233012AB45A60008590B0 /* HomeViewModel.swift */; };
+		1CE233052AB45AE9008590B0 /* FeedsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE233042AB45AE9008590B0 /* FeedsModel.swift */; };
 		DF47E4066ADE76715B452441 /* Pods_Neobis_threads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +123,15 @@
 		1CAA2BEC2A837D1700C3FD70 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + UIFont.swift"; sourceTree = "<group>"; };
 		1CAA2BF02A83889000C3FD70 /* OTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPView.swift; sourceTree = "<group>"; };
+		1CAD5D232AA4827A0029C509 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		1CAD5D272AA489320029C509 /* EditProfileSetDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetDataViewModel.swift; sourceTree = "<group>"; };
+		1CAD5D292AA4937D0029C509 /* EditProfileSetPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetPhotoViewModel.swift; sourceTree = "<group>"; };
+		1CAD5D2B2AA5DE720029C509 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		1CAD5D2D2AA5EB0C0029C509 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		1CAD5D2F2AA5F6890029C509 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		1CAD5D322AA98D9B0029C509 /* SignupConfirmEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConfirmEmailViewModel.swift; sourceTree = "<group>"; };
+		1CAD5D362AA9B2BC0029C509 /* ProfileLogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLogoutViewModel.swift; sourceTree = "<group>"; };
+		1CAD5D382AAF02E20029C509 /* SearchGetDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGetDataViewModel.swift; sourceTree = "<group>"; };
 		1CC198842A92042F002DE8FC /* CustomThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomThreadCell.swift; sourceTree = "<group>"; };
 		1CC198882A93B90D002DE8FC /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		1CC1988A2A93B91F002DE8FC /* ReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyView.swift; sourceTree = "<group>"; };
@@ -129,6 +151,10 @@
 		1CDCBE2A2AA1FA8B00A60D85 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		1CDCBE2C2AA1FB1900A60D85 /* CustomCommentsActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCommentsActivityCell.swift; sourceTree = "<group>"; };
 		1CDCBE2E2AA2060400A60D85 /* CustomRequestActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRequestActivityCell.swift; sourceTree = "<group>"; };
+		1CDCBE312AA46F4C00A60D85 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		1CDCBE342AA46FC800A60D85 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		1CE233012AB45A60008590B0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1CE233042AB45AE9008590B0 /* FeedsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsModel.swift; sourceTree = "<group>"; };
 		1EA4318B5D48632ADCA9F462 /* Pods-Neobis_threads.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.debug.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.debug.xcconfig"; sourceTree = "<group>"; };
 		A76D1E45882EDB70A95CFEA6 /* Pods_Neobis_threads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Neobis_threads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFED5F56389D6DFD9FC305DB /* Pods-Neobis_threads.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Neobis_threads.release.xcconfig"; path = "Target Support Files/Pods-Neobis_threads/Pods-Neobis_threads.release.xcconfig"; sourceTree = "<group>"; };
@@ -195,9 +221,12 @@
 		1C3893AC2A7A5B79003D2CC8 /* Neobis_threads */ = {
 			isa = PBXGroup;
 			children = (
+				1CAD5D222AA4826A0029C509 /* Models */,
+				1CDCBE332AA46FB900A60D85 /* AuthManager */,
 				1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */,
 				1C7470E22A90D79C00FAFA88 /* Home Screens */,
 				1C3CEAAA2A87707200466A58 /* TabBar */,
+				1CDCBE0B2A99DD0B00A60D85 /* Service */,
 				1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */,
 				1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */,
 				1C3893B62A7A5B7B003D2CC8 /* Assets.xcassets */,
@@ -213,7 +242,6 @@
 		1C3893C72A7A5D17003D2CC8 /* Authenfication Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1CDCBE0B2A99DD0B00A60D85 /* Service */,
 				1C3893C82A7A5D2E003D2CC8 /* Login */,
 				1CAA2BE32A8237A900C3FD70 /* Forgot password */,
 				1CAA2BEA2A837CD800C3FD70 /* OTP */,
@@ -227,8 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				1C3893B12A7A5B79003D2CC8 /* LoginViewController.swift */,
-				1CAA2BE62A8237C500C3FD70 /* View */,
 				1CDCBE0E2A99F5F800A60D85 /* LoginViewModel.swift */,
+				1CAA2BE62A8237C500C3FD70 /* View */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -261,9 +289,9 @@
 		1C3CEA9E2A863E4D00466A58 /* Sign up */ = {
 			isa = PBXGroup;
 			children = (
+				1CAD5D342AA98DCD0029C509 /* ViewModels */,
 				1C3CEAA02A863E7400466A58 /* SignupViewController.swift */,
 				1C3CEA9F2A863E6500466A58 /* View */,
-				1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */,
 			);
 			path = "Sign up";
 			sourceTree = "<group>";
@@ -305,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				1C3CEAAF2A87713C00466A58 /* ProfileViewController.swift */,
+				1CAD5D352AA9B2AA0029C509 /* ViewModels */,
 				1C3CEAAE2A87712B00466A58 /* View */,
 			);
 			path = Profile;
@@ -322,6 +351,7 @@
 		1C7470CB2A8793B000FAFA88 /* Edit profile */ = {
 			isa = PBXGroup;
 			children = (
+				1CAD5D262AA4890F0029C509 /* EditProfileViewModels */,
 				1C7470CD2A8793CF00FAFA88 /* EditProfileViewController.swift */,
 				1C7470CC2A8793BF00FAFA88 /* View */,
 			);
@@ -367,6 +397,7 @@
 			children = (
 				1C7470DC2A8B704400FAFA88 /* HomeViewController.swift */,
 				1C7470DB2A8B703700FAFA88 /* View */,
+				1CE233012AB45A60008590B0 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -433,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				1CAA2BEC2A837D1700C3FD70 /* OTPViewController.swift */,
+				1CAD5D2B2AA5DE720029C509 /* OTPViewModel.swift */,
 				1CAA2BEB2A837D0700C3FD70 /* View */,
 			);
 			path = OTP;
@@ -444,6 +476,43 @@
 				1CAA2BF02A83889000C3FD70 /* OTPView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1CAD5D222AA4826A0029C509 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1CAD5D232AA4827A0029C509 /* TokenModel.swift */,
+				1CAD5D2F2AA5F6890029C509 /* UsersModel.swift */,
+				1CE233042AB45AE9008590B0 /* FeedsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1CAD5D262AA4890F0029C509 /* EditProfileViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1CAD5D272AA489320029C509 /* EditProfileSetDataViewModel.swift */,
+				1CAD5D292AA4937D0029C509 /* EditProfileSetPhotoViewModel.swift */,
+			);
+			path = EditProfileViewModels;
+			sourceTree = "<group>";
+		};
+		1CAD5D342AA98DCD0029C509 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1CAD5D322AA98D9B0029C509 /* SignupConfirmEmailViewModel.swift */,
+				1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1CAD5D352AA9B2AA0029C509 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCBE312AA46F4C00A60D85 /* ProfileViewModel.swift */,
+				1CAD5D362AA9B2BC0029C509 /* ProfileLogoutViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		1CC198862A93B8EC002DE8FC /* Reply */ = {
@@ -476,6 +545,8 @@
 			isa = PBXGroup;
 			children = (
 				1CDCBE172A9B4EA100A60D85 /* SearchViewController.swift */,
+				1CAD5D2D2AA5EB0C0029C509 /* SearchViewModel.swift */,
+				1CAD5D382AAF02E20029C509 /* SearchGetDataViewModel.swift */,
 				1CDCBE142A9B4E8800A60D85 /* View */,
 			);
 			path = Search;
@@ -533,6 +604,14 @@
 				1CDCBE2E2AA2060400A60D85 /* CustomRequestActivityCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1CDCBE332AA46FB900A60D85 /* AuthManager */ = {
+			isa = PBXGroup;
+			children = (
+				1CDCBE342AA46FC800A60D85 /* AuthManager.swift */,
+			);
+			path = AuthManager;
 			sourceTree = "<group>";
 		};
 		810D60142330C7EDBAB3430F /* Pods */ = {
@@ -677,20 +756,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C3CEAA32A863E9D00466A58 /* SignupView.swift in Sources */,
+				1CE233052AB45AE9008590B0 /* FeedsModel.swift in Sources */,
 				1C3CEAA92A86590A00466A58 /* PasswordView.swift in Sources */,
 				1CDCBE0F2A99F5F800A60D85 /* LoginViewModel.swift in Sources */,
 				1CDCBE2D2AA1FB1900A60D85 /* CustomCommentsActivityCell.swift in Sources */,
 				1CDCBE1E2AA1DDE400A60D85 /* SomeoneProfileViewController.swift in Sources */,
+				1CAD5D2C2AA5DE720029C509 /* OTPViewModel.swift in Sources */,
 				1C7470DF2A8B704D00FAFA88 /* HomeView.swift in Sources */,
 				1C7470D92A88F2EC00FAFA88 /* CustomProfileCell.swift in Sources */,
 				1CDCBE202AA1DE1500A60D85 /* SomeoneProfileView.swift in Sources */,
 				1C3893B22A7A5B79003D2CC8 /* LoginViewController.swift in Sources */,
 				1C7470DD2A8B704400FAFA88 /* HomeViewController.swift in Sources */,
 				1C3CEAAC2A8770C400466A58 /* TabBarController.swift in Sources */,
+				1CAD5D302AA5F6890029C509 /* UsersModel.swift in Sources */,
 				1C7470E12A90D12100FAFA88 /* CustomHomeCell.swift in Sources */,
 				1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */,
+				1CAD5D2A2AA4937D0029C509 /* EditProfileSetPhotoViewModel.swift in Sources */,
+				1CAD5D242AA4827A0029C509 /* TokenModel.swift in Sources */,
 				1CDCBE162A9B4E9700A60D85 /* SearchView.swift in Sources */,
 				1CC198892A93B90D002DE8FC /* ReplyViewController.swift in Sources */,
+				1CE233022AB45A60008590B0 /* HomeViewModel.swift in Sources */,
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
 				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
 				1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */,
@@ -699,14 +784,17 @@
 				1C7470CE2A8793CF00FAFA88 /* EditProfileViewController.swift in Sources */,
 				1C3CEAA72A8658FF00466A58 /* PasswordVewController.swift in Sources */,
 				1C3CEAB22A87715D00466A58 /* ProfileView.swift in Sources */,
+				1CAD5D392AAF02E20029C509 /* SearchGetDataViewModel.swift in Sources */,
 				1C7470D72A88CBDB00FAFA88 /* CustomBottomSheet.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
 				1CC1988B2A93B91F002DE8FC /* ReplyView.swift in Sources */,
 				1CDCBE292AA1FA8100A60D85 /* ActivityViewController.swift in Sources */,
 				1CDCBE2B2AA1FA8B00A60D85 /* ActivityView.swift in Sources */,
 				1CDCBE252AA1E55900A60D85 /* CustomBottomShareSheet.swift in Sources */,
+				1CAD5D2E2AA5EB0C0029C509 /* SearchViewModel.swift in Sources */,
 				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
 				1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */,
+				1CAD5D282AA489320029C509 /* EditProfileSetDataViewModel.swift in Sources */,
 				1CDCBE222AA1DE4200A60D85 /* CustomSomeoneProfileCell.swift in Sources */,
 				1CDCBE1A2A9F7B4100A60D85 /* CustomSearchCell.swift in Sources */,
 				1CDCBE112A9B374D00A60D85 /* CustomReplyCell.swift in Sources */,
@@ -714,11 +802,15 @@
 				1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */,
 				1CDCBE0D2A99DD1600A60D85 /* Service.swift in Sources */,
 				1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */,
+				1CAD5D332AA98D9B0029C509 /* SignupConfirmEmailViewModel.swift in Sources */,
+				1CDCBE322AA46F4C00A60D85 /* ProfileViewModel.swift in Sources */,
 				1CDCBE2F2AA2060400A60D85 /* CustomRequestActivityCell.swift in Sources */,
 				1CDCBE182A9B4EA100A60D85 /* SearchViewController.swift in Sources */,
+				1CDCBE352AA46FC800A60D85 /* AuthManager.swift in Sources */,
 				1CAA2BE22A82352600C3FD70 /* Extenions + NSObject.swift in Sources */,
 				1CC198852A92042F002DE8FC /* CustomThreadCell.swift in Sources */,
 				1C098A612A90D8D10073446D /* ThreadView.swift in Sources */,
+				1CAD5D372AA9B2BC0029C509 /* ProfileLogoutViewModel.swift in Sources */,
 				1C7470D42A879E5900FAFA88 /* BorderedTextField.swift in Sources */,
 				1CAA2BE52A8237C100C3FD70 /* ForgotViewController.swift in Sources */,
 			);

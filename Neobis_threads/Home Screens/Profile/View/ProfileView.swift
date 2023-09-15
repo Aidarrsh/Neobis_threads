@@ -11,7 +11,14 @@ import SnapKit
 
 class ProfileView: UIView {
     
-    private lazy var professionLabel: UILabel = {
+    lazy var exitButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "ExitIcon"), for: .normal)
+        
+        return button
+    }()
+    
+    lazy var professionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 24)
         label.text = "Design Lead"
@@ -19,7 +26,7 @@ class ProfileView: UIView {
         return label
     }()
     
-    private lazy var nicknameLabel: UILabel = {
+    lazy var nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 14)
         label.text = "malevicz"
@@ -35,7 +42,7 @@ class ProfileView: UIView {
         return view
     }()
     
-    private lazy var domainLabel: UILabel = {
+    lazy var domainLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 11)
         label.text = "threads.net"
@@ -47,12 +54,14 @@ class ProfileView: UIView {
     let profilePicture: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "DefaulProfilePhoto")
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         image.layer.cornerRadius = 35 * UIScreen.main.bounds.width / 393
         
         return image
     }()
     
-    private lazy var followersLabel: UIButton = {
+    lazy var followersLabel: UIButton = {
         let button = UIButton()
         button.setTitle("18 followers", for: .normal)
         button.titleLabel?.font = UIFont.sfRegular(ofSize: 15)
@@ -85,7 +94,7 @@ class ProfileView: UIView {
         return button
     }()
     
-    private lazy var threadLabel: UILabel = {
+    lazy var threadLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfMedium(ofSize: 15)
         label.text = "Threads"
@@ -100,14 +109,14 @@ class ProfileView: UIView {
         return view
     }()
     
-    private lazy var repostImage: UIImageView = {
+    lazy var repostImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "RepostIcon")
         
         return image
     }()
     
-    private lazy var repostLabel: UILabel = {
+    lazy var repostLabel: UILabel = {
         let label = UILabel()
         label.text = "You reposted"
         label.textColor = UIColor(named: "GreyLabel")
@@ -142,6 +151,7 @@ class ProfileView: UIView {
     }
     
     func setupViews() {
+        addSubview(exitButton)
         addSubview(professionLabel)
         addSubview(nicknameLabel)
         addSubview(domainView)
@@ -158,6 +168,14 @@ class ProfileView: UIView {
     }
     
     func setupConstraints() {
+        
+        exitButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 68))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 353))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 760))
+        }
+        
         professionLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 126))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
@@ -170,14 +188,14 @@ class ProfileView: UIView {
         nicknameLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 162))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 320))
+            
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 672))
         }
         
         domainView.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 158))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 75))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 251))
+            make.leading.equalTo(nicknameLabel.snp.trailing).offset(flexibleWidth(to: 4))
+            make.width.equalTo(flexibleWidth(to: 67))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 668))
         }
         

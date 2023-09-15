@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
         
         vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "HomeTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
-        let vc2 = SearchViewController()
+        let vc2 = SearchViewController(searchDataProtocol: SearchGetDataViewModel())
         
         vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "SearchTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
@@ -33,7 +33,7 @@ class TabBarController: UITabBarController {
         
         vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ActivityTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
-        let vc5 = ProfileViewController()
+        let vc5 = ProfileViewController(profileProtocol: ProfileViewModel())
         
         vc5.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ProfileTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         

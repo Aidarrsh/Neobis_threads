@@ -15,7 +15,9 @@ class CustomSearchCell: UITableViewCell {
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "AvatarFour")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 18 * UIScreen.main.bounds.width / 393
         
         return image
     }()
@@ -92,6 +94,7 @@ class CustomSearchCell: UITableViewCell {
             make.top.equalToSuperview().inset(flexibleHeight(to: 3))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 12))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 345))
+            make.height.width.equalTo(flexibleWidth(to: 36))
         }
 
         usernameLabel.snp.makeConstraints { make in

@@ -12,9 +12,11 @@ class SignupViewController: UIViewController {
     
     private let contentView = SignupView()
     var signUpProtocol: SignUpProtocol!
+    var signUpConfirmProtocol: SignupConfirmProtocol!
     
-    init(signUpProtocol: SignUpProtocol) {
+    init(signUpProtocol: SignUpProtocol, signUpConfirmProtocol: SignupConfirmProtocol) {
         self.signUpProtocol = signUpProtocol
+        self.signUpConfirmProtocol = signUpConfirmProtocol
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,7 +49,7 @@ class SignupViewController: UIViewController {
     
     @objc func createAccountButtonTapped() {
         
-        guard let email = contentView.emailField.text,
+        guard let email = contentView.emailField.text?.lowercased(),
               let username = contentView.nameField.text,
               let password = contentView.passwordField.text,
               let password2 = contentView.confirmPasswordField.text else {
@@ -56,16 +58,49 @@ class SignupViewController: UIViewController {
         }
         
         signUpProtocol.register(email: email, username: username, password: password, password2: password2)
-        print(email, username, password, password2)
         
-        if signUpProtocol.isRegistered == true {
-            let vc = PasswordViewController()
-            
-            navigationController?.pushViewController(vc, animated: true)
+        if email.isEmpty {
+            self.showErrorAlert(message: "Требуется почта")
+        }
+        
+        if !email.contains("@") {
+            self.showErrorAlert(message: "Неверный формат почты")
+        }
+        
+        if username.isEmpty {
+            self.showErrorAlert(message: "Требуется никнейм")
+        }
+        
+        if password != password2 {
+            self.showErrorAlert(message: "Пароли не совпадают")
+        }
+        
+        if !email.isEmpty && email.contains("@") && !username.isEmpty && password == password2 {
+            signUpProtocol.registerResult = { [weak self] result in
+                switch result {
+                case .success:
+                    DispatchQueue.main.async {
+                        let vc = OTPViewController(otpProtocol: OTPViewModel(), email: email)
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    }
+                case .failure(let error):
+                    print("Register failed with error: \(error)")
+                    
+                    // Show an alert with the error message
+                    self?.showErrorAlert(message: "Этот никнейм уже занят.")
+                }
+            }
         }
     }
     
     @objc func backPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func showErrorAlert(message: String) {
+        let alertController = UIAlertController(title: "Неверные данные", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

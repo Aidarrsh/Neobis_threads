@@ -13,6 +13,19 @@ class OTPViewController: UIViewController {
     
     private let contentView = OTPView()
     
+    var otpProtocol: OTPProtocol
+    var email: String?
+    
+    init(otpProtocol: OTPProtocol, email: String?) {
+        self.otpProtocol = otpProtocol
+        self.email = email
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureOTPTextField()
@@ -41,6 +54,36 @@ class OTPViewController: UIViewController {
     
     @objc func verifyButtonTapped() {
         print(contentView.otpTextField.text ?? "")
+        
+        guard let codeText = contentView.otpTextField.text else { return }
+        
+        if let code = Int(codeText) {
+            otpProtocol.otp(email: email ?? "nil" , otp: code)
+        } else {
+            print("wrong code type")
+        }
+        
+        otpProtocol.otpResult = { [weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.async {
+                    let vc = TabBarController()
+                    vc.modalPresentationStyle = .fullScreen
+                    self?.present(vc, animated: true, completion: nil)
+                }
+            case .failure(let error):
+                print("Login failed with error: \(error)")
+                
+                self?.showErrorAlert(message: "Введены неверные данные. Попробуйте еще раз.")
+            }
+        }
+    }
+    
+    func showErrorAlert(message: String) {
+        let alertController = UIAlertController(title: "Неверные данные", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

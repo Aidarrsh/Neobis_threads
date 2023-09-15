@@ -50,14 +50,13 @@ class LoginViewController: UIViewController {
     }
     
     @objc func signupButtonTapped() {
-        let vc = SignupViewController(signUpProtocol: SignUpViewModel())
+        let vc = SignupViewController(signUpProtocol: SignUpViewModel(), signUpConfirmProtocol: SignupConfirmEmailViewModel())
         
         navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func loginButton() {
-        guard let name = contentView.emailField.text, let password = contentView.passwordField.text else {
-            print("Email or password is empty.")
+        guard let name = contentView.emailField.text?.lowercased(), let password = contentView.passwordField.text else {
             return
         }
         
@@ -73,11 +72,18 @@ class LoginViewController: UIViewController {
                     self?.present(vc, animated: true, completion: nil)
                 }
             case .failure(let error):
-                // Handle login failure
                 print("Login failed with error: \(error)")
+                
+                self?.showErrorAlert(message: "Введены неверные данные. Попробуйте еще раз.")
             }
         }
     }
 
+    func showErrorAlert(message: String) {
+        let alertController = UIAlertController(title: "Неверные данные", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 

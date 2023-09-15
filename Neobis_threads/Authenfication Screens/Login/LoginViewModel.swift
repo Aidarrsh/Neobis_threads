@@ -29,15 +29,18 @@ class LoginViewModel: LoginProtocol {
     func login(email: String, password: String) {
         let parameters: [String: Any] = ["email": email, "password": password]
         
-        apiService.post(endpoint: "api/v1/sign_in/", parameters: parameters) { [weak self] (result) in
+        apiService.post(endpoint: "sign_in/", parameters: parameters) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     let decoder = JSONDecoder()
-                    let dataString = String(data: data, encoding: .utf8)
-                    print("Data received: \(dataString ?? "nil")")
-                    self?.isLoggedIn = true
-                    self?.loginResult?(.success(data))
+                    if let tokenResponse = try? decoder.decode(TokenResponse.self, from: data) {
+                        AuthManager.shared.accessToken = tokenResponse.access
+                        AuthManager.shared.refreshToken = tokenResponse.refresh
+                        
+                        self?.isLoggedIn = true
+                        self?.loginResult?(.success(data))
+                    }
                 case .failure(let error):
                     let errorMessage = "Failed register number: \(error.localizedDescription)"
                     print(errorMessage)

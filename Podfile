@@ -7,5 +7,6 @@ target 'Neobis_threads' do
 
   # Pods for Neobis_threads
 pod 'AEOTPTextField'
+pod 'Kingfisher'
 
 end

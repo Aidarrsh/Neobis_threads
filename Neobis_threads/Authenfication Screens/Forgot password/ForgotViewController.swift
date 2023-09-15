@@ -40,7 +40,10 @@ class ForgotViewController: UIViewController {
     }
     
     @objc func continueButtonTapped() {
-        let vc = OTPViewController()
+        
+        guard let email = contentView.emailField.text else { return }
+        
+        let vc = OTPViewController(otpProtocol: OTPViewModel(), email: email)
         
         navigationController?.pushViewController(vc, animated: true)
     }

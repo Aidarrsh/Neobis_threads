@@ -70,7 +70,7 @@ class EditProfileView: UIView {
         return label
     }()
     
-    private lazy var usernameTextField: BorderedTextField = {
+    lazy var usernameTextField: BorderedTextField = {
         let field = BorderedTextField()
         
         return field
@@ -84,7 +84,7 @@ class EditProfileView: UIView {
         return label
     }()
     
-    private lazy var nameTextField: BorderedTextField = {
+    lazy var nameTextField: BorderedTextField = {
         let field = BorderedTextField()
         
         return field
@@ -98,7 +98,7 @@ class EditProfileView: UIView {
         return label
     }()
     
-    private lazy var bioTextField: BorderedTextField = {
+    lazy var bioTextField: BorderedTextField = {
         let field = BorderedTextField()
         field.placeholder = "+ Write bio"
         
@@ -113,7 +113,7 @@ class EditProfileView: UIView {
         return label
     }()
     
-    private lazy var linkTextField: BorderedTextField = {
+    lazy var linkTextField: BorderedTextField = {
         let field = BorderedTextField()
         field.placeholder = "+ Add link"
         
@@ -128,7 +128,7 @@ class EditProfileView: UIView {
         return label
     }()
     
-    private lazy var toggleProfilePrivat: UISwitch = {
+    lazy var toggleProfilePrivat: UISwitch = {
         let toggle = UISwitch()
         toggle.onTintColor = .black
         

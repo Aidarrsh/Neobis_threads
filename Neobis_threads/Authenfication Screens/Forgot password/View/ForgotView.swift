@@ -30,7 +30,7 @@ class ForgotView: UIView {
         return label
     }()
     
-    private lazy var emailField: UITextField = {
+    lazy var emailField: UITextField = {
         let field = UITextField()
         field.backgroundColor = UIColor(named: "GreyTextField")
         field.layer.borderColor = UIColor(named: "GreyBorder")?.cgColor

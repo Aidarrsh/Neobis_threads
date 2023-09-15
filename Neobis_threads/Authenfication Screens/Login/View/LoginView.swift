@@ -45,6 +45,7 @@ class LoginView: UIView {
         
         return field
     }()
+
     
     lazy var passwordField: UITextField = {
         let field = UITextField()
