@@ -69,7 +69,6 @@ class HomeView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        
         setupViews()
         setupConstraints()
     }

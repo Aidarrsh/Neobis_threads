@@ -14,7 +14,7 @@ class CustomSearchCell: UITableViewCell {
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "AvatarFour")
+        image.image = UIImage(named: "UserPicture")
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 18 * UIScreen.main.bounds.width / 393

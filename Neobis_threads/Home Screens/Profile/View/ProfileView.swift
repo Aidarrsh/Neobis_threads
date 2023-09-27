@@ -53,7 +53,7 @@ class ProfileView: UIView {
     
     let profilePicture: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "DefaulProfilePhoto")
+//        image.image = UIImage(named: "DefaulProfilePhoto")
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 35 * UIScreen.main.bounds.width / 393

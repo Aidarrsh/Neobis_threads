@@ -29,9 +29,7 @@ class EditProfileSetPhotoViewModel: SetProfilePhotoProtocol {
     var setDataResult: ((Result<Data, Error>) -> Void)?
     
     func setPhoto(photoData: Data) {
-        guard let token = AuthManager.shared.accessToken else {
-            return
-        }
+        guard let token = AuthManager.shared.accessToken else { return }
         
         let parameters: [String: Any] = ["photo": photoData]
         

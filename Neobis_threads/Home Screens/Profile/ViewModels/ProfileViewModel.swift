@@ -23,7 +23,6 @@ class ProfileViewModel: ProfileProtocol {
         
         guard let token = AuthManager.shared.accessToken else { return }
         print(token)
-//        print(AuthManager.shared.refreshToken)
         
         apiService.getWithToken(endpoint: "user/profile/me/", token: token) { result in
             switch result {

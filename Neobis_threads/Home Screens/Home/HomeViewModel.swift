@@ -6,12 +6,73 @@
 //
 
 import Foundation
-//import Alamofire
-//
-//protocol HomeProtocol {
-//    var
-//}
-//
-//class HomeViewModel {
-//
-//}
+import Alamofire
+
+protocol HomeProtocol {
+    var feedsList: (([Post]) -> Void)? { get set }
+    var usersResult: ((UserData) -> Void)? { get set }
+    func fetchFeedsData(completion: @escaping ([Post]) -> Void)
+    func fetchSearchData(id: Int, completion: @escaping (UserData?) -> Void)
+}
+
+class HomeViewModel: HomeProtocol {
+    
+    let apiService: APIService
+    
+    var feedsList: (([Post]) -> Void)?
+    var usersResult: ((UserData) -> Void)?
+    
+    init() {
+        self.apiService = APIService()
+    }
+    
+    func fetchFeedsData(completion: @escaping ([Post]) -> Void) {
+        guard let accessToken = AuthManager.shared.accessToken else { return }
+        
+        let endpoint = "feed/for_you/"
+        
+        apiService.getWithToken(endpoint: endpoint, token: accessToken) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let response = try decoder.decode(PostResponse.self, from: data)
+                    let feeds = response.results.map { Post(id: $0.id, author: $0.author, text: $0.text, date_posted: $0.date_posted, image: $0.image, video: $0.video, comments_permission: $0.comments_permission, total_likes: $0.total_likes, user_like: $0.user_like) }
+                    self.feedsList?(feeds)
+//                    print(feeds)
+                    completion(feeds) // Call the completion handler here
+                } catch {
+                    print("Error decoding JSON:", error)
+                    // You might want to notify the caller that an error occurred
+                }
+            case .failure(let error):
+                print("API request failed:", error)
+                // You might want to notify the caller that an error occurred
+            }
+            
+        }
+    }
+    
+    func fetchSearchData(id: Int, completion: @escaping (UserData?) -> Void) {
+        let endpoint = "user/profile/\(id)/"
+        let accessToken = AuthManager.shared.accessToken
+        
+        apiService.getWithToken(endpoint: endpoint, token: accessToken) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    let user = try decoder.decode(UserData.self, from: data)
+                    completion(user)
+                } catch {
+                    print("Error decoding JSON:", error)
+                    completion(nil)
+                }
+            case .failure(let error):
+                print("API request failed:", error)
+                completion(nil)
+            }
+        }
+    }
+}

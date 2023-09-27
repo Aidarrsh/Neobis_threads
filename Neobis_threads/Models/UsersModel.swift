@@ -59,10 +59,9 @@ struct Users: Codable {
 struct UserData: Codable {
     var pk: Int
     var username: String
-    var full_name: String
-    var bio: String
-    var website: String
-    var photo: String
-    var is_followed: String
+    var full_name: String?
+    var bio: String?
+    var website: String?
+    var photo: String?
 }
 

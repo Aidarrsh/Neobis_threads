@@ -15,6 +15,7 @@ class ThreadViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        setupNavigation()
     }
     
     func setupView() {
@@ -27,6 +28,16 @@ class ThreadViewController: UIViewController {
         contentView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func setupNavigation() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "BackIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backButtonPressed))
+        
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
+    @objc func backButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

@@ -67,8 +67,6 @@ class ProfileViewController: UIViewController {
             }
         }
         
-        print(userData)
-        
         if let photoURLString = userData["photo"] as? String,
            let photoURL = URL(string: photoURLString) {
             DispatchQueue.global().async {

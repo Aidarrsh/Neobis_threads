@@ -11,10 +11,14 @@ import SnapKit
 
 class CustomHomeCell: UITableViewCell {
     
+    var postImageHeightConstraint: Constraint?
+    
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "AvatarOne")
-        image.contentMode = .scaleAspectFit
+        image.image = UIImage(named: "UserPicture")
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 18 * UIScreen.main.bounds.width / 393
         
         return image
     }()
@@ -39,8 +43,8 @@ class CustomHomeCell: UITableViewCell {
 
     lazy var postImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "SteveJobsImage")
         image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
         
         return image
     }()
@@ -90,7 +94,7 @@ class CustomHomeCell: UITableViewCell {
         
         return label
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -120,7 +124,7 @@ class CustomHomeCell: UITableViewCell {
             make.top.equalToSuperview().inset(flexibleHeight(to: 3))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 12))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 345))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 413))
+            make.height.width.equalTo(flexibleWidth(to: 36))
         }
 
         usernameLabel.snp.makeConstraints { make in
@@ -134,16 +138,13 @@ class CustomHomeCell: UITableViewCell {
             make.top.equalToSuperview().inset(21)
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
-//            make.height.equalTo(40) //  sfasfasdfasfsadfsdafsafasdf
-//            make.bottom.equalTo(postImage.snp.top).inset(flexibleHeight(to: 10))
         }
         
         postImage.snp.makeConstraints{ make in
             make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
-//            make.height.equalTo(40) //  sfasfasdfasfsadfsdafsafasdf
-//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 65))
+            make.height.equalTo(0)
         }
         
         likeIcon.snp.makeConstraints { make in
@@ -176,7 +177,7 @@ class CustomHomeCell: UITableViewCell {
 
         timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
+//            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 21))
             make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }

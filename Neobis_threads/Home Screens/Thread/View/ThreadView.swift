@@ -19,13 +19,6 @@ class ThreadView: UIView {
         return label
     }()
     
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "BackIcon"), for: .normal)
-        
-        return button
-    }()
-    
     private lazy var dividerLine: UIView = {
         let view = UIView()
         view.backgroundColor = .gray
@@ -182,7 +175,6 @@ class ThreadView: UIView {
     
     func setupViews() {
         addSubview(titleLabel)
-        addSubview(backButton)
         addSubview(dividerLine)
         addSubview(avatarImage)
         addSubview(usernameLabel)
@@ -207,13 +199,6 @@ class ThreadView: UIView {
             make.top.equalToSuperview().inset(flexibleHeight(to: 72))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 56))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 271))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 756))
-        }
-        
-        backButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 72))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 353))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 756))
         }
         

@@ -96,16 +96,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate, UISe
         cell.usernameLabel.text = user.username
         cell.jobLabel.text = user.full_name
         
-        cell.avatarImage.image = nil
+        cell.avatarImage.image = UIImage(named: "UserPicture")
         
         if let photoURLString = user.photo, let photoURL = URL(string: photoURLString) {
             cell.avatarImage.kf.setImage(with: photoURL, placeholder: nil, options: [.transition(.fade(0.2))], progressBlock: nil) { result in
-//                switch result {
-//                case .success(let value):
-//                    print("Image downloaded:", value.image)
-//                case .failure(let error):
-//                    print("Error downloading image:", error)
-//                }
             }
         }
         
