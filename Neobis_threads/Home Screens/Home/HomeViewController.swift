@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     var feedsProtocol: HomeProtocol
     var feeds = [Post]()
     
+    //quick look
+    
     init(feedsProtocol: HomeProtocol) {
         self.feedsProtocol = feedsProtocol
         super.init(nibName: nil, bundle: nil)
@@ -55,7 +57,11 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate, CustomHomeCellDelegate {
+    func likeButtonPressed() {
+        print("Like")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feeds.count
     }
@@ -63,6 +69,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomHomeCell
         let feed = feeds[indexPath.row]
+        
+        cell.delegate = self
         
         cell.avatarImage.image = UIImage(named: "UserPicture")
         
@@ -114,8 +122,15 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         let timeAgo = timeAgoSinceDate(dateString: feed.date_posted)
         cell.timeLabel.text = timeAgo
         cell.threadLabel.text = feed.text
+        
+        cell.likeButton.addTarget(cell, action: #selector(likeButtonTapped(_ :)), for: .touchUpInside)
 
+        cell.selectionStyle = .none
         return cell
+    }
+    
+    @objc func likeButtonTapped(_ sender: UIButton) {
+        print("like")
     }
 
     
@@ -124,11 +139,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ThreadViewController()
-        print(feeds[indexPath.row].id)
+        let vc = ThreadViewController(threadProtocol: ThreadViewModel(), postId: feeds[indexPath.row].id)
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
     }
-
 }

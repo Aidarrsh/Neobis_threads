@@ -59,6 +59,8 @@
 		1CC198892A93B90D002DE8FC /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC198882A93B90D002DE8FC /* ReplyViewController.swift */; };
 		1CC1988B2A93B91F002DE8FC /* ReplyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1988A2A93B91F002DE8FC /* ReplyView.swift */; };
 		1CC2E09D2AC2F8700082FF8D /* Extensions + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E09C2AC2F8700082FF8D /* Extensions + Data.swift */; };
+		1CC2E0A02AC580CA0082FF8D /* ThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E09F2AC580CA0082FF8D /* ThreadViewModel.swift */; };
+		1CC2E0A22AC58C230082FF8D /* SomeoneProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E0A12AC58C230082FF8D /* SomeoneProfileViewModel.swift */; };
 		1CC6273E2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */; };
 		1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */; };
 		1CDCBE0D2A99DD1600A60D85 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE0C2A99DD1600A60D85 /* Service.swift */; };
@@ -139,6 +141,8 @@
 		1CC198882A93B90D002DE8FC /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		1CC1988A2A93B91F002DE8FC /* ReplyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyView.swift; sourceTree = "<group>"; };
 		1CC2E09C2AC2F8700082FF8D /* Extensions + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Data.swift"; sourceTree = "<group>"; };
+		1CC2E09F2AC580CA0082FF8D /* ThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewModel.swift; sourceTree = "<group>"; };
+		1CC2E0A12AC58C230082FF8D /* SomeoneProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeoneProfileViewModel.swift; sourceTree = "<group>"; };
 		1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		1CDCBE0C2A99DD1600A60D85 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				1C098A5E2A90D89F0073446D /* ThreadViewController.swift */,
+				1CC2E09F2AC580CA0082FF8D /* ThreadViewModel.swift */,
 				1C098A5D2A90D8930073446D /* View */,
 			);
 			path = Thread;
@@ -575,6 +580,7 @@
 			isa = PBXGroup;
 			children = (
 				1CDCBE1D2AA1DDE400A60D85 /* SomeoneProfileViewController.swift */,
+				1CC2E0A12AC58C230082FF8D /* SomeoneProfileViewModel.swift */,
 				1CDCBE1C2AA1DDD700A60D85 /* View */,
 			);
 			path = "Someone's Profile";
@@ -809,6 +815,7 @@
 				1CE233022AB45A60008590B0 /* HomeViewModel.swift in Sources */,
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
 				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
+				1CC2E0A02AC580CA0082FF8D /* ThreadViewModel.swift in Sources */,
 				1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */,
 				1CAA2BED2A837D1700C3FD70 /* OTPViewController.swift in Sources */,
 				1C098A5F2A90D89F0073446D /* ThreadViewController.swift in Sources */,
@@ -825,6 +832,7 @@
 				1CDCBE2B2AA1FA8B00A60D85 /* ActivityView.swift in Sources */,
 				1CDCBE252AA1E55900A60D85 /* CustomBottomShareSheet.swift in Sources */,
 				1CAA2BEF2A8384AE00C3FD70 /* Extensions + UIFont.swift in Sources */,
+				1CC2E0A22AC58C230082FF8D /* SomeoneProfileViewModel.swift in Sources */,
 				1C7470D02A8793DD00FAFA88 /* EditProfileView.swift in Sources */,
 				1CAD5D282AA489320029C509 /* EditProfileSetDataViewModel.swift in Sources */,
 				1CDCBE222AA1DE4200A60D85 /* CustomSomeoneProfileCell.swift in Sources */,

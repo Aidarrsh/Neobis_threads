@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-extension HomeViewController {
+extension UIViewController {
     func timeAgoSinceDate(dateString: String, numericDates: Bool = false) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
@@ -26,7 +27,7 @@ extension HomeViewController {
             if numericDates {
                 return "1y"
             } else {
-                return "Last year"
+                return "1y"
             }
         } else if let month = components.month, month >= 2 {
             return "\(month)m"
@@ -34,7 +35,7 @@ extension HomeViewController {
             if numericDates {
                 return "1m"
             } else {
-                return "Last month"
+                return "1m"
             }
         } else if let day = components.day, day >= 2 {
             return "\(day)d"
@@ -42,7 +43,7 @@ extension HomeViewController {
             if numericDates {
                 return "1d"
             } else {
-                return "Yesterday"
+                return "1d"
             }
         } else if let hour = components.hour, hour >= 2 {
             return "\(hour)h"
@@ -50,7 +51,7 @@ extension HomeViewController {
             if numericDates {
                 return "1h"
             } else {
-                return "An hour ago"
+                return "1h"
             }
         } else if let minute = components.minute, minute >= 2 {
             return "\(minute)m"
@@ -58,7 +59,7 @@ extension HomeViewController {
             if numericDates {
                 return "1m"
             } else {
-                return "A minute ago"
+                return "1m"
             }
         } else if let second = components.second, second >= 3 {
             return "\(second)s"

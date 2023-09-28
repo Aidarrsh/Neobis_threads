@@ -28,7 +28,7 @@ class CustomBottomShareSheet: UIView {
     
     let shareButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Shar via...", for: .normal)
+        button.setTitle("Share via...", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.sfRegular(ofSize: 15)
         button.backgroundColor = UIColor(named: "GreyTextField")

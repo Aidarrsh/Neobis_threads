@@ -11,9 +11,9 @@ struct Post: Codable {
     let id: Int
     let author: Int
     let text: String
-    let date_posted: String // You might want to parse this into a Date type using a custom date decoder.
-    let image: String? // This is an optional string representing the URL of the image.
-    let video: String? // This is an optional string representing the URL of the video.
+    let date_posted: String
+    let image: String?
+    let video: String?
 //    let repost: String? // You may want to replace String with the appropriate type if this represents another post.
     let comments_permission: String
     let total_likes: Int

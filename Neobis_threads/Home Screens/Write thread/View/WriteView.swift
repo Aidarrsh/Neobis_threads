@@ -14,9 +14,10 @@ class WriteView: UIView {
     var lineHeight = 41
     
     lazy var menu = UIMenu(title: "", children: elements)
-    lazy var first = UIAction(title: "first", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
-    lazy var second = UIAction(title: "second", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
-    lazy var third = UIAction(title: "third", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
+    lazy var first = UIAction(title: "Mentioned only", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
+    }
+    lazy var second = UIAction(title: "Profiles you follow", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
+    lazy var third = UIAction(title: "Anyone", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
     lazy var elements: [UIAction] = [first, second, third]
     
     private lazy var titleLabel: UILabel = {

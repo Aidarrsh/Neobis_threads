@@ -28,7 +28,9 @@ class ThreadView: UIView {
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "AvatarTwo")
+        image.image = UIImage(named: "UserPicture")
+        image.layer.cornerRadius = 18 * UIScreen.main.bounds.height / 852
+        image.clipsToBounds = true
         
         return image
     }()
@@ -62,8 +64,9 @@ class ThreadView: UIView {
     
     lazy var postImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "SteveJobsImage")
+//        image.image = UIImage(named: "SteveJobsImage")
         image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
         
         return image
     }()
@@ -237,6 +240,7 @@ class ThreadView: UIView {
         postImage.snp.makeConstraints{ make in
             make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+//            make.height.equalTo(361)
         }
         
         likeIcon.snp.makeConstraints { make in

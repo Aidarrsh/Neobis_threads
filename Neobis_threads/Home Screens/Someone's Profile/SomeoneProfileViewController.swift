@@ -12,14 +12,40 @@ class SomeoneProfileViewController: UIViewController {
     
     private let contentView = SomeoneProfileView()
     
+    var someoneProfileProtocol: SomeoneProfileProtocol
+    var userId: Int
     var isShareButtonPressed = false
+    
+    init(someoneProfileProtocol: SomeoneProfileProtocol, userId: Int) {
+        self.someoneProfileProtocol = someoneProfileProtocol
+        self.userId = userId
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         addTargets()
         setupTapGesture()
-//        navigationItem.hidesBackButton = true
+        parseData()
+    }
+    
+    func parseData() {
+        someoneProfileProtocol.fetchSearchData(id: userId) { userData in
+            DispatchQueue.main.async {
+                self.contentView.professionLabel.text = userData?.username
+                self.contentView.nicknameLabel.text = userData?.full_name
+                
+                if let photoURLString = userData?.photo, let photoURL = URL(string: photoURLString) {
+                    self.contentView.profilePicture.kf.setImage(with: photoURL, placeholder: nil, options: [.transition(.fade(0.2))], progressBlock: nil) { result in
+                    }
+                }
+            }
+        }
     }
     
     func setupView() {

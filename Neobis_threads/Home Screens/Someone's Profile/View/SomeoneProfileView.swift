@@ -11,7 +11,7 @@ import SnapKit
 
 class SomeoneProfileView: UIView {
     
-    private lazy var professionLabel: UILabel = {
+    lazy var professionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 24)
         label.text = "AlexElle"
@@ -19,7 +19,7 @@ class SomeoneProfileView: UIView {
         return label
     }()
     
-    private lazy var nicknameLabel: UILabel = {
+    lazy var nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfBold(ofSize: 14)
         label.text = "alex_elle"
@@ -27,7 +27,7 @@ class SomeoneProfileView: UIView {
         return label
     }()
     
-    private lazy var domainView: UIView = {
+    lazy var domainView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(named: "GreyDomain")
         view.layer.cornerRadius = 13 * UIScreen.main.bounds.height / 852
@@ -35,7 +35,7 @@ class SomeoneProfileView: UIView {
         return view
     }()
     
-    private lazy var domainLabel: UILabel = {
+    lazy var domainLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfRegular(ofSize: 11)
         label.text = "threads.net"
@@ -46,13 +46,14 @@ class SomeoneProfileView: UIView {
     
     let profilePicture: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "AvatarFive")
+        image.image = UIImage(named: "UserPicture")
         image.layer.cornerRadius = 35 * UIScreen.main.bounds.width / 393
+        image.clipsToBounds = true
         
         return image
     }()
     
-    private lazy var followersLabel: UIButton = {
+    lazy var followersLabel: UIButton = {
         let button = UIButton()
         button.setTitle("153k followers", for: .normal)
         button.titleLabel?.font = UIFont.sfRegular(ofSize: 15)
@@ -72,7 +73,7 @@ class SomeoneProfileView: UIView {
         return button
     }()
     
-    private lazy var threadLabel: UILabel = {
+    lazy var threadLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.sfMedium(ofSize: 15)
         label.text = "Threads"
@@ -80,21 +81,21 @@ class SomeoneProfileView: UIView {
         return label
     }()
     
-    private lazy var dividerLine: UIView = {
+    lazy var dividerLine: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         
         return view
     }()
     
-    private lazy var repostImage: UIImageView = {
+    lazy var repostImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "RepostIcon")
         
         return image
     }()
     
-    private lazy var repostLabel: UILabel = {
+    lazy var repostLabel: UILabel = {
         let label = UILabel()
         label.text = "You reposted"
         label.textColor = UIColor(named: "GreyLabel")
@@ -169,14 +170,13 @@ class SomeoneProfileView: UIView {
         nicknameLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 162))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 320))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 672))
         }
         
         domainView.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 158))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 75))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 251))
+            make.leading.equalTo(nicknameLabel.snp.trailing).offset(flexibleWidth(to: 4))
+            make.width.equalTo(flexibleWidth(to: 67))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 668))
         }
         

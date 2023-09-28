@@ -9,9 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol CustomHomeCellDelegate: AnyObject {
+    func likeButtonPressed()
+}
+
 class CustomHomeCell: UITableViewCell {
     
     var postImageHeightConstraint: Constraint?
+    
+    weak var delegate: CustomHomeCellDelegate?
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
@@ -49,32 +55,32 @@ class CustomHomeCell: UITableViewCell {
         return image
     }()
     
-    lazy var likeIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "LikeIcon")
+    lazy var likeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "LikeIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
-    lazy var commentIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "CommentIcon")
+    lazy var commentButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "CommentIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
-    lazy var repostIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "RepostBlackIcon")
+    lazy var repostButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "RepostBlackIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
-    lazy var sendIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "SendIcon")
+    lazy var sendButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "SendIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
     lazy var timeLabel: UILabel = {
@@ -94,12 +100,38 @@ class CustomHomeCell: UITableViewCell {
         
         return label
     }()
+    
+    static func nib() -> UINib {
+        return UINib(nibName: "CustomHomeCell", bundle: nil)
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.likeButton.isUserInteractionEnabled = true
         setupViews()
         setupConstraints()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        selectionStyle = .none
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self)
+        
+        if likeButton.frame.contains(touchLocation) {
+            likeButton.becomeFirstResponder()
+        }
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
     }
     
     required init?(coder: NSCoder) {
@@ -111,10 +143,10 @@ class CustomHomeCell: UITableViewCell {
         addSubview(usernameLabel)
         addSubview(threadLabel)
         addSubview(postImage)
-        addSubview(likeIcon)
-        addSubview(commentIcon)
-        addSubview(repostIcon)
-        addSubview(sendIcon)
+        addSubview(likeButton)
+        addSubview(commentButton)
+        addSubview(repostButton)
+        addSubview(sendButton)
         addSubview(timeLabel)
         addSubview(likesLabel)
     }
@@ -147,28 +179,29 @@ class CustomHomeCell: UITableViewCell {
             make.height.equalTo(0)
         }
         
-        likeIcon.snp.makeConstraints { make in
+        likeButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+            make.height.equalTo(flexibleHeight(to: 20))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 313))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
 
-        commentIcon.snp.makeConstraints { make in
+        commentButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 96))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 277))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
 
-        repostIcon.snp.makeConstraints { make in
+        repostButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 132))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 241))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
 
-        sendIcon.snp.makeConstraints { make in
+        sendButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 168))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
@@ -183,11 +216,15 @@ class CustomHomeCell: UITableViewCell {
         }
 
         likesLabel.snp.makeConstraints { make in
-            make.top.equalTo(likeIcon.snp.bottom).offset(flexibleHeight(to: 12))
+            make.top.equalTo(likeButton.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
             make.bottom.equalToSuperview()
         }
     }
+    
+    @objc func likeButtonPressed() {
+        print("Like button pressed in CustomHomeCell")
+        delegate?.likeButtonPressed()
+    }
 }
-

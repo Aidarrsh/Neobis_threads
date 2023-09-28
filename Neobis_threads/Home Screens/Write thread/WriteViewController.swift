@@ -73,6 +73,8 @@ class WriteViewController: UIViewController {
     
     func setupView() {
         
+//        title = "New Thread"
+        
         let backButton = UIBarButtonItem(image: UIImage(named: "CloseIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backPressed))
         self.navigationItem.leftBarButtonItem = backButton
         
@@ -120,11 +122,15 @@ extension WriteViewController: UITextFieldDelegate, UIImagePickerControllerDeleg
             contentView.postImage.snp.makeConstraints { make in
                 make.height.equalTo(newHeight)
             }
+            
+            contentView.connectingLine.snp.updateConstraints { make in
+                make.height.equalTo(200)
+            }
 
             self.updateViewConstraints()
             self.view.layoutIfNeeded()
             
-            guard let imageData = selectedImage.jpegData(compressionQuality: 0.5) else { return }
+            guard let imageData = selectedImage.jpegData(compressionQuality: 0.2) else { return }
             image = imageData
         }
         picker.dismiss(animated: true, completion: nil)

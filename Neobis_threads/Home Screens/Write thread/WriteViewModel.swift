@@ -30,7 +30,7 @@ class WriteViewModel: WriteProtocol {
     func sendThread(text: String, image: Data, video: Data, comments_permission: String) {
         guard let accessToken = AuthManager.shared.accessToken else { return }
 
-        var request = URLRequest(url: URL(string: "http://18.184.167.19:8000/post/")!)
+        var request = URLRequest(url: URL(string: "https://pavel-backender.org.kg/post/")!)
         request.httpMethod = "POST"
         let boundary = UUID().uuidString
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
@@ -52,11 +52,13 @@ class WriteViewModel: WriteProtocol {
         body.append("\r\n")
 
         // Add image parameter
-        body.append("--\(boundary)\r\n")
-        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n")
-        body.append("Content-Type: image/jpeg\r\n\r\n")
-        body.append(image)
-        body.append("\r\n")
+        if image != Data() {
+            body.append("--\(boundary)\r\n")
+            body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpg\"\r\n")
+            body.append("Content-Type: image/jpeg\r\n\r\n")
+            body.append(image)
+            body.append("\r\n")
+        }
 
         // Add video parameter
 //        body.append("--\(boundary)\r\n")

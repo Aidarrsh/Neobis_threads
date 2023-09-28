@@ -93,8 +93,8 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SomeoneProfileViewController()
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = SomeoneProfileViewController(someoneProfileProtocol: SomeoneProfileViewModel())
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

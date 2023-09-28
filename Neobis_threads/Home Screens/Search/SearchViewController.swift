@@ -122,9 +122,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate, UISe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SomeoneProfileViewController()
-        
+        let selectedUser = searchDataProtocol.usersList[indexPath.row]
+        let vc = SomeoneProfileViewController(someoneProfileProtocol: SomeoneProfileViewModel(), userId: selectedUser.pk)
         navigationController?.pushViewController(vc, animated: true)
     }
     

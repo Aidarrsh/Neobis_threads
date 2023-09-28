@@ -11,7 +11,8 @@ import UIKit
 
 class APIService {
     
-    let baseURL = "http://18.184.167.19:8000/"
+    let baseURL = "https://pavel-backender.org.kg/"
+//    let baseURL = "http://18.184.167.19:8000/"
     
     func post(endpoint: String, parameters: [String: Any], completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = URL(string: baseURL + endpoint) else { return }
