@@ -12,13 +12,21 @@ protocol LoginProtocol {
     var isLoggedIn: Bool { get }
     var loginResult: ((Result<Data, Error>) -> Void)? { get set }
     
+    var isGoogleLoggedIn: Bool { get }
+    var googleLoginResult: ((Result<Data, Error>) -> Void)? { get set }
+    
     func login(email: String, password: String)
+    
+//    func
 }
 
 class LoginViewModel: LoginProtocol {
     
     var isLoggedIn: Bool = false
     var loginResult: ((Result<Data, Error>) -> Void)?
+    
+    var isGoogleLoggedIn: Bool = false
+    var googleLoginResult: ((Result<Data, Error>) -> Void)?
     
     let apiService: APIService
     

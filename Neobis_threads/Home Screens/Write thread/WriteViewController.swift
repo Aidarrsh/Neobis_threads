@@ -30,7 +30,7 @@ class WriteViewController: UIViewController {
         super.viewDidLoad()
     
         getUserData()
-        contentView.threadTextField.delegate = self
+        contentView.threadTextView.delegate = self
         setupView()
         addTargets()
     }
@@ -108,7 +108,7 @@ class WriteViewController: UIViewController {
 }
 
 
-extension WriteViewController: UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension WriteViewController: UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
@@ -123,9 +123,11 @@ extension WriteViewController: UITextFieldDelegate, UIImagePickerControllerDeleg
                 make.height.equalTo(newHeight)
             }
             
-            contentView.connectingLine.snp.updateConstraints { make in
-                make.height.equalTo(200)
-            }
+//            contentView.connectingLine.snp.updateConstraints { make in
+//                make.height.equalTo(200)
+//            }
+            
+            contentView.lineHeight += newHeight
 
             self.updateViewConstraints()
             self.view.layoutIfNeeded()
@@ -140,10 +142,29 @@ extension WriteViewController: UITextFieldDelegate, UIImagePickerControllerDeleg
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) {
-            threadText = newText
+    func textViewDidChange(_ textView: UITextView) {
+        let text = textView.text ?? ""
+        
+        threadText = text
+
+        updateCharacterCount(for: text)
+    }
+    
+    func updateCharacterCount(for text: String) {
+        let characterCount = 280 - text.count
+
+        contentView.symbolCountLabel.text = String(characterCount)
+        
+        if characterCount < 51 {
+            contentView.symbolCountLabel.isHidden = false
+        } else {
+            contentView.symbolCountLabel.isHidden = true
         }
-        return true
+        
+        if characterCount < 0 {
+            contentView.symbolCountLabel.textColor = .red
+        } else {
+            contentView.symbolCountLabel.textColor = UIColor(named: "GreyLabel")
+        }
     }
 }

@@ -9,15 +9,10 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol CustomHomeCellDelegate: AnyObject {
-    func likeButtonPressed()
-}
-
 class CustomHomeCell: UITableViewCell {
     
     var postImageHeightConstraint: Constraint?
     
-    weak var delegate: CustomHomeCellDelegate?
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
@@ -57,7 +52,9 @@ class CustomHomeCell: UITableViewCell {
     
     lazy var likeButton: UIButton = {
         let button = UIButton()
+        button.isUserInteractionEnabled = true
         button.setImage(UIImage(named: "LikeIcon"), for: .normal)
+        button.backgroundColor = .white
         
         return button
     }()
@@ -109,13 +106,13 @@ class CustomHomeCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.likeButton.isUserInteractionEnabled = true
+        self.repostButton.isUserInteractionEnabled = true
         setupViews()
         setupConstraints()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         selectionStyle = .none
     }
     
@@ -128,6 +125,10 @@ class CustomHomeCell: UITableViewCell {
         if likeButton.frame.contains(touchLocation) {
             likeButton.becomeFirstResponder()
         }
+        
+        if repostButton.frame.contains(touchLocation) {
+            repostButton.becomeFirstResponder()
+        }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -139,16 +140,16 @@ class CustomHomeCell: UITableViewCell {
     }
     
     func setupViews() {
-        addSubview(avatarImage)
-        addSubview(usernameLabel)
-        addSubview(threadLabel)
-        addSubview(postImage)
-        addSubview(likeButton)
-        addSubview(commentButton)
-        addSubview(repostButton)
-        addSubview(sendButton)
-        addSubview(timeLabel)
-        addSubview(likesLabel)
+        contentView.addSubview(avatarImage)
+        contentView.addSubview(usernameLabel)
+        contentView.addSubview(threadLabel)
+        contentView.addSubview(postImage)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(commentButton)
+        contentView.addSubview(repostButton)
+        contentView.addSubview(sendButton)
+        contentView.addSubview(timeLabel)
+        contentView.addSubview(likesLabel)
     }
     
     func setupConstraints() {
@@ -222,9 +223,5 @@ class CustomHomeCell: UITableViewCell {
             make.bottom.equalToSuperview()
         }
     }
-    
-    @objc func likeButtonPressed() {
-        print("Like button pressed in CustomHomeCell")
-        delegate?.likeButtonPressed()
-    }
+
 }

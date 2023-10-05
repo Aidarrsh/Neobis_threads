@@ -122,7 +122,7 @@ class LoginView: UIView {
         return label
     }()
     
-    private lazy var loginGoogleButton: UIButton = {
+    lazy var loginGoogleButton: UIButton = {
         let button = UIButton()
         button.setTitle("Login with Google", for: .normal)
         button.setTitleColor(UIColor(named: "Black"), for: .normal)

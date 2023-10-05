@@ -11,13 +11,20 @@ import Alamofire
 protocol HomeProtocol {
     var feedsList: (([Post]) -> Void)? { get set }
     var usersResult: ((UserData) -> Void)? { get set }
+    var isLiked: Bool { get }
+    var setLikeResult: ((Result<Data, Error>) -> Void)? { get set }
+    
     func fetchFeedsData(completion: @escaping ([Post]) -> Void)
     func fetchSearchData(id: Int, completion: @escaping (UserData?) -> Void)
+    func fetchlikeData(id: Int)
 }
 
 class HomeViewModel: HomeProtocol {
     
     let apiService: APIService
+    
+    var isLiked: Bool = false
+    var setLikeResult: ((Result<Data, Error>) -> Void)?
     
     var feedsList: (([Post]) -> Void)?
     var usersResult: ((UserData) -> Void)?
@@ -72,6 +79,29 @@ class HomeViewModel: HomeProtocol {
             case .failure(let error):
                 print("API request failed:", error)
                 completion(nil)
+            }
+        }
+    }
+    
+    func fetchlikeData(id: Int) {
+        let endpoint = "post/like_unlike/\(id)/"
+        let accessToken = AuthManager.shared.accessToken
+        
+        apiService.patchLike(endpoint: endpoint, token: accessToken) { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    self?.isLiked = true
+                    self?.setLikeResult?(.success(data))
+                    print(data)
+                case .failure(let error):
+                    let errorMessage = "Failed to like: \(error.localizedDescription)"
+                    print(errorMessage)
+                    self?.isLiked = false
+                    self?.setLikeResult?(.failure(error))
+                    print(error)
+                }
             }
         }
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
     
@@ -41,6 +42,7 @@ class LoginViewController: UIViewController {
         contentView.forgotButton.addTarget(self, action: #selector(forgotButtonTapped), for: .touchUpInside)
         contentView.signupButton.addTarget(self, action: #selector(signupButtonTapped), for: .touchUpInside)
         contentView.loginButton.addTarget(self, action: #selector(loginButton), for: .touchUpInside)
+        contentView.loginGoogleButton.addTarget(self, action: #selector(googleButtonPressed), for: .touchUpInside)
     }
     
     @objc func forgotButtonTapped() {
@@ -62,7 +64,6 @@ class LoginViewController: UIViewController {
         
         loginProtocol.login(email: name, password: password)
         
-        // Present the TabBarController after successful login
         loginProtocol.loginResult = { [weak self] result in
             switch result {
             case .success:
@@ -76,6 +77,14 @@ class LoginViewController: UIViewController {
                 
                 self?.showErrorAlert(message: "Введены неверные данные. Попробуйте еще раз.")
             }
+        }
+    }
+    
+    @objc func googleButtonPressed() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil else { return }
+
+            
         }
     }
 

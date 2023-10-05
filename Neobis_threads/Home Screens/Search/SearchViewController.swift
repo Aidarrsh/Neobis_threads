@@ -56,10 +56,7 @@ class SearchViewController: UIViewController {
     func parseData(_ userData: [UsersList]) {
         userCount = userData.count
         searchDataProtocol.usersList = userData
-        
-//        for i in searchDataProtocol.usersList {
-//            searchDataProtocol.fetchSearchData(username: i.username)
-//        }
+    
         contentView.tableView.reloadData()
         DispatchQueue.main.async {
             self.contentView.tableView.reloadData()
@@ -91,7 +88,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate, UISe
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomSearchCell
         
         let user = searchDataProtocol.usersList[indexPath.row]
-//        print(user.full_name)
         
         cell.usernameLabel.text = user.username
         cell.jobLabel.text = user.full_name
@@ -107,10 +103,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate, UISe
         let newTitle = isFollowButtonTapped ? "Following" : "Follow"
         cell.followButton.setTitle(newTitle, for: .normal)
         
+        cell.selectionStyle = .none
         return cell
     }
-    
-    
     
     @objc func followButtonTapped() {
         isFollowButtonTapped = !isFollowButtonTapped

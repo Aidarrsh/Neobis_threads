@@ -11,10 +11,25 @@ import SnapKit
 import Kingfisher
 
 class HomeViewController: UIViewController {
-    private let contentView = HomeView()
     
     var feedsProtocol: HomeProtocol
     var feeds = [Post]()
+    var isRepostButtonPressed = false
+    
+    private let loadingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(.white)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
+    private let contentView = HomeView()
     
     //quick look
     
@@ -29,13 +44,24 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        contentView.tableView.register(CustomHomeCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
-        DispatchQueue.main.async {
-            self.parseData()
-        }
+
         setupView()
+        setupTapGesture()
+    }
+
+    private func showLoadingView() {
+        loadingView.isHidden = false
+        contentView.isHidden = true
+        activityIndicator.startAnimating()
+    }
+
+    private func hideLoadingView() {
+        loadingView.isHidden = true
+        contentView.isHidden = false
+        activityIndicator.stopAnimating()
     }
     
     func setupView() {
@@ -43,6 +69,32 @@ class HomeViewController: UIViewController {
         
         contentView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
+        }
+        
+        DispatchQueue.main.async {
+            self.parseData()
+            self.contentView.tableView.reloadData()
+        }
+        
+        view.addSubview(loadingView)
+        loadingView.addSubview(activityIndicator)
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        showLoadingView()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.hideLoadingView()
         }
     }
     
@@ -55,22 +107,45 @@ class HomeViewController: UIViewController {
             }
         }
     }
-}
-
-extension HomeViewController: UITableViewDataSource, UITableViewDelegate, CustomHomeCellDelegate {
-    func likeButtonPressed() {
-        print("Like")
+    
+    func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside(_:)))
+        tapGesture.cancelsTouchesInView = false
+        contentView.addGestureRecognizer(tapGesture)
     }
     
+    func presentBottomSheet() {
+        contentView.presentBottomSheet()
+    }
+
+    func dismissBottomSheet() {
+        contentView.dismissBottomSheet()
+    }
+    
+    @objc private func handleTapOutside(_ sender: UITapGestureRecognizer) {
+        if isRepostButtonPressed == true {
+            let location = sender.location(in: contentView)
+            
+            if !contentView.bottomSheet.frame.contains(location) {
+                if sender.state == .ended {
+                    dismissBottomSheet()
+                    isRepostButtonPressed = false
+                }
+            }
+        }
+    }
+}
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feeds.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomHomeCell
         let feed = feeds[indexPath.row]
-        
-        cell.delegate = self
         
         cell.avatarImage.image = UIImage(named: "UserPicture")
         
@@ -123,16 +198,35 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, Custom
         cell.timeLabel.text = timeAgo
         cell.threadLabel.text = feed.text
         
-        cell.likeButton.addTarget(cell, action: #selector(likeButtonTapped(_ :)), for: .touchUpInside)
+        cell.likeButton.addTarget(self, action: #selector(likeButtonPressed(sender:)), for: .touchUpInside)
+        cell.likeButton.tag = indexPath.row
+        if feed.user_like == true {
+            cell.likeButton.backgroundColor = .red
+        }
+        
+        cell.repostButton.addTarget(self, action: #selector(repostButtonPressed(sender:)), for: .touchUpInside)
+        cell.repostButton.tag = indexPath.row
 
         cell.selectionStyle = .none
         return cell
     }
     
-    @objc func likeButtonTapped(_ sender: UIButton) {
-        print("like")
+    @objc func likeButtonPressed(sender: UIButton) {
+        let indexPathRow = sender.tag
+        let newBackgroundColor = sender.backgroundColor == .white ? UIColor.red : UIColor.white
+        sender.backgroundColor = newBackgroundColor
+        
+        feedsProtocol.fetchlikeData(id: feeds[indexPathRow].id)
     }
-
+    
+    @objc func repostButtonPressed(sender: UIButton) {
+        let indexPathRow = sender.tag
+        print(feeds[indexPathRow].id)
+        if isRepostButtonPressed == false{
+            presentBottomSheet() // Show the bottom sheet
+            isRepostButtonPressed = true
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -143,5 +237,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate, Custom
         let navController = UINavigationController(rootViewController: vc)
         navController.modalPresentationStyle = .fullScreen
         self.present(navController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        // Return false for the cells you want to disable selection for.
+        return true
     }
 }

@@ -11,7 +11,16 @@ import SnapKit
 
 class WriteView: UIView {
     
-    var lineHeight = 41
+    var lineHeight: CGFloat = 41
+    var textHeight: CGFloat = 34 {
+        didSet {
+            threadTextView.snp.updateConstraints { make in
+                make.height.equalTo(flexibleHeight(to: CGFloat(textHeight)))
+            }
+        }
+    }
+    
+    private var threadTextViewHeightConstraint: Constraint?
     
     lazy var menu = UIMenu(title: "", children: elements)
     lazy var first = UIAction(title: "Mentioned only", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
@@ -24,6 +33,14 @@ class WriteView: UIView {
         let label = UILabel()
         label.text = "New Thread"
         label.font = UIFont.sfBold(ofSize: 20)
+        
+        return label
+    }()
+    
+    lazy var symbolCountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(named: "GreyLabel")
+        label.isHidden = true
         
         return label
     }()
@@ -52,12 +69,12 @@ class WriteView: UIView {
         return label
     }()
     
-    lazy var threadTextField: UITextField = {
-        let field = UITextField()
-        field.font = UIFont.sfRegular(ofSize: 15)
-        field.placeholder = "Start a thread..."
+    lazy var threadTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.sfRegular(ofSize: 15)
+        textView.isScrollEnabled = false
         
-        return field
+        return textView
     }()
     
     lazy var connectingLine: UIView = {
@@ -117,16 +134,18 @@ class WriteView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
+        threadTextView.delegate = self
         setupViews()
         setupConstraints()
     }
     
     func setupViews() {
         addSubview(titleLabel)
+        addSubview(symbolCountLabel)
         addSubview(dividerLine)
         addSubview(avatarImage)
         addSubview(usernameLabel)
-        addSubview(threadTextField)
+        addSubview(threadTextView)
         addSubview(stickButton)
         addSubview(connectingLine)
         addSubview(postImage)
@@ -136,9 +155,14 @@ class WriteView: UIView {
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 72))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 55))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 56))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 756))
+        }
+        
+        symbolCountLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(flexibleWidth(to: 765))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
         }
         
         dividerLine.snp.makeConstraints{ make in
@@ -160,20 +184,21 @@ class WriteView: UIView {
             make.height.equalTo(flexibleHeight(to: 18))
         }
         
-        threadTextField.snp.makeConstraints{ make in
-            make.top.equalTo(usernameLabel.snp.bottom).offset(flexibleHeight(to: 4))
+        threadTextView.snp.updateConstraints { make in
+            make.top.equalToSuperview().offset(flexibleHeight(to: 158))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            threadTextViewHeightConstraint = make.height.equalTo(flexibleHeight(to: CGFloat(textHeight))).constraint
         }
         
         stickButton.snp.makeConstraints { make in
-            make.top.equalTo(threadTextField.snp.bottom).offset(flexibleHeight(to: 20))
-            make.leading.equalTo(threadTextField.snp.leading)
+            make.top.equalTo(threadTextView.snp.bottom).offset(flexibleHeight(to: 20))
+            make.leading.equalTo(threadTextView.snp.leading)
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 301))
             make.height.equalTo(flexibleHeight(to: 24))
         }
         
-        connectingLine.snp.makeConstraints{ make in
+        connectingLine.snp.updateConstraints{ make in
             make.top.equalTo(avatarImage.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 32))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 359))
@@ -183,7 +208,7 @@ class WriteView: UIView {
         }
         
         postImage.snp.makeConstraints{ make in
-            make.top.equalTo(threadTextField.snp.bottom).offset(flexibleHeight(to: 20))
+            make.top.equalTo(threadTextView.snp.bottom).offset(flexibleHeight(to: 20))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
 //            make.height.equalTo(0)
@@ -202,5 +227,56 @@ class WriteView: UIView {
             make.trailing.equalToSuperview().inset(flexibleHeight(to: 16))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 63))
         }
+    }
+}
+
+extension WriteView: UITextViewDelegate {    
+    func textViewDidChange(_ textView: UITextView) {
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        textHeight = newSize.height
+        updateConstraints()
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let currentText = textView.text else {
+            return true
+        }
+        
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        let numberOfLines = newText.components(separatedBy: CharacterSet.newlines).count
+        
+        let maxLines = 15
+        
+        if text == "\n" && numberOfLines <= maxLines {
+            textView.text.append("\n")
+            
+            textHeight += 15
+            
+            updateConstraints()
+            layoutIfNeeded()
+            return false
+        }
+        
+        if numberOfLines <= maxLines {
+            let deletedNewlineCount = currentText.countOccurences(of: "\n", in: range)
+            
+            textHeight -= CGFloat(deletedNewlineCount) * 15
+            
+            updateConstraints()
+            layoutIfNeeded()
+            return true
+        } else if text.isEmpty && numberOfLines == maxLines + 1 {
+            let deletedNewlineCount = currentText.countOccurences(of: "\n", in: range)
+            
+            textHeight -= CGFloat(deletedNewlineCount) * 15
+            
+            updateConstraints()
+            layoutIfNeeded()
+            return true
+        }
+        
+        return false
     }
 }

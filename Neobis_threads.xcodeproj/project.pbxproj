@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1C098A5F2A90D89F0073446D /* ThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C098A5E2A90D89F0073446D /* ThreadViewController.swift */; };
 		1C098A612A90D8D10073446D /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C098A602A90D8D10073446D /* ThreadView.swift */; };
+		1C32DCFA2AC6E2EC00750945 /* CustomBottomRepostSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCF92AC6E2EC00750945 /* CustomBottomRepostSheet.swift */; };
+		1C32DCFC2ACC28EB00750945 /* Extensions + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCFB2ACC28EB00750945 /* Extensions + String.swift */; };
+		1C32DCFE2ACE995900750945 /* WritePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCFD2ACE995900750945 /* WritePostView.swift */; };
 		1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */; };
 		1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */; };
 		1C3893B22A7A5B79003D2CC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3893B12A7A5B79003D2CC8 /* LoginViewController.swift */; };
@@ -61,6 +64,8 @@
 		1CC2E09D2AC2F8700082FF8D /* Extensions + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E09C2AC2F8700082FF8D /* Extensions + Data.swift */; };
 		1CC2E0A02AC580CA0082FF8D /* ThreadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E09F2AC580CA0082FF8D /* ThreadViewModel.swift */; };
 		1CC2E0A22AC58C230082FF8D /* SomeoneProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E0A12AC58C230082FF8D /* SomeoneProfileViewModel.swift */; };
+		1CC2E0A62AC694A70082FF8D /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E0A52AC694A70082FF8D /* FollowersViewController.swift */; };
+		1CC2E0A82AC694AF0082FF8D /* FollowersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC2E0A72AC694AF0082FF8D /* FollowersView.swift */; };
 		1CC6273E2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */; };
 		1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */; };
 		1CDCBE0D2A99DD1600A60D85 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCBE0C2A99DD1600A60D85 /* Service.swift */; };
@@ -91,6 +96,9 @@
 /* Begin PBXFileReference section */
 		1C098A5E2A90D89F0073446D /* ThreadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewController.swift; sourceTree = "<group>"; };
 		1C098A602A90D8D10073446D /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
+		1C32DCF92AC6E2EC00750945 /* CustomBottomRepostSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomRepostSheet.swift; sourceTree = "<group>"; };
+		1C32DCFB2ACC28EB00750945 /* Extensions + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + String.swift"; sourceTree = "<group>"; };
+		1C32DCFD2ACE995900750945 /* WritePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostView.swift; sourceTree = "<group>"; };
 		1C3893AA2A7A5B79003D2CC8 /* Neobis_threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +151,8 @@
 		1CC2E09C2AC2F8700082FF8D /* Extensions + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + Data.swift"; sourceTree = "<group>"; };
 		1CC2E09F2AC580CA0082FF8D /* ThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadViewModel.swift; sourceTree = "<group>"; };
 		1CC2E0A12AC58C230082FF8D /* SomeoneProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeoneProfileViewModel.swift; sourceTree = "<group>"; };
+		1CC2E0A52AC694A70082FF8D /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
+		1CC2E0A72AC694AF0082FF8D /* FollowersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersView.swift; sourceTree = "<group>"; };
 		1CC6273D2A878999004C419C /* FontsFree-Net-SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		1CDCBE092A99DCB400A60D85 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		1CDCBE0C2A99DD1600A60D85 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -211,6 +221,14 @@
 				1CC198842A92042F002DE8FC /* CustomThreadCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1C32DCF82AC6E2D300750945 /* CustomBottomRepostSheet */ = {
+			isa = PBXGroup;
+			children = (
+				1C32DCF92AC6E2EC00750945 /* CustomBottomRepostSheet.swift */,
+			);
+			path = CustomBottomRepostSheet;
 			sourceTree = "<group>";
 		};
 		1C3893A12A7A5B79003D2CC8 = {
@@ -382,8 +400,9 @@
 		1C7470D12A879E3600FAFA88 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				1C32DCF82AC6E2D300750945 /* CustomBottomRepostSheet */,
 				1CDCBE232AA1E4E600A60D85 /* CustomBottomShareSheet */,
-				1C7470D52A88CBC300FAFA88 /* CustomBottomSheet */,
+				1C7470D52A88CBC300FAFA88 /* CustomBottomProfileSheet */,
 				1C7470D22A879E3E00FAFA88 /* BorderedTextField */,
 			);
 			path = Custom;
@@ -397,12 +416,12 @@
 			path = BorderedTextField;
 			sourceTree = "<group>";
 		};
-		1C7470D52A88CBC300FAFA88 /* CustomBottomSheet */ = {
+		1C7470D52A88CBC300FAFA88 /* CustomBottomProfileSheet */ = {
 			isa = PBXGroup;
 			children = (
 				1C7470D62A88CBDB00FAFA88 /* CustomBottomSheet.swift */,
 			);
-			path = CustomBottomSheet;
+			path = CustomBottomProfileSheet;
 			sourceTree = "<group>";
 		};
 		1C7470DA2A8B702A00FAFA88 /* Home */ = {
@@ -427,6 +446,7 @@
 		1C7470E22A90D79C00FAFA88 /* Home Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1CC2E0A32AC694910082FF8D /* Followers */,
 				1CDCBE262AA1FA6900A60D85 /* Activity  */,
 				1CDCBE1B2AA1DDBC00A60D85 /* Someone's Profile */,
 				1C3CEAAD2A87712000466A58 /* Profile */,
@@ -447,6 +467,7 @@
 				1CAA2BEE2A8384AE00C3FD70 /* Extensions + UIFont.swift */,
 				1CE233062AB99F61008590B0 /* Extensions + SetTime.swift */,
 				1CC2E09C2AC2F8700082FF8D /* Extensions + Data.swift */,
+				1C32DCFB2ACC28EB00750945 /* Extensions + String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -549,6 +570,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1CC2E0A32AC694910082FF8D /* Followers */ = {
+			isa = PBXGroup;
+			children = (
+				1CC2E0A52AC694A70082FF8D /* FollowersViewController.swift */,
+				1CC2E0A42AC694990082FF8D /* View */,
+			);
+			path = Followers;
+			sourceTree = "<group>";
+		};
+		1CC2E0A42AC694990082FF8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1CC2E0A72AC694AF0082FF8D /* FollowersView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1CDCBE0B2A99DD0B00A60D85 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +682,7 @@
 			isa = PBXGroup;
 			children = (
 				1CE2330C2ABC43CA008590B0 /* WriteView.swift */,
+				1C32DCFD2ACE995900750945 /* WritePostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -790,6 +829,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C3CEAA32A863E9D00466A58 /* SignupView.swift in Sources */,
+				1C32DCFA2AC6E2EC00750945 /* CustomBottomRepostSheet.swift in Sources */,
 				1CE233052AB45AE9008590B0 /* FeedsModel.swift in Sources */,
 				1C3CEAA92A86590A00466A58 /* PasswordView.swift in Sources */,
 				1CDCBE0F2A99F5F800A60D85 /* LoginViewModel.swift in Sources */,
@@ -816,6 +856,7 @@
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
 				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
 				1CC2E0A02AC580CA0082FF8D /* ThreadViewModel.swift in Sources */,
+				1C32DCFE2ACE995900750945 /* WritePostView.swift in Sources */,
 				1CDCBE0A2A99DCB400A60D85 /* SignupViewModel.swift in Sources */,
 				1CAA2BED2A837D1700C3FD70 /* OTPViewController.swift in Sources */,
 				1C098A5F2A90D89F0073446D /* ThreadViewController.swift in Sources */,
@@ -846,11 +887,14 @@
 				1CDCBE322AA46F4C00A60D85 /* ProfileViewModel.swift in Sources */,
 				1CDCBE2F2AA2060400A60D85 /* CustomRequestActivityCell.swift in Sources */,
 				1CDCBE182A9B4EA100A60D85 /* SearchViewController.swift in Sources */,
+				1C32DCFC2ACC28EB00750945 /* Extensions + String.swift in Sources */,
 				1CDCBE352AA46FC800A60D85 /* AuthManager.swift in Sources */,
+				1CC2E0A82AC694AF0082FF8D /* FollowersView.swift in Sources */,
 				1CAA2BE22A82352600C3FD70 /* Extenisons + NSObject.swift in Sources */,
 				1CC198852A92042F002DE8FC /* CustomThreadCell.swift in Sources */,
 				1C098A612A90D8D10073446D /* ThreadView.swift in Sources */,
 				1CAD5D372AA9B2BC0029C509 /* ProfileLogoutViewModel.swift in Sources */,
+				1CC2E0A62AC694A70082FF8D /* FollowersViewController.swift in Sources */,
 				1C7470D42A879E5900FAFA88 /* BorderedTextField.swift in Sources */,
 				1CAA2BE52A8237C100C3FD70 /* ForgotViewController.swift in Sources */,
 			);

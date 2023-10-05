@@ -54,9 +54,24 @@ class HomeView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.register(CustomHomeCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
+        
+//        tableView.register(CustomHomeCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
         
         return tableView
+    }()
+    
+    lazy var bottomSheet: CustomBottomRepostSheet = {
+        let view = CustomBottomRepostSheet()
+        
+        return view
+    }()
+    
+    lazy var overlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.isHidden = true
+        
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -80,6 +95,8 @@ class HomeView: UIView {
         addSubview(followingSection)
         addSubview(rightSectionBottomLine)
         addSubview(tableView)
+        addSubview(overlayView)
+        addSubview(bottomSheet)
     }
     
     func setupConstraints() {
@@ -123,5 +140,36 @@ class HomeView: UIView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
         }
+        
+        bottomSheet.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(flexibleHeight(to: 171))
+            make.top.equalToSuperview().offset(UIScreen.main.bounds.height)
+        }
+        
+        overlayView.snp.makeConstraints{ make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func presentBottomSheet() {
+        
+        layoutIfNeeded()
+        
+        overlayView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3) {
+            self.bottomSheet.frame.origin.y -= self.bottomSheet.frame.height
+        }
+    }
+    
+    func dismissBottomSheet() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomSheet.frame.origin.y += self.bottomSheet.frame.height
+        }) { _ in
+            self.bottomSheet.removeFromSuperview()
+        }
+        
+        overlayView.isHidden = true
     }
 }

@@ -64,12 +64,18 @@ class SomeoneProfileViewController: UIViewController {
     }
     
     func addTargets() {
+        contentView.followButton.addTarget(self, action: #selector(followButtonPressed), for: .touchUpInside)
     }
     
     func setupTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutside(_:)))
         tapGesture.cancelsTouchesInView = false
         contentView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func followButtonPressed() {
+        someoneProfileProtocol.fetchFollowData(id: userId)
+        print(someoneProfileProtocol.setDataResult)
     }
     
     @objc private func handleTapOutside(_ sender: UITapGestureRecognizer) {
