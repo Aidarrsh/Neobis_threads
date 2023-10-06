@@ -14,8 +14,10 @@ class CustomProfileCell: UITableViewCell {
     
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "AvatarOne")
-        image.contentMode = .scaleAspectFit
+        image.image = UIImage(named: "UserPicture")
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 18 * UIScreen.main.bounds.width / 393
         
         return image
     }()
@@ -38,33 +40,42 @@ class CustomProfileCell: UITableViewCell {
         return label
     }()
 
-    
-    lazy var likeIcon: UIImageView = {
+    lazy var postImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "LikeIcon")
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
         
         return image
     }()
     
-    lazy var commentIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "CommentIcon")
+    lazy var likeButton: UIButton = {
+        let button = UIButton()
+        button.isUserInteractionEnabled = true
+        button.setImage(UIImage(named: "LikeIcon"), for: .normal)
+        button.backgroundColor = .white
         
-        return image
+        return button
     }()
     
-    lazy var repostIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "RepostBlackIcon")
+    lazy var commentButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "CommentIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
-    lazy var sendIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "SendIcon")
+    lazy var repostButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "RepostBlackIcon"), for: .normal)
         
-        return image
+        return button
+    }()
+    
+    lazy var sendButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "SendIcon"), for: .normal)
+        
+        return button
     }()
     
     lazy var timeLabel: UILabel = {
@@ -97,15 +108,16 @@ class CustomProfileCell: UITableViewCell {
     }
     
     func setupViews() {
-        addSubview(avatarImage)
-        addSubview(usernameLabel)
-        addSubview(threadLabel)
-        addSubview(likeIcon)
-        addSubview(commentIcon)
-        addSubview(repostIcon)
-        addSubview(sendIcon)
-        addSubview(timeLabel)
-        addSubview(likesLabel)
+        contentView.addSubview(avatarImage)
+        contentView.addSubview(usernameLabel)
+        contentView.addSubview(threadLabel)
+        contentView.addSubview(postImage)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(commentButton)
+        contentView.addSubview(repostButton)
+        contentView.addSubview(sendButton)
+        contentView.addSubview(timeLabel)
+        contentView.addSubview(likesLabel)
     }
     
     func setupConstraints() {
@@ -113,7 +125,7 @@ class CustomProfileCell: UITableViewCell {
             make.top.equalToSuperview().inset(flexibleHeight(to: 3))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 12))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 345))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 67))
+            make.height.width.equalTo(flexibleWidth(to: 36))
         }
 
         usernameLabel.snp.makeConstraints { make in
@@ -127,33 +139,39 @@ class CustomProfileCell: UITableViewCell {
             make.top.equalToSuperview().inset(21)
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
-//            make.height.equalTo(40) //  sfasfasdfasfsadfsdafsafasdf
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 65))
         }
         
-        likeIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
+        postImage.snp.makeConstraints{ make in
+            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
+            make.height.equalTo(0)
+        }
+        
+        likeButton.snp.makeConstraints { make in
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+            make.height.equalTo(flexibleHeight(to: 20))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 313))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
 
-        commentIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
+        commentButton.snp.makeConstraints { make in
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 96))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 277))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
 
-        repostIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
+        repostButton.snp.makeConstraints { make in
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 132))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 241))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
 
-        sendIcon.snp.makeConstraints { make in
-            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 15))
+        sendButton.snp.makeConstraints { make in
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 168))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
@@ -161,13 +179,13 @@ class CustomProfileCell: UITableViewCell {
 
         timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
+//            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 21))
             make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }
 
         likesLabel.snp.makeConstraints { make in
-            make.top.equalTo(likeIcon.snp.bottom).offset(flexibleHeight(to: 12))
+            make.top.equalTo(likeButton.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
             make.bottom.equalToSuperview()

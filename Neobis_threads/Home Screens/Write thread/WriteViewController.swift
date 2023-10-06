@@ -13,7 +13,7 @@ class WriteViewController: UIViewController {
     
     var writeProtocol: WriteProtocol
     var profileProtocol: ProfileProtocol
-    var threadText: String?
+//    var threadText: String?
     var image: Data?
     
     init(writeProtocol: WriteProtocol, profileProtocol: ProfileProtocol) {
@@ -30,7 +30,6 @@ class WriteViewController: UIViewController {
         super.viewDidLoad()
     
         getUserData()
-        contentView.threadTextView.delegate = self
         setupView()
         addTargets()
     }
@@ -91,9 +90,24 @@ class WriteViewController: UIViewController {
     }
     
     @objc func postPressed() {
-        
-        writeProtocol.sendThread(text: threadText ?? "", image: image ?? Data(), video: Data(), comments_permission: "anyone")
+        if contentView.isPostbuttonEnabled == true {
+            writeProtocol.sendThread(text: contentView.threadText ?? "", image: image ?? Data(), video: Data(), comments_permission: "anyone")
+
+            writeProtocol.setDataResult = { [weak self] result in
+                switch result {
+                case .success:
+                    // Handle success
+                    DispatchQueue.main.async {
+                        self?.dismiss(animated: true, completion: nil)
+                    }
+                case .failure(let error):
+                    // Handle error
+                    print(error)
+                }
+            }
+        }
     }
+
     
     @objc func stickPressed() {
         let imagePicker = UIImagePickerController()
@@ -108,7 +122,7 @@ class WriteViewController: UIViewController {
 }
 
 
-extension WriteViewController: UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension WriteViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
@@ -122,12 +136,8 @@ extension WriteViewController: UITextViewDelegate, UIImagePickerControllerDelega
             contentView.postImage.snp.makeConstraints { make in
                 make.height.equalTo(newHeight)
             }
-            
-//            contentView.connectingLine.snp.updateConstraints { make in
-//                make.height.equalTo(200)
-//            }
-            
-            contentView.lineHeight += newHeight
+                        
+            contentView.lineHeight = 19 + newHeight
 
             self.updateViewConstraints()
             self.view.layoutIfNeeded()
@@ -140,31 +150,5 @@ extension WriteViewController: UITextViewDelegate, UIImagePickerControllerDelega
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        let text = textView.text ?? ""
-        
-        threadText = text
-
-        updateCharacterCount(for: text)
-    }
-    
-    func updateCharacterCount(for text: String) {
-        let characterCount = 280 - text.count
-
-        contentView.symbolCountLabel.text = String(characterCount)
-        
-        if characterCount < 51 {
-            contentView.symbolCountLabel.isHidden = false
-        } else {
-            contentView.symbolCountLabel.isHidden = true
-        }
-        
-        if characterCount < 0 {
-            contentView.symbolCountLabel.textColor = .red
-        } else {
-            contentView.symbolCountLabel.textColor = UIColor(named: "GreyLabel")
-        }
     }
 }

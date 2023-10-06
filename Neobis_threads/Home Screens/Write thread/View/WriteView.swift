@@ -11,22 +11,25 @@ import SnapKit
 
 class WriteView: UIView {
     
+//    var placeholderText = "Start a thread..."
     var lineHeight: CGFloat = 41
-    var textHeight: CGFloat = 34 {
+    var textHeight: CGFloat = 18 {
         didSet {
             threadTextView.snp.updateConstraints { make in
                 make.height.equalTo(flexibleHeight(to: CGFloat(textHeight)))
             }
         }
     }
+    var isPostbuttonEnabled: Bool = true
+    var threadText: String?
+//    var third: UIAction!
     
     private var threadTextViewHeightConstraint: Constraint?
     
     lazy var menu = UIMenu(title: "", children: elements)
-    lazy var first = UIAction(title: "Mentioned only", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in
-    }
-    lazy var second = UIAction(title: "Profiles you follow", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
-    lazy var third = UIAction(title: "Anyone", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in }
+    lazy var first = UIAction(title: "Mentioned only", image: UIImage(named: "MentionedIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in self.handleFirstAction() }
+    lazy var second = UIAction(title: "Profiles you follow", image: UIImage(named: "FollowedProfilesIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in self.handleSecondAction() }
+    lazy var third = UIAction(title: "Anyone", image: UIImage(named: "AnyoneIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in self.handleThirdAction() }
     lazy var elements: [UIAction] = [first, second, third]
     
     private lazy var titleLabel: UILabel = {
@@ -73,6 +76,8 @@ class WriteView: UIView {
         let textView = UITextView()
         textView.font = UIFont.sfRegular(ofSize: 15)
         textView.isScrollEnabled = false
+        textView.textContainerInset = .zero
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 8)
         
         return textView
     }()
@@ -118,7 +123,8 @@ class WriteView: UIView {
     lazy var postButton: UIButton = {
         let button = UIButton()
         button.setTitle("Post", for: .normal)
-        button.setTitleColor(UIColor(named: "PostBlue"), for: .normal)
+//        button.setTitleColor(UIColor(named: "PostBlue"), for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = UIFont.sfSemiBold(ofSize: 20)
         
         return button
@@ -134,12 +140,18 @@ class WriteView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
+//        threadTextView.text = placeholderText
+//        threadTextView.textColor = .gray
         threadTextView.delegate = self
         setupViews()
         setupConstraints()
     }
     
     func setupViews() {
+//        third = UIAction(title: "Anyone", image: UIImage(named: "AnyoneIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] action in
+//            self?.handleThirdAction()
+//        }
+        
         addSubview(titleLabel)
         addSubview(symbolCountLabel)
         addSubview(dividerLine)
@@ -217,7 +229,7 @@ class WriteView: UIView {
         replyButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 761))
             make.leading.equalToSuperview().inset(flexibleHeight(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleHeight(to: 269))
+//            make.trailing.equalToSuperview().inset(flexibleHeight(to: 269))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 53))
         }
         
@@ -236,13 +248,61 @@ extension WriteView: UITextViewDelegate {
         let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         textHeight = newSize.height
+        
         updateConstraints()
+        
+        let text = textView.text ?? ""
+        
+        threadText = text
+
+        updateCharacterCount(for: text)
     }
+    
+    func updateCharacterCount(for text: String) {
+        let characterCount = 280 - text.count
+
+        symbolCountLabel.text = String(characterCount)
+        
+        if characterCount < 51 {
+            symbolCountLabel.isHidden = false
+        } else {
+            symbolCountLabel.isHidden = true
+        }
+        
+        if characterCount < 0 {
+            symbolCountLabel.textColor = .red
+            postButton.setTitleColor(UIColor(named: "PostBlue"), for: .normal)
+            isPostbuttonEnabled = false
+        } else {
+            symbolCountLabel.textColor = UIColor(named: "GreyLabel")
+            postButton.setTitleColor(.systemBlue, for: .normal)
+            isPostbuttonEnabled = true
+        }
+    }
+    
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if textView.text == placeholderText {
+//            textView.text = ""
+//            textView.textColor = .black
+//        }
+//    }
+    
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if textView.text.isEmpty {
+//            textView.text = placeholderText
+//            textView.textColor = .gray
+//        }
+//    }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard let currentText = textView.text else {
             return true
         }
+        
+//        if textView.text == placeholderText {
+//            textView.text = ""
+//            textView.textColor = .black
+//        }
         
         let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
         let numberOfLines = newText.components(separatedBy: CharacterSet.newlines).count
@@ -252,7 +312,8 @@ extension WriteView: UITextViewDelegate {
         if text == "\n" && numberOfLines <= maxLines {
             textView.text.append("\n")
             
-            textHeight += 15
+            textHeight += 18
+            lineHeight += 18
             
             updateConstraints()
             layoutIfNeeded()
@@ -262,7 +323,8 @@ extension WriteView: UITextViewDelegate {
         if numberOfLines <= maxLines {
             let deletedNewlineCount = currentText.countOccurences(of: "\n", in: range)
             
-            textHeight -= CGFloat(deletedNewlineCount) * 15
+            textHeight -= CGFloat(deletedNewlineCount) * 18
+            lineHeight -= CGFloat(deletedNewlineCount) * 18
             
             updateConstraints()
             layoutIfNeeded()
@@ -270,7 +332,8 @@ extension WriteView: UITextViewDelegate {
         } else if text.isEmpty && numberOfLines == maxLines + 1 {
             let deletedNewlineCount = currentText.countOccurences(of: "\n", in: range)
             
-            textHeight -= CGFloat(deletedNewlineCount) * 15
+            textHeight -= CGFloat(deletedNewlineCount) * 18
+            lineHeight -= CGFloat(deletedNewlineCount) * 18
             
             updateConstraints()
             layoutIfNeeded()
@@ -278,5 +341,26 @@ extension WriteView: UITextViewDelegate {
         }
         
         return false
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
+    
+    func handleFirstAction() {
+        replyButton.setTitle("Mentioned can reply", for: .normal)
+    }
+    
+    func handleSecondAction() {
+        replyButton.setTitle("Profile you follow can reply", for: .normal)
+    }
+    
+    func handleThirdAction() {
+        third.title = third.title == "Anyone" ? "Your Followers" : "Anyone"
+        third.image = third.title == "Anyone" ? UIImage(named: "AnyoneIcon") : UIImage(named: "YourFollowersIcon")
+        
+        replyButton.setTitle("Your followers can reply", for: .normal)
+        
+        menu = UIMenu(title: "", children: [first, second, third])
     }
 }

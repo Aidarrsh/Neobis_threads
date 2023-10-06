@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController {
     var bio: String?
     var link: String?
     var photo: UIImage?
+    var photoString: String?
+    var feeds = [Post]()
     
     init(profileProtocol: ProfileProtocol) {
         self.profileProtocol = profileProtocol
@@ -28,12 +30,6 @@ class ProfileViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        getProfileData()
-//    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -42,6 +38,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentView.tableView.dataSource = self
+        contentView.tableView.delegate = self
+        parseFeedsData()
         setupView()
         getProfileData()
         addTargets()
@@ -93,6 +92,21 @@ class ProfileViewController: UIViewController {
         self.name = userData["full_name"] as? String
         self.bio = userData["bio"] as? String
         self.link = userData["website"] as? String
+        self.photoString = userData["photo"] as? String
+        
+        DispatchQueue.main.async {
+            self.contentView.tableView.reloadData()
+        }
+    }
+    
+    func parseFeedsData() {
+        self.profileProtocol.fetchFeedsData { [weak self] feeds in
+            self?.feeds = feeds
+            
+            DispatchQueue.main.async {
+                self?.contentView.tableView.reloadData()
+            }
+        }
     }
     
     func setupView() {
@@ -125,5 +139,67 @@ class ProfileViewController: UIViewController {
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
+    let model = ["Innovation sets leaders apart from followers.", "When I look at you, I see someone who’s working hard"]
+}
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return feeds.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomProfileCell
+        let feed = feeds[indexPath.row]
+        
+        cell.avatarImage.image = UIImage(named: "UserPicture")
+        cell.usernameLabel.text = username
+        
+        if let photoURLString = photoString, let photoURL = URL(string: photoURLString) {
+            cell.avatarImage.kf.setImage(with: photoURL, placeholder: nil, options: [.transition(.fade(0.2))], progressBlock: nil) { result in
+            }
+        }
+        
+        if feed.image != nil {
+            if let photoURLString = feed.image, let photoURL = URL(string: photoURLString) {
+                cell.postImage.kf.setImage(with: photoURL) { result in
+                    switch result {
+                    case .success(let imageResult):
+                        let aspectRatio = imageResult.image.size.width / imageResult.image.size.height
+                        let newHeight = cell.postImage.frame.width / aspectRatio
+                        
+                        cell.postImage.snp.updateConstraints { make in
+                            make.height.equalTo(newHeight)
+                        }
+                        
+                        cell.postImage.layer.cornerRadius = 10
+                        
+                        self.updateViewConstraints()
+                        
+                        cell.layoutIfNeeded()
+                    case .failure(let error):
+                        print("Error loading image: \(error)")
+                    }
+                }
+            } else {
+                cell.postImage.image = nil
+            }
+        } else {
+            cell.postImage.snp.updateConstraints { make in
+                make.height.equalTo(0)
+            }
+            
+            self.updateViewConstraints()
+        }
+
+        let timeAgo = timeAgoSinceDate(dateString: feed.date_posted)
+        cell.timeLabel.text = timeAgo
+        cell.threadLabel.text = feed.text
+
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 }

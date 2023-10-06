@@ -47,17 +47,13 @@ class HomeViewModel: HomeProtocol {
                     let response = try decoder.decode(PostResponse.self, from: data)
                     let feeds = response.results.map { Post(id: $0.id, author: $0.author, text: $0.text, date_posted: $0.date_posted, image: $0.image, video: $0.video, comments_permission: $0.comments_permission, total_likes: $0.total_likes, user_like: $0.user_like) }
                     self.feedsList?(feeds)
-//                    print(feeds)
-                    completion(feeds) // Call the completion handler here
+                    completion(feeds)
                 } catch {
                     print("Error decoding JSON:", error)
-                    // You might want to notify the caller that an error occurred
                 }
             case .failure(let error):
                 print("API request failed:", error)
-                // You might want to notify the caller that an error occurred
             }
-            
         }
     }
     

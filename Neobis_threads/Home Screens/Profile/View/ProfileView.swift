@@ -144,8 +144,6 @@ class ProfileView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        tableView.dataSource = self
-        tableView.delegate = self
         setupViews()
         setupConstraints()
     }
@@ -266,24 +264,5 @@ class ProfileView: UIView {
         }
     }
     
-    let model = ["Innovation sets leaders apart from followers.", "When I look at you, I see someone who’s working hard"]
-}
-
-extension ProfileView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomProfileCell
-        
-        cell.threadLabel.text = model[indexPath.row]
-        if indexPath.row%2==0{
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
 }
