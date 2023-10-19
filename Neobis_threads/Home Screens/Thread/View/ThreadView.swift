@@ -26,6 +26,14 @@ class ThreadView: UIView {
         return view
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        scrollView.contentInset.bottom = 1000
+        
+        return scrollView
+    }()
+    
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPicture")
@@ -71,32 +79,34 @@ class ThreadView: UIView {
         return image
     }()
     
-    lazy var likeIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "LikeIcon")
+    lazy var likeButton: UIButton = {
+        let button = UIButton()
+        button.isUserInteractionEnabled = true
+        button.setImage(UIImage(named: "LikeIcon"), for: .normal)
+        button.backgroundColor = .white
         
-        return image
+        return button
     }()
     
-    lazy var commentIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "CommentIcon")
+    lazy var commentButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "CommentIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
-    lazy var repostIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "RepostBlackIcon")
+    lazy var repostButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "RepostBlackIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
-    lazy var sendIcon: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "SendIcon")
+    lazy var sendButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "SendIcon"), for: .normal)
         
-        return image
+        return button
     }()
     
     lazy var replyLabel: UILabel = {
@@ -135,29 +145,31 @@ class ThreadView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .none
         tableView.register(CustomThreadCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
         
         return tableView
     }()
     
-    lazy var replyTextField: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = UIColor(named: "GreyDomain")
-        textField.layer.cornerRadius = 22 * UIScreen.main.bounds.height / 852
-        textField.placeholder = "Reply to iamnalimov"
-        textField.font = UIFont.sfRegular(ofSize: 14)
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 42, height: textField.frame.height))
-        textField.leftView = paddingView
-        textField.leftViewMode = .always
+    lazy var replyButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "GreyDomain")
+        button.layer.cornerRadius = 22 * UIScreen.main.bounds.height / 852
+        button.setTitle("Reply to", for: .normal)
+        button.titleLabel?.font = UIFont.sfRegular(ofSize: 14)
+        button.setTitleColor(UIColor(named: "GreyLabel"), for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 0)
         
-        return textField
+        return button
     }()
     
     lazy var replyAvatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPicture")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 12 * UIScreen.main.bounds.width / 393
         
         return image
     }()
@@ -179,29 +191,29 @@ class ThreadView: UIView {
     func setupViews() {
         addSubview(titleLabel)
         addSubview(dividerLine)
-        addSubview(avatarImage)
-        addSubview(usernameLabel)
-        addSubview(timeLabel)
-        addSubview(threadLabel)
-        addSubview(postImage)
-        addSubview(likeIcon)
-        addSubview(commentIcon)
-        addSubview(repostIcon)
-        addSubview(sendIcon)
-        addSubview(replyLabel)
-        addSubview(dividerDot)
-        addSubview(likesLabel)
-        addSubview(postDividerLine)
-        addSubview(tableView)
-        addSubview(replyTextField)
+        addSubview(scrollView)
+        scrollView.addSubview(avatarImage)
+        scrollView.addSubview(usernameLabel)
+        scrollView.addSubview(timeLabel)
+        scrollView.addSubview(threadLabel)
+        scrollView.addSubview(postImage)
+        scrollView.addSubview(likeButton)
+        scrollView.addSubview(commentButton)
+        scrollView.addSubview(repostButton)
+        scrollView.addSubview(sendButton)
+        scrollView.addSubview(replyLabel)
+        scrollView.addSubview(dividerDot)
+        scrollView.addSubview(likesLabel)
+        scrollView.addSubview(postDividerLine)
+        scrollView.addSubview(tableView)
+        addSubview(replyButton)
         addSubview(replyAvatarImage)
     }
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 72))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 55))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 56))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 271))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 756))
         }
         
@@ -211,29 +223,31 @@ class ThreadView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 737.5))
         }
         
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(dividerLine.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 85))
+        }
+        
         avatarImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 134))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 20))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 13.5))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 343.5))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 682))
+            make.height.width.equalTo(flexibleWidth(to: 36))
         }
         
         usernameLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 143))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 29))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 59.4))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 260.5))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 691))
         }
         
         timeLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 143))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 29))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 353.5))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 21.5))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 691))
         }
         
         threadLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 186))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 72))
             make.leading.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
         }
         
@@ -243,28 +257,28 @@ class ThreadView: UIView {
 //            make.height.equalTo(361)
         }
         
-        likeIcon.snp.makeConstraints { make in
+        likeButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 357))
             make.height.equalTo(flexibleHeight(to: 20))
         }
 
-        commentIcon.snp.makeConstraints { make in
+        commentButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 52))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 321))
             make.height.equalTo(flexibleHeight(to: 20))
         }
 
-        repostIcon.snp.makeConstraints { make in
+        repostButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 88))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 285))
             make.height.equalTo(flexibleHeight(to: 20))
         }
 
-        sendIcon.snp.makeConstraints { make in
+        sendButton.snp.makeConstraints { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 124))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 249))
@@ -272,7 +286,7 @@ class ThreadView: UIView {
         }
         
         replyLabel.snp.makeConstraints{ make in
-            make.top.equalTo(sendIcon.snp.bottom).offset(flexibleHeight(to: 12))
+            make.top.equalTo(sendButton.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
         }
         
@@ -283,7 +297,7 @@ class ThreadView: UIView {
         }
         
         likesLabel.snp.makeConstraints{ make in
-            make.top.equalTo(sendIcon.snp.bottom).offset(flexibleHeight(to: 12))
+            make.top.equalTo(sendButton.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalTo(dividerDot.snp.trailing).offset(flexibleWidth(to: 5))
         }
         
@@ -298,20 +312,20 @@ class ThreadView: UIView {
             make.top.equalTo(postDividerLine.snp.bottom).offset(flexibleHeight(to: 14))
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 98))
+            make.bottom.equalTo(self.snp.bottom)
         }
         
-        replyTextField.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 777))
+        replyButton.snp.makeConstraints{ make in
+            make.height.equalTo(flexibleHeight(to: 44))
             make.leading.trailing.equalToSuperview().inset(flexibleHeight(to: 16))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 31))
         }
         
         replyAvatarImage.snp.makeConstraints{ make in
-            make.top.equalTo(replyTextField.snp.top).offset(flexibleHeight(to: 10))
-            make.leading.equalTo(replyTextField.snp.leading).offset(flexibleHeight(to: 10))
-            make.trailing.equalTo(replyTextField.snp.trailing).inset(flexibleHeight(to: 327))
-            make.bottom.equalTo(replyTextField.snp.bottom).inset(flexibleHeight(to: 10))
+            make.top.equalTo(replyButton.snp.top).offset(flexibleHeight(to: 10))
+            make.leading.equalTo(replyButton.snp.leading).offset(flexibleHeight(to: 10))
+            make.trailing.equalTo(replyButton.snp.trailing).inset(flexibleHeight(to: 327))
+            make.bottom.equalTo(replyButton.snp.bottom).inset(flexibleHeight(to: 10))
         }
     }
 }

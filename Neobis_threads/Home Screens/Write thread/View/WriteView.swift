@@ -55,6 +55,13 @@ class WriteView: UIView {
         return view
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        
+        return scrollView
+    }()
+    
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPicture")
@@ -151,16 +158,19 @@ class WriteView: UIView {
 //        third = UIAction(title: "Anyone", image: UIImage(named: "AnyoneIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] action in
 //            self?.handleThirdAction()
 //        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        self.addGestureRecognizer(tapGesture)
         
         addSubview(titleLabel)
         addSubview(symbolCountLabel)
         addSubview(dividerLine)
-        addSubview(avatarImage)
-        addSubview(usernameLabel)
-        addSubview(threadTextView)
-        addSubview(stickButton)
-        addSubview(connectingLine)
-        addSubview(postImage)
+        addSubview(scrollView)
+        scrollView.addSubview(avatarImage)
+        scrollView.addSubview(usernameLabel)
+        scrollView.addSubview(threadTextView)
+        scrollView.addSubview(stickButton)
+        scrollView.addSubview(connectingLine)
+        scrollView.addSubview(postImage)
         addSubview(replyButton)
         addSubview(postButton)
     }
@@ -183,21 +193,27 @@ class WriteView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 737.5))
         }
         
-        avatarImage.snp.makeConstraints{ make in
+        scrollView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 134))
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(replyButton.snp.top)
+        }
+        
+        avatarImage.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(flexibleWidth(to: 13.5))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 343.5))
             make.height.width.equalTo(flexibleHeight(to: 36))
         }
         
         usernameLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 136))
+            make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
             make.height.equalTo(flexibleHeight(to: 18))
         }
         
         threadTextView.snp.updateConstraints { make in
-            make.top.equalToSuperview().offset(flexibleHeight(to: 158))
+            make.top.equalTo(usernameLabel.snp.bottom).offset(flexibleHeight(to: 4))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 68))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
             threadTextViewHeightConstraint = make.height.equalTo(flexibleHeight(to: CGFloat(textHeight))).constraint
@@ -214,8 +230,6 @@ class WriteView: UIView {
             make.top.equalTo(avatarImage.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 32))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 359))
-//            make.height.equalTo(flexibleWidth(to: 1))
-//            make.bottom.equalTo(stickButton.snp.bottom)
             make.height.equalTo(flexibleHeight(to: CGFloat(lineHeight)))
         }
         
@@ -239,6 +253,10 @@ class WriteView: UIView {
             make.trailing.equalToSuperview().inset(flexibleHeight(to: 16))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 63))
         }
+    }
+    
+    @objc func handleTap() {
+        self.endEditing(true)
     }
 }
 
@@ -307,7 +325,7 @@ extension WriteView: UITextViewDelegate {
         let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
         let numberOfLines = newText.components(separatedBy: CharacterSet.newlines).count
         
-        let maxLines = 15
+        let maxLines = 50
         
         if text == "\n" && numberOfLines <= maxLines {
             textView.text.append("\n")

@@ -1,19 +1,21 @@
 //
-//  CustomMainCell.swift
+//  CustomHomeFollowingCell.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 19/8/23.
+//  Created by Айдар Шарипов on 8/10/23.
 //
 
 import Foundation
 import UIKit
 import SnapKit
+import AVFoundation
 
-class CustomHomeCell: UITableViewCell {
+class CustomHomeFollowingCell: UITableViewCell {
     
     var postImageHeightConstraint: Constraint?
-    
-    
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
+
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPicture")
@@ -48,6 +50,26 @@ class CustomHomeCell: UITableViewCell {
         image.clipsToBounds = true
         
         return image
+    }()
+    
+    lazy var videoContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        view.distribution = .equalSpacing
+        view.spacing = 16
+        
+        view.addArrangedSubview(likeButton)
+        view.addArrangedSubview(commentButton)
+        view.addArrangedSubview(repostButton)
+        view.addArrangedSubview(sendButton)
+        
+        return view
     }()
     
     lazy var likeButton: UIButton = {
@@ -109,6 +131,7 @@ class CustomHomeCell: UITableViewCell {
         self.repostButton.isUserInteractionEnabled = true
         setupViews()
         setupConstraints()
+        setupVideoPlayer()
     }
     
     override func awakeFromNib() {
@@ -144,10 +167,8 @@ class CustomHomeCell: UITableViewCell {
         contentView.addSubview(usernameLabel)
         contentView.addSubview(threadLabel)
         contentView.addSubview(postImage)
-        contentView.addSubview(likeButton)
-        contentView.addSubview(commentButton)
-        contentView.addSubview(repostButton)
-        contentView.addSubview(sendButton)
+        contentView.addSubview(videoContainerView)
+        contentView.addSubview(stackView)
         contentView.addSubview(timeLabel)
         contentView.addSubview(likesLabel)
     }
@@ -173,40 +194,41 @@ class CustomHomeCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
         }
         
-        postImage.snp.makeConstraints{ make in
+        postImage.snp.updateConstraints{ make in
             make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
             make.height.equalTo(0)
         }
         
-        likeButton.snp.makeConstraints { make in
+//        videoContainerView.snp.updateConstraints { make in
+//            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
+//            make.height.equalTo(200)
+//        }
+        
+        stackView.snp.updateConstraints() { make in
             make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.height.equalTo(flexibleHeight(to: 20))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 313))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
-        }
-
-        commentButton.snp.makeConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 96))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 277))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
-        }
-
-        repostButton.snp.makeConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 132))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 241))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
-        }
-
-        sendButton.snp.makeConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 168))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
+        }
+        
+        likeButton.snp.updateConstraints { make in
+            make.height.width.equalTo(flexibleHeight(to: 20))
+        }
+
+        commentButton.snp.updateConstraints { make in
+            make.height.width.equalTo(flexibleHeight(to: 20))
+        }
+
+        repostButton.snp.updateConstraints { make in
+            make.height.width.equalTo(flexibleHeight(to: 20))
+        }
+
+        sendButton.snp.updateConstraints { make in
+            make.height.width.equalTo(flexibleHeight(to: 20))
         }
 
         timeLabel.snp.makeConstraints { make in
@@ -216,12 +238,21 @@ class CustomHomeCell: UITableViewCell {
             make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }
 
-        likesLabel.snp.makeConstraints { make in
+        likesLabel.snp.updateConstraints { make in
             make.top.equalTo(likeButton.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
             make.bottom.equalToSuperview()
         }
     }
-
+    
+    func setupVideoPlayer() {
+        if let videoURL = URL(string: "https://res.cloudinary.com/daffwdfvn/video/upload/v1697002448/video/zgbnhvhdgoxf8m5bvrh8.mp4") {
+            player = AVPlayer(url: videoURL)
+            playerLayer = AVPlayerLayer(player: player)
+            videoContainerView.layer.addSublayer(playerLayer!)
+        } else {
+            print("Invalid video URL")
+        }
+    }
 }

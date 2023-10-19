@@ -63,7 +63,7 @@ class ProfileView: UIView {
     
     lazy var followersLabel: UIButton = {
         let button = UIButton()
-        button.setTitle("18 followers", for: .normal)
+        button.setTitle("followers", for: .normal)
         button.titleLabel?.font = UIFont.sfRegular(ofSize: 15)
         button.setTitleColor(UIColor(named: "GreyLabel"), for: .normal)
         
@@ -205,7 +205,7 @@ class ProfileView: UIView {
             make.top.equalToSuperview().inset(flexibleHeight(to: 114))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 307))
             make.width.equalTo(flexibleWidth(to: 70))
-            make.height.equalTo(flexibleWidth(to: 70))
+            make.height.equalTo(profilePicture.snp.width)
         }
         
         followersLabel.snp.makeConstraints{ make in
@@ -242,27 +242,25 @@ class ProfileView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 521))
         }
         
-        repostImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 352.5))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 24))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 349))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 479.5))
-        }
-        
-        repostLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 349))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 54))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 256))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 476))
-        }
+//        repostImage.snp.makeConstraints{ make in
+//            make.top.equalToSuperview().inset(flexibleHeight(to: 352.5))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 24))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 349))
+//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 479.5))
+//        }
+//
+//        repostLabel.snp.makeConstraints{ make in
+//            make.top.equalToSuperview().inset(flexibleHeight(to: 349))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 54))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 256))
+//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 476))
+//        }
         
         tableView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 380))
+            make.top.equalTo(dividerLine.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
         }
     }
-    
-    
 }

@@ -77,7 +77,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate, UISe
                 self?.parseData(users)
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,7 +109,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate, UISe
     @objc func followButtonTapped() {
         isFollowButtonTapped = !isFollowButtonTapped
         
-        print("asdasd")
         contentView.tableView.reloadData()
     }
     

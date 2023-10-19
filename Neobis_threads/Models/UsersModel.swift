@@ -65,3 +65,21 @@ struct UserData: Codable {
     var photo: String?
 }
 
+enum MutualFollowStatus {
+    case pending
+    case followed
+    case notFollowed
+    case mutualFollow
+}
+
+struct Followee: Codable {
+    let pk: Int
+    let username: String
+    let full_name: String?
+    let bio: String?
+    let website: String?
+    let location: String?
+    let photo: String?
+    let is_private: Bool
+    let is_followed: String?
+}

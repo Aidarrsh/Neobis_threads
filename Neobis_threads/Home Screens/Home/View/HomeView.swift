@@ -18,7 +18,7 @@ class HomeView: UIView {
         return image
     }()
     
-    lazy var forYouSection: UIButton = {
+    lazy var forYouSectionButton: UIButton = {
         let button = UIButton()
         button.setTitle("For you", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -34,7 +34,7 @@ class HomeView: UIView {
         return view
     }()
     
-    lazy var followingSection: UIButton = {
+    lazy var followingSectionButton: UIButton = {
         let button = UIButton()
         button.setTitle("Following", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -50,12 +50,21 @@ class HomeView: UIView {
         return view
     }()
     
-    lazy var tableView: UITableView = {
+    lazy var forYouTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         
 //        tableView.register(CustomHomeCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
+        
+        return tableView
+    }()
+    
+    lazy var followingTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.isHidden = true
         
         return tableView
     }()
@@ -90,11 +99,12 @@ class HomeView: UIView {
     
     func setupViews() {
         addSubview(threadIcon)
-        addSubview(forYouSection)
+        addSubview(forYouSectionButton)
         addSubview(leftSectionBottomLine)
-        addSubview(followingSection)
+        addSubview(followingSectionButton)
         addSubview(rightSectionBottomLine)
-        addSubview(tableView)
+        addSubview(forYouTableView)
+        addSubview(followingTableView)
         addSubview(overlayView)
         addSubview(bottomSheet)
     }
@@ -107,7 +117,7 @@ class HomeView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 755))
         }
         
-        forYouSection.snp.makeConstraints{ make in
+        forYouSectionButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 105))
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 196))
@@ -121,7 +131,7 @@ class HomeView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 699))
         }
         
-        followingSection.snp.makeConstraints{ make in
+        followingSectionButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 105))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 197))
             make.trailing.equalToSuperview()
@@ -129,13 +139,19 @@ class HomeView: UIView {
         }
         
         rightSectionBottomLine.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 152))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 151.5))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 197))
             make.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 699))
         }
         
-        tableView.snp.makeConstraints{ make in
+        forYouTableView.snp.makeConstraints{ make in
+            make.top.equalTo(leftSectionBottomLine.snp.bottom).offset(flexibleHeight(to: 20))
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
+        }
+        
+        followingTableView.snp.makeConstraints{ make in
             make.top.equalTo(leftSectionBottomLine.snp.bottom).offset(flexibleHeight(to: 20))
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))

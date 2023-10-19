@@ -10,6 +10,17 @@ import SnapKit
 
 class ActivityViewController: UIViewController {
     private let contentView = ActivityView()
+    var activityProtocol: ActiivtyProtocol
+    var follows = [ActivityModel]()
+    
+    init(activityProtocol: ActiivtyProtocol) {
+        self.activityProtocol = activityProtocol
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var isFollowButtonTapped = false
     
@@ -18,6 +29,7 @@ class ActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        parseData()
         setupView()
         addTargets()
     }
@@ -40,6 +52,22 @@ class ActivityViewController: UIViewController {
         }
     }
     
+    func parseData() {
+        self.activityProtocol.fetchFollowsData() { [weak self] follows in
+            // Group notifications by related_user
+            let groupedNotifications = Dictionary(grouping: follows, by: { $0.related_user })
+            
+            // Keep only the latest notification for each related_user
+            let latestNotifications = groupedNotifications.compactMap { $0.value.max(by: { $0.datePosted < $1.datePosted }) }
+            
+            self?.follows = latestNotifications
+            
+            DispatchQueue.main.async {
+                self?.contentView.requestsTableView.reloadData()
+            }
+        }
+    }
+
     @objc func commentsButtonPressed() {
         if isButtonPressed == true {
             isButtonPressed = false
@@ -51,6 +79,10 @@ class ActivityViewController: UIViewController {
             contentView.requestsButton.setTitleColor(.black, for: .normal)
             contentView.requestsButton.backgroundColor = .white
             contentView.requestsButton.layer.borderWidth = 1
+        }
+        DispatchQueue.main.async {
+            self.contentView.commentsTableView.reloadData()
+            self.contentView.requestsTableView.reloadData()
         }
     }
     
@@ -66,6 +98,10 @@ class ActivityViewController: UIViewController {
             contentView.commentsButton.backgroundColor = .white
             contentView.commentsButton.layer.borderWidth = 1
         }
+        DispatchQueue.main.async {
+            self.contentView.commentsTableView.reloadData()
+            self.contentView.requestsTableView.reloadData()
+        }
     }
 }
 
@@ -74,16 +110,44 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
         if contentView.commentsTableView.isHidden == false {
             return 15
         } else {
-            return 15
+            return follows.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == contentView.commentsTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomCommentsActivityCell
+            
+            cell.selectionStyle = .none
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomRequestsActivityCell
+            if indexPath.row < follows.count {
+                let followee = follows[indexPath.row]
+                
+                activityProtocol.fetchUserData(id: followee.related_user ?? 0) { userData in
+                    if let userData = userData {
+                        DispatchQueue.main.async {
+                            cell.usernameLabel.text = userData.username
+                            
+                            if let photoURLString = userData.photo, let photoURL = URL(string: photoURLString) {
+                                cell.avatarImage.kf.setImage(with: photoURL, placeholder: nil, options: [.transition(.fade(0.2))], progressBlock: nil) { result in
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+                let dateString = dateFormatter.string(from: followee.datePosted)
+                let timeAgo = timeAgoSinceDate(dateString: dateString)
+                cell.timeLabel.text = timeAgo
+            } else {
+                
+            }
+            
+            cell.selectionStyle = .none
             return cell
         }
     }
@@ -98,7 +162,6 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        // Return false for the cells you want to disable selection for.
         return true
     }
 }

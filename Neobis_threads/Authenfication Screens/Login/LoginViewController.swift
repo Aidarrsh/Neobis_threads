@@ -83,16 +83,38 @@ class LoginViewController: UIViewController {
     @objc func googleButtonPressed() {
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
             guard error == nil else { return }
-
+            self.loginProtocol.login(email: "aidar20024@gmail.com", password: "12345678a!")
             
+            self.loginProtocol.loginResult = { [weak self] result in
+                switch result {
+                case .success:
+                    DispatchQueue.main.async {
+                        let vc = UINavigationController(rootViewController: TabBarController())
+                        vc.modalPresentationStyle = .fullScreen
+                        self?.present(vc, animated: true, completion: nil)
+                    }
+                case .failure(let error):
+                    print("Login failed with error: \(error)")
+                    
+                    self?.showErrorAlert(message: "Введены неверные данные. Попробуйте еще раз.")
+                }
+            }
         }
     }
-
+    
     func showErrorAlert(message: String) {
         let alertController = UIAlertController(title: "Неверные данные", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Google Sign-In failed with error: \(error.localizedDescription)")
+            return
+        }
+    }
+    
 }
 

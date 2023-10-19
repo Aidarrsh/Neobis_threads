@@ -10,10 +10,10 @@ import UIKit
 
 extension NSObject {
     func flexibleHeight(to: CGFloat) -> CGFloat {
-        return UIScreen.main.bounds.height * to / 852
+        return to
     }
     func flexibleWidth(to: CGFloat) -> CGFloat {
-        return UIScreen.main.bounds.width * to / 393
+        return to
     }
     
 }

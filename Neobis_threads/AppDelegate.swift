@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           // Show the app's signed-in state.
         }
       }
+        
       return true
     }
 }

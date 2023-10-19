@@ -1,18 +1,21 @@
 //
-//  CustomCell.swift
+//  CustomHomeForYouCell.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 13/8/23.
+//  Created by Айдар Шарипов on 19/8/23.
 //
 
+import Foundation
 import UIKit
 import SnapKit
+import AVFoundation
 
-class CustomProfileCell: UITableViewCell {
+class CustomHomeForYouCell: UITableViewCell {
     
-    var textOne: Int = 20
-    var heightConstraint: NSLayoutConstraint?
-    
+    var postImageHeightConstraint: Constraint?
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
+
     lazy var avatarImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "UserPicture")
@@ -27,7 +30,6 @@ class CustomProfileCell: UITableViewCell {
         let label = UILabel()
         label.text = "mountain_mama"
         label.font = UIFont.sfBold(ofSize: 14)
-        label.numberOfLines = 1
         
         return label
     }()
@@ -48,6 +50,28 @@ class CustomProfileCell: UITableViewCell {
         image.clipsToBounds = true
         
         return image
+    }()
+    
+    lazy var videoContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.isHidden = true
+        
+        return view
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        view.distribution = .equalSpacing
+        view.spacing = 16
+        
+        view.addArrangedSubview(likeButton)
+        view.addArrangedSubview(commentButton)
+        view.addArrangedSubview(repostButton)
+        view.addArrangedSubview(sendButton)
+        
+        return view
     }()
     
     lazy var likeButton: UIButton = {
@@ -80,13 +104,6 @@ class CustomProfileCell: UITableViewCell {
         return button
     }()
     
-    lazy var deleteButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "DeleteIcon"), for: .normal)
-        
-        return button
-    }()
-    
     lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "3m"
@@ -105,11 +122,42 @@ class CustomProfileCell: UITableViewCell {
         return label
     }()
     
+    static func nib() -> UINib {
+        return UINib(nibName: "CustomHomeCell", bundle: nil)
+    }
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.likeButton.isUserInteractionEnabled = true
+        self.repostButton.isUserInteractionEnabled = true
         setupViews()
         setupConstraints()
+        setupVideoPlayer()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self)
+        
+        if likeButton.frame.contains(touchLocation) {
+            likeButton.becomeFirstResponder()
+        }
+        
+        if repostButton.frame.contains(touchLocation) {
+            repostButton.becomeFirstResponder()
+        }
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
     }
     
     required init?(coder: NSCoder) {
@@ -121,11 +169,8 @@ class CustomProfileCell: UITableViewCell {
         contentView.addSubview(usernameLabel)
         contentView.addSubview(threadLabel)
         contentView.addSubview(postImage)
-        contentView.addSubview(likeButton)
-        contentView.addSubview(commentButton)
-        contentView.addSubview(repostButton)
-        contentView.addSubview(sendButton)
-        contentView.addSubview(deleteButton)
+        contentView.addSubview(videoContainerView)
+        contentView.addSubview(stackView)
         contentView.addSubview(timeLabel)
         contentView.addSubview(likesLabel)
     }
@@ -142,69 +187,74 @@ class CustomProfileCell: UITableViewCell {
             make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 227))
+            make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }
 
         threadLabel.snp.makeConstraints { make in
-            make.top.equalTo(usernameLabel.snp.bottom).offset(flexibleHeight(to: 4))
+            make.top.equalToSuperview().inset(21)
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
         }
         
-        heightConstraint = postImage.heightAnchor.constraint(equalToConstant: 0)
-        heightConstraint?.isActive = true
-        
-        postImage.snp.updateConstraints(){ make in
+        postImage.snp.updateConstraints{ make in
             make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
             make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
+            make.height.equalTo(0)
+        }
+        
+//        videoContainerView.snp.updateConstraints { make in
+//            make.top.equalTo(threadLabel.snp.bottom).offset(flexibleHeight(to: 10))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 12))
+//            make.height.equalTo(200)
+//        }
+        
+        stackView.snp.updateConstraints { make in
+            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 30))
         }
         
         likeButton.snp.updateConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 313))
-            make.height.width.equalTo(flexibleWidth(to: 20))
+            make.height.width.equalTo(flexibleHeight(to: 20))
         }
 
         commentButton.snp.updateConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 96))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 277))
-            make.height.width.equalTo(flexibleWidth(to: 20))
+            make.height.width.equalTo(flexibleHeight(to: 20))
         }
 
         repostButton.snp.updateConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 132))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 241))
-            make.height.width.equalTo(flexibleWidth(to: 20))
+            make.height.width.equalTo(flexibleHeight(to: 20))
         }
 
         sendButton.snp.updateConstraints { make in
-            make.top.equalTo(postImage.snp.bottom).offset(flexibleHeight(to: 15))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 168))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 205))
-            make.height.width.equalTo(flexibleWidth(to: 20))
-        }
-        
-        deleteButton.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 21))
-            make.height.width.equalTo(flexibleWidth(to: 20))
+            make.height.width.equalTo(flexibleHeight(to: 20))
         }
 
-        timeLabel.snp.updateConstraints { make in
+        timeLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.trailing.equalTo(deleteButton.snp.leading)
-            make.height.equalTo(flexibleWidth(to: 20))
+//            make.leading.equalToSuperview().offset(flexibleWidth(to: 352))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 21))
+            make.bottom.equalTo(threadLabel.snp.top).inset(flexibleHeight(to: 3))
         }
 
         likesLabel.snp.updateConstraints { make in
             make.top.equalTo(likeButton.snp.bottom).offset(flexibleHeight(to: 12))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 60))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 286))
             make.bottom.equalToSuperview()
         }
     }
+    
+    func setupVideoPlayer() {
+        if let videoURL = URL(string: "https://res.cloudinary.com/daffwdfvn/video/upload/v1697002448/video/zgbnhvhdgoxf8m5bvrh8.mp4") {
+            player = AVPlayer(url: videoURL)
+            playerLayer = AVPlayerLayer(player: player)
+            videoContainerView.layer.addSublayer(playerLayer!)
+        } else {
+            print("Invalid video URL")
+        }
+    }
 }
-

@@ -49,13 +49,14 @@ class SomeoneProfileView: UIView {
         image.image = UIImage(named: "UserPicture")
         image.layer.cornerRadius = 35 * UIScreen.main.bounds.width / 393
         image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
         
         return image
     }()
     
     lazy var followersLabel: UIButton = {
         let button = UIButton()
-        button.setTitle("153k followers", for: .normal)
+        button.setTitle("followers", for: .normal)
         button.titleLabel?.font = UIFont.sfRegular(ofSize: 15)
         button.setTitleColor(UIColor(named: "GreyLabel"), for: .normal)
         
@@ -97,7 +98,7 @@ class SomeoneProfileView: UIView {
     
     lazy var repostLabel: UILabel = {
         let label = UILabel()
-        label.text = "You reposted"
+        label.text = ""
         label.textColor = UIColor(named: "GreyLabel")
         label.font = UIFont.sfRegular(ofSize: 15)
         
@@ -108,7 +109,6 @@ class SomeoneProfileView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.register(CustomSomeoneProfileCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
         
         return tableView
     }()
@@ -137,8 +137,6 @@ class SomeoneProfileView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        tableView.dataSource = self
-        tableView.delegate = self
         setupViews()
         setupConstraints()
     }
@@ -218,25 +216,25 @@ class SomeoneProfileView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 521))
         }
         
-        repostImage.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 352.5))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 24))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 349))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 479.5))
-        }
-        
-        repostLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 349))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 54))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 256))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 476))
-        }
+//        repostImage.snp.makeConstraints{ make in
+//            make.top.equalToSuperview().inset(flexibleHeight(to: 352.5))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 24))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 349))
+//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 479.5))
+//        }
+//
+//        repostLabel.snp.makeConstraints{ make in
+//            make.top.equalToSuperview().inset(flexibleHeight(to: 349))
+//            make.leading.equalToSuperview().inset(flexibleWidth(to: 54))
+//            make.trailing.equalToSuperview().inset(flexibleWidth(to: 256))
+//            make.bottom.equalToSuperview().inset(flexibleHeight(to: 476))
+//        }
         
         tableView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 380))
+            make.top.equalTo(dividerLine.snp.bottom).offset(flexibleHeight(to: 10))
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 83))
+            make.bottom.equalToSuperview()
         }
         
         bottomSheet.snp.makeConstraints { make in
@@ -272,23 +270,4 @@ class SomeoneProfileView: UIView {
     }
     
     let model = ["Innovation sets leaders apart from followers.", "When I look at you, I see someone who’s working hard"]
-}
-
-extension SomeoneProfileView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomSomeoneProfileCell
-        
-        cell.threadLabel.text = model[indexPath.row]
-        if indexPath.row%2==0{
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
 }

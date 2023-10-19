@@ -1,8 +1,8 @@
 //
-//  ReplyView.swift
+//  WriteView.swift
 //  Neobis_threads
 //
-//  Created by Айдар Шарипов on 21/8/23.
+//  Created by Айдар Шарипов on 21/9/23.
 //
 
 import Foundation
@@ -10,6 +10,26 @@ import UIKit
 import SnapKit
 
 class ReplyView: UIView {
+    
+//    var placeholderText = "Start a thread..."
+    var lineHeight: CGFloat = 41
+    var textHeight: CGFloat = 18 {
+        didSet {
+            replyTextView.snp.updateConstraints { make in
+                make.height.equalTo(flexibleHeight(to: CGFloat(textHeight)))
+            }
+        }
+    }
+    var isPostbuttonEnabled: Bool = true
+    var threadText: String?
+    
+    private var threadTextViewHeightConstraint: Constraint?
+    
+    lazy var menu = UIMenu(title: "", children: elements)
+    lazy var first = UIAction(title: "Mentioned only", image: UIImage(named: "MentionedIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in self.handleFirstAction() }
+    lazy var second = UIAction(title: "Profiles you follow", image: UIImage(named: "FollowedProfilesIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in self.handleSecondAction() }
+    lazy var third = UIAction(title: "Anyone", image: UIImage(named: "AnyoneIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { action in self.handleThirdAction() }
+    lazy var elements: [UIAction] = [first, second, third]
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -19,11 +39,12 @@ class ReplyView: UIView {
         return label
     }()
     
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "CloseIcon"), for: .normal)
+    lazy var symbolCountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(named: "GreyLabel")
+        label.isHidden = true
         
-        return button
+        return label
     }()
     
     private lazy var dividerLine: UIView = {
@@ -33,21 +54,129 @@ class ReplyView: UIView {
         return view
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        tableView.register(CustomReplyCell.self, forCellReuseIdentifier: "MyCellReuseIdentifier")
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
         
-        return tableView
+        return scrollView
     }()
     
-    lazy var replyTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Anyone can reply"
-        textField.font = UIFont.sfRegular(ofSize: 15)
+    lazy var authorAvatarImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "UserPicture")
+        image.layer.cornerRadius = 18 * UIScreen.main.bounds.height / 852
+        image.clipsToBounds = true
         
-        return textField
+        return image
+    }()
+    
+    lazy var authorUsernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "loading..."
+        label.font = UIFont.sfBold(ofSize: 14)
+        
+        return label
+    }()
+    
+    lazy var threadLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.sfRegular(ofSize: 15)
+        label.numberOfLines = 0
+        label.text = "Focusing is something impossible for people with ADHD"
+        
+        return label
+    }()
+    
+    lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.sfRegular(ofSize: 14)
+        label.textColor = UIColor(named: "GreyLabel")
+        label.text = "4h"
+        
+        return label
+    }()
+    
+    lazy var connectingLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "GreyButtonBorder")?.cgColor
+        
+        return view
+    }()
+    
+    lazy var myAvatarImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "UserPicture")
+        image.layer.cornerRadius = 18 * UIScreen.main.bounds.height / 852
+        image.clipsToBounds = true
+        
+        return image
+    }()
+    
+    lazy var myUsernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "loading..."
+        label.font = UIFont.sfBold(ofSize: 14)
+        
+        return label
+    }()
+    
+    lazy var myConnectingLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor(named: "GreyButtonBorder")?.cgColor
+        
+        return view
+    }()
+    
+    lazy var replyTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = UIFont.sfRegular(ofSize: 15)
+        textView.isScrollEnabled = false
+        textView.textContainerInset = .zero
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 8)
+        
+        return textView
+    }()
+    
+    lazy var postImage: UIImageView = {
+        let image = UIImageView()
+        image.isHidden = true
+        image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 10 * UIScreen.main.bounds.height / 852
+        image.clipsToBounds = true
+        
+        return image
+    }()
+    
+    lazy var stickButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "StickIcon"), for: .normal)
+        
+        return button
+    }()
+    
+    lazy var replyButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Anyone can reply", for: .normal)
+        button.setTitleColor(UIColor(named: "GreyLabel"), for: .normal)
+        button.titleLabel?.font = UIFont.sfRegular(ofSize: 15)
+        button.showsMenuAsPrimaryAction = true
+        button.menu = menu
+        
+        return button
+    }()
+    
+    lazy var postButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Post", for: .normal)
+//        button.setTitleColor(UIColor(named: "PostBlue"), for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = UIFont.sfSemiBold(ofSize: 20)
+        
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -60,33 +189,47 @@ class ReplyView: UIView {
     
     override func layoutSubviews() {
         backgroundColor = UIColor(named: "ScreenBackground")
-        tableView.dataSource = self
-        tableView.delegate = self
+//        threadTextView.text = placeholderText
+//        threadTextView.textColor = .gray
+        replyTextView.delegate = self
         setupViews()
         setupConstraints()
     }
     
     func setupViews() {
+//        third = UIAction(title: "Anyone", image: UIImage(named: "AnyoneIcon"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] action in
+//            self?.handleThirdAction()
+//        }
+        
         addSubview(titleLabel)
-        addSubview(backButton)
+        addSubview(symbolCountLabel)
         addSubview(dividerLine)
-        addSubview(tableView)
-        addSubview(replyTextField)
+        addSubview(scrollView)
+        scrollView.addSubview(authorAvatarImage)
+        scrollView.addSubview(authorUsernameLabel)
+        scrollView.addSubview(threadLabel)
+        scrollView.addSubview(timeLabel)
+        scrollView.addSubview(replyTextView)
+        scrollView.addSubview(stickButton)
+        scrollView.addSubview(connectingLine)
+        scrollView.addSubview(myAvatarImage)
+        scrollView.addSubview(myUsernameLabel)
+        scrollView.addSubview(myConnectingLine)
+        scrollView.addSubview(postImage)
+        addSubview(replyButton)
+        addSubview(postButton)
     }
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 72))
+            make.top.equalToSuperview().inset(flexibleHeight(to: 55))
             make.leading.equalToSuperview().inset(flexibleWidth(to: 56))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 271))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 756))
         }
         
-        backButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 72))
-            make.leading.equalToSuperview().inset(flexibleWidth(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleWidth(to: 353))
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 756))
+        symbolCountLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(flexibleWidth(to: 765))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
         }
         
         dividerLine.snp.makeConstraints{ make in
@@ -95,33 +238,215 @@ class ReplyView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 737.5))
         }
         
-        tableView.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(flexibleHeight(to: 148))
+        scrollView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 134))
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().inset(flexibleHeight(to: 91))
+            make.bottom.equalTo(replyButton.snp.top)
         }
         
-        replyTextField.snp.makeConstraints{ make in
+        authorAvatarImage.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 13.5))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 343.5))
+            make.height.width.equalTo(flexibleHeight(to: 36))
+        }
+        
+        authorUsernameLabel.snp.makeConstraints{ make in
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 59.5))
+            make.height.equalTo(flexibleHeight(to: 18))
+        }
+        
+        threadLabel.snp.makeConstraints { make in
+            make.top.equalTo(authorUsernameLabel.snp.bottom).offset(flexibleHeight(to: 4))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 59.5))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 4))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 354.5))
+        }
+        
+        connectingLine.snp.updateConstraints{ make in
+            make.top.equalTo(authorAvatarImage.snp.bottom).offset(flexibleHeight(to: 10))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 32))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 359))
+            make.height.equalTo(threadLabel.snp.height)
+        }
+        
+        myAvatarImage.snp.makeConstraints { make in
+            make.top.equalTo(connectingLine.snp.bottom).offset(flexibleWidth(to: 8))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 13.5))
+            make.height.width.equalTo(flexibleHeight(to: 36))
+        }
+        
+        myUsernameLabel.snp.makeConstraints { make in
+            make.top.equalTo(connectingLine.snp.bottom).offset(flexibleWidth(to: 10))
+            make.leading.equalTo(myAvatarImage.snp.trailing).offset(flexibleWidth(to: 10))
+        }
+        
+        replyTextView.snp.updateConstraints { make in
+            make.top.equalTo(myUsernameLabel.snp.bottom).offset(flexibleHeight(to: 4))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 59.5))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+            threadTextViewHeightConstraint = make.height.equalTo(flexibleHeight(to: CGFloat(textHeight))).constraint
+        }
+        
+        myConnectingLine.snp.updateConstraints{ make in
+            make.top.equalTo(myAvatarImage.snp.bottom).offset(flexibleHeight(to: 10))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 32))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 359))
+            make.height.equalTo(flexibleHeight(to: CGFloat(lineHeight)))
+        }
+        
+        stickButton.snp.makeConstraints { make in
+            make.top.equalTo(replyTextView.snp.bottom).offset(flexibleHeight(to: 20))
+            make.leading.equalTo(replyTextView.snp.leading)
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 301))
+            make.height.equalTo(flexibleHeight(to: 24))
+        }
+        
+        postImage.snp.makeConstraints{ make in
+            make.top.equalTo(replyTextView.snp.bottom).offset(flexibleHeight(to: 20))
+            make.leading.equalToSuperview().inset(flexibleWidth(to: 59.5))
+            make.trailing.equalToSuperview().inset(flexibleWidth(to: 16))
+        }
+        
+        replyButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(flexibleHeight(to: 761))
             make.leading.equalToSuperview().inset(flexibleHeight(to: 16))
-            make.trailing.equalToSuperview().inset(flexibleHeight(to: 269))
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 53))
+        }
+        
+        postButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(flexibleHeight(to: 771))
+            make.leading.equalToSuperview().inset(flexibleHeight(to: 337))
+            make.trailing.equalToSuperview().inset(flexibleHeight(to: 16))
+            make.bottom.equalToSuperview().inset(flexibleHeight(to: 63))
         }
     }
 }
 
-extension ReplyView: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCellReuseIdentifier", for: indexPath) as! CustomReplyCell
+extension ReplyView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        textView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        textHeight = newSize.height
+        
+        updateConstraints()
+        
+        let text = textView.text ?? ""
+        
+        threadText = text
 
-        return cell
+        updateCharacterCount(for: text)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    func updateCharacterCount(for text: String) {
+        let characterCount = 280 - text.count
+
+        symbolCountLabel.text = String(characterCount)
+        
+        if characterCount < 51 {
+            symbolCountLabel.isHidden = false
+        } else {
+            symbolCountLabel.isHidden = true
+        }
+        
+        if characterCount < 0 {
+            symbolCountLabel.textColor = .red
+            postButton.setTitleColor(UIColor(named: "PostBlue"), for: .normal)
+            isPostbuttonEnabled = false
+        } else {
+            symbolCountLabel.textColor = UIColor(named: "GreyLabel")
+            postButton.setTitleColor(.systemBlue, for: .normal)
+            isPostbuttonEnabled = true
+        }
+    }
+    
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if textView.text == placeholderText {
+//            textView.text = ""
+//            textView.textColor = .black
+//        }
+//    }
+    
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if textView.text.isEmpty {
+//            textView.text = placeholderText
+//            textView.textColor = .gray
+//        }
+//    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let currentText = textView.text else {
+            return true
+        }
+        
+//        if textView.text == placeholderText {
+//            textView.text = ""
+//            textView.textColor = .black
+//        }
+        
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: text)
+        let numberOfLines = newText.components(separatedBy: CharacterSet.newlines).count
+        
+        let maxLines = 15
+        
+        if text == "\n" && numberOfLines <= maxLines {
+            textView.text.append("\n")
+            
+            textHeight += 18
+            lineHeight += 18
+            
+            updateConstraints()
+            layoutIfNeeded()
+            return false
+        }
+        
+        if numberOfLines <= maxLines {
+            let deletedNewlineCount = currentText.countOccurences(of: "\n", in: range)
+            
+            textHeight -= CGFloat(deletedNewlineCount) * 18
+            lineHeight -= CGFloat(deletedNewlineCount) * 18
+            
+            updateConstraints()
+            layoutIfNeeded()
+            return true
+        } else if text.isEmpty && numberOfLines == maxLines + 1 {
+            let deletedNewlineCount = currentText.countOccurences(of: "\n", in: range)
+            
+            textHeight -= CGFloat(deletedNewlineCount) * 18
+            lineHeight -= CGFloat(deletedNewlineCount) * 18
+            
+            updateConstraints()
+            layoutIfNeeded()
+            return true
+        }
+        
+        return false
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
+    
+    func handleFirstAction() {
+        replyButton.setTitle("Mentioned can reply", for: .normal)
+    }
+    
+    func handleSecondAction() {
+        replyButton.setTitle("Profile you follow can reply", for: .normal)
+    }
+    
+    func handleThirdAction() {
+        third.title = third.title == "Anyone" ? "Your Followers" : "Anyone"
+        third.image = third.title == "Anyone" ? UIImage(named: "AnyoneIcon") : UIImage(named: "YourFollowersIcon")
+        
+        replyButton.setTitle("Your followers can reply", for: .normal)
+        
+        menu = UIMenu(title: "", children: [first, second, third])
     }
 }

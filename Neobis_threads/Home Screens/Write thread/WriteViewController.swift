@@ -137,7 +137,7 @@ extension WriteViewController: UIImagePickerControllerDelegate, UINavigationCont
                 make.height.equalTo(newHeight)
             }
                         
-            contentView.lineHeight = 19 + newHeight
+            contentView.lineHeight = 40 + newHeight
 
             self.updateViewConstraints()
             self.view.layoutIfNeeded()

@@ -9,12 +9,14 @@ import Foundation
 import Alamofire
 
 protocol HomeProtocol {
-    var feedsList: (([Post]) -> Void)? { get set }
+    var forYouFeedsList: (([Post]) -> Void)? { get set }
+    var followingFeedsList: (([Post]) -> Void)? { get set }
     var usersResult: ((UserData) -> Void)? { get set }
     var isLiked: Bool { get }
     var setLikeResult: ((Result<Data, Error>) -> Void)? { get set }
     
-    func fetchFeedsData(completion: @escaping ([Post]) -> Void)
+    func fetchForYouFeedsData(completion: @escaping ([Post]) -> Void)
+    func fetchFollowingFeedsData(completion: @escaping ([Post]) -> Void)
     func fetchSearchData(id: Int, completion: @escaping (UserData?) -> Void)
     func fetchlikeData(id: Int)
 }
@@ -26,17 +28,18 @@ class HomeViewModel: HomeProtocol {
     var isLiked: Bool = false
     var setLikeResult: ((Result<Data, Error>) -> Void)?
     
-    var feedsList: (([Post]) -> Void)?
+    var forYouFeedsList: (([Post]) -> Void)?
+    var followingFeedsList: (([Post]) -> Void)?
     var usersResult: ((UserData) -> Void)?
     
     init() {
         self.apiService = APIService()
     }
     
-    func fetchFeedsData(completion: @escaping ([Post]) -> Void) {
+    func fetchForYouFeedsData(completion: @escaping ([Post]) -> Void) {
         guard let accessToken = AuthManager.shared.accessToken else { return }
         
-        let endpoint = "feed/for_you/"
+        let endpoint = "feed/for_you/?page_size=50"
         
         apiService.getWithToken(endpoint: endpoint, token: accessToken) { result in
             switch result {
@@ -45,8 +48,32 @@ class HomeViewModel: HomeProtocol {
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .iso8601
                     let response = try decoder.decode(PostResponse.self, from: data)
-                    let feeds = response.results.map { Post(id: $0.id, author: $0.author, text: $0.text, date_posted: $0.date_posted, image: $0.image, video: $0.video, comments_permission: $0.comments_permission, total_likes: $0.total_likes, user_like: $0.user_like) }
-                    self.feedsList?(feeds)
+                    let feeds = response.results.map { Post(id: $0.id, author: $0.author, text: $0.text, date_posted: $0.date_posted, image: $0.image, video: $0.video, comments_permission: $0.comments_permission, total_likes: $0.total_likes, total_comments: $0.total_comments, user_like: $0.user_like) }
+                    self.forYouFeedsList?(feeds)
+                    completion(feeds)
+                } catch {
+                    print("Error decoding JSON:", error)
+                }
+            case .failure(let error):
+                print("API request failed:", error)
+            }
+        }
+    }
+    
+    func fetchFollowingFeedsData(completion: @escaping ([Post]) -> Void) {
+        guard let accessToken = AuthManager.shared.accessToken else { return }
+        
+        let endpoint = "feed/following/?page_size=50"
+        
+        apiService.getWithToken(endpoint: endpoint, token: accessToken) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let response = try decoder.decode(PostResponse.self, from: data)
+                    let feeds = response.results.map { Post(id: $0.id, author: $0.author, text: $0.text, date_posted: $0.date_posted, image: $0.image, video: $0.video, comments_permission: $0.comments_permission, total_likes: $0.total_likes, total_comments: $0.total_comments, user_like: $0.user_like) }
+                    self.forYouFeedsList?(feeds)
                     completion(feeds)
                 } catch {
                     print("Error decoding JSON:", error)

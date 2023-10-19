@@ -36,7 +36,7 @@ class TabBarController: UITabBarController {
 //
         vc3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "WriteTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         
-        let vc4 = ActivityViewController()
+        let vc4 = ActivityViewController(activityProtocol: ActivityViewModel())
         
         vc4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "ActivityTab")?.withAlignmentRectInsets(.init(top: 10, left: 0, bottom: 0, right: 0)), tag: 0)
         

@@ -139,4 +139,8 @@ class OTPView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 375))
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
 }

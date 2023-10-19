@@ -15,8 +15,10 @@ class ProfileViewController: UIViewController {
     var profileProtocol: ProfileProtocol
     var username: String?
     var name: String?
+    var userId: Int?
     var bio: String?
     var link: String?
+    private var forYouRefreshControl = UIRefreshControl()
     var photo: UIImage?
     var photoString: String?
     var feeds = [Post]()
@@ -34,6 +36,7 @@ class ProfileViewController: UIViewController {
         super.viewDidAppear(animated)
         
         getProfileData()
+        parseFeedsData()
     }
     
     override func viewDidLoad() {
@@ -93,10 +96,7 @@ class ProfileViewController: UIViewController {
         self.bio = userData["bio"] as? String
         self.link = userData["website"] as? String
         self.photoString = userData["photo"] as? String
-        
-        DispatchQueue.main.async {
-            self.contentView.tableView.reloadData()
-        }
+        self.userId = userData["pk"] as? Int
     }
     
     func parseFeedsData() {
@@ -117,11 +117,14 @@ class ProfileViewController: UIViewController {
         }
         
         contentView.nicknameLabel.text = "Loading..."
+        forYouRefreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        contentView.tableView.addSubview(forYouRefreshControl)
     }
     
     func addTargets() {
         contentView.editButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
         contentView.exitButton.addTarget(self, action: #selector(exitPressed), for: .touchUpInside)
+        contentView.followersLabel.addTarget(self, action: #selector(followsPressed), for: .touchUpInside)
     }
     
     @objc func exitPressed() {
@@ -139,6 +142,13 @@ class ProfileViewController: UIViewController {
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
+    
+    @objc func followsPressed() {
+        let vc = FollowersViewController(followersProtocol: FollowersViewModel(), userId: userId ?? 0)
+        
+        present(vc, animated: true)
+    }
+    
     let model = ["Innovation sets leaders apart from followers.", "When I look at you, I see someone who’s working hard"]
 }
 
@@ -159,6 +169,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
+        cell.postImage.image = nil
+        cell.heightConstraint?.constant = 0
+        
         if feed.image != nil {
             if let photoURLString = feed.image, let photoURL = URL(string: photoURLString) {
                 cell.postImage.kf.setImage(with: photoURL) { result in
@@ -167,13 +180,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                         let aspectRatio = imageResult.image.size.width / imageResult.image.size.height
                         let newHeight = cell.postImage.frame.width / aspectRatio
                         
-                        cell.postImage.snp.updateConstraints { make in
-                            make.height.equalTo(newHeight)
-                        }
+                        cell.heightConstraint?.constant = newHeight
                         
                         cell.postImage.layer.cornerRadius = 10
                         
-                        self.updateViewConstraints()
+                        self.contentView.updateConstraints()
                         
                         cell.layoutIfNeeded()
                     case .failure(let error):
@@ -183,20 +194,57 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 cell.postImage.image = nil
             }
-        } else {
-            cell.postImage.snp.updateConstraints { make in
-                make.height.equalTo(0)
-            }
-            
-            self.updateViewConstraints()
         }
+        
+        cell.likesLabel.text = "\(feed.total_likes) likes"
 
         let timeAgo = timeAgoSinceDate(dateString: feed.date_posted)
         cell.timeLabel.text = timeAgo
         cell.threadLabel.text = feed.text
+        
+        cell.likeButton.setImage(UIImage(named: "LikeIcon"), for: .normal)
+        cell.likeButton.addTarget(self, action: #selector(likeButtonPressed(sender:)), for: .touchUpInside)
+        cell.likeButton.tag = indexPath.row
+        if feed.user_like == true {
+            cell.likeButton.setImage(UIImage(named: "LikePressed"), for: .normal)
+        }
 
+        cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: .touchUpInside)
+        
         cell.selectionStyle = .none
         return cell
+    }
+    
+    @objc func deleteButtonPressed(sender: UIButton) {
+        let indexPathRow = sender.tag
+        profileProtocol.fetchDeleteData(id: feeds[indexPathRow].id)
+        
+        DispatchQueue.main.async {
+            self.contentView.tableView.reloadData()
+        }
+    }
+    
+    @objc func likeButtonPressed(sender: UIButton) {
+        let indexPathRow = sender.tag
+        let newImage = sender.imageView?.image == UIImage(named: "LikeIcon") ? UIImage(named: "LikePressed") : UIImage(named: "LikeIcon")
+        sender.setImage(newImage, for: .normal)
+        
+        profileProtocol.fetchlikeData(id: feeds[indexPathRow].id)
+    }
+    
+    @objc private func refreshData() {
+        parseFeedsData()
+
+        contentView.tableView.reloadData()
+
+        forYouRefreshControl.endRefreshing()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ThreadViewController(threadProtocol: ThreadViewModel(), postId: feeds[indexPath.row].id)
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -12,6 +12,13 @@
 		1C32DCFA2AC6E2EC00750945 /* CustomBottomRepostSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCF92AC6E2EC00750945 /* CustomBottomRepostSheet.swift */; };
 		1C32DCFC2ACC28EB00750945 /* Extensions + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCFB2ACC28EB00750945 /* Extensions + String.swift */; };
 		1C32DCFE2ACE995900750945 /* WritePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCFD2ACE995900750945 /* WritePostView.swift */; };
+		1C32DD002AD290E100750945 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DCFF2AD290E100750945 /* ActivityViewModel.swift */; };
+		1C32DD022AD292C300750945 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DD012AD292C300750945 /* ActivityModel.swift */; };
+		1C32DD042AD2FFAF00750945 /* CustomHomeFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DD032AD2FFAF00750945 /* CustomHomeFollowingCell.swift */; };
+		1C32DD262AD7FE2500750945 /* CustomFollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DD252AD7FE2500750945 /* CustomFollowersCell.swift */; };
+		1C32DD282AD80F8400750945 /* CustomFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DD272AD80F8400750945 /* CustomFollowingCell.swift */; };
+		1C32DD2A2AD80F9700750945 /* CustomPendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DD292AD80F9700750945 /* CustomPendingCell.swift */; };
+		1C32DD2C2AD811F100750945 /* FollowersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C32DD2B2AD811F100750945 /* FollowersViewModel.swift */; };
 		1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */; };
 		1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */; };
 		1C3893B22A7A5B79003D2CC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3893B12A7A5B79003D2CC8 /* LoginViewController.swift */; };
@@ -43,7 +50,7 @@
 		1C7470D92A88F2EC00FAFA88 /* CustomProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470D82A88F2EC00FAFA88 /* CustomProfileCell.swift */; };
 		1C7470DD2A8B704400FAFA88 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470DC2A8B704400FAFA88 /* HomeViewController.swift */; };
 		1C7470DF2A8B704D00FAFA88 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470DE2A8B704D00FAFA88 /* HomeView.swift */; };
-		1C7470E12A90D12100FAFA88 /* CustomHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470E02A90D12100FAFA88 /* CustomHomeCell.swift */; };
+		1C7470E12A90D12100FAFA88 /* CustomHomeForYouCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7470E02A90D12100FAFA88 /* CustomHomeForYouCell.swift */; };
 		1CAA2BE22A82352600C3FD70 /* Extenisons + NSObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE12A82352600C3FD70 /* Extenisons + NSObject.swift */; };
 		1CAA2BE52A8237C100C3FD70 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE42A8237C100C3FD70 /* ForgotViewController.swift */; };
 		1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */; };
@@ -99,6 +106,13 @@
 		1C32DCF92AC6E2EC00750945 /* CustomBottomRepostSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomRepostSheet.swift; sourceTree = "<group>"; };
 		1C32DCFB2ACC28EB00750945 /* Extensions + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions + String.swift"; sourceTree = "<group>"; };
 		1C32DCFD2ACE995900750945 /* WritePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostView.swift; sourceTree = "<group>"; };
+		1C32DCFF2AD290E100750945 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		1C32DD012AD292C300750945 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		1C32DD032AD2FFAF00750945 /* CustomHomeFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeFollowingCell.swift; sourceTree = "<group>"; };
+		1C32DD252AD7FE2500750945 /* CustomFollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFollowersCell.swift; sourceTree = "<group>"; };
+		1C32DD272AD80F8400750945 /* CustomFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFollowingCell.swift; sourceTree = "<group>"; };
+		1C32DD292AD80F9700750945 /* CustomPendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPendingCell.swift; sourceTree = "<group>"; };
+		1C32DD2B2AD811F100750945 /* FollowersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewModel.swift; sourceTree = "<group>"; };
 		1C3893AA2A7A5B79003D2CC8 /* Neobis_threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neobis_threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C3893AD2A7A5B79003D2CC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C3893AF2A7A5B79003D2CC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +144,7 @@
 		1C7470D82A88F2EC00FAFA88 /* CustomProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileCell.swift; sourceTree = "<group>"; };
 		1C7470DC2A8B704400FAFA88 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1C7470DE2A8B704D00FAFA88 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		1C7470E02A90D12100FAFA88 /* CustomHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeCell.swift; sourceTree = "<group>"; };
+		1C7470E02A90D12100FAFA88 /* CustomHomeForYouCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHomeForYouCell.swift; sourceTree = "<group>"; };
 		1CAA2BE12A82352600C3FD70 /* Extenisons + NSObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extenisons + NSObject.swift"; sourceTree = "<group>"; };
 		1CAA2BE42A8237C100C3FD70 /* ForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		1CAA2BE82A8237D600C3FD70 /* ForgotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotView.swift; sourceTree = "<group>"; };
@@ -438,7 +452,8 @@
 			isa = PBXGroup;
 			children = (
 				1C7470DE2A8B704D00FAFA88 /* HomeView.swift */,
-				1C7470E02A90D12100FAFA88 /* CustomHomeCell.swift */,
+				1C7470E02A90D12100FAFA88 /* CustomHomeForYouCell.swift */,
+				1C32DD032AD2FFAF00750945 /* CustomHomeFollowingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -521,6 +536,7 @@
 				1CAD5D232AA4827A0029C509 /* TokenModel.swift */,
 				1CAD5D2F2AA5F6890029C509 /* UsersModel.swift */,
 				1CE233042AB45AE9008590B0 /* FeedsModel.swift */,
+				1C32DD012AD292C300750945 /* ActivityModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -574,6 +590,7 @@
 			isa = PBXGroup;
 			children = (
 				1CC2E0A52AC694A70082FF8D /* FollowersViewController.swift */,
+				1C32DD2B2AD811F100750945 /* FollowersViewModel.swift */,
 				1CC2E0A42AC694990082FF8D /* View */,
 			);
 			path = Followers;
@@ -583,6 +600,9 @@
 			isa = PBXGroup;
 			children = (
 				1CC2E0A72AC694AF0082FF8D /* FollowersView.swift */,
+				1C32DD252AD7FE2500750945 /* CustomFollowersCell.swift */,
+				1C32DD272AD80F8400750945 /* CustomFollowingCell.swift */,
+				1C32DD292AD80F9700750945 /* CustomPendingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -645,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				1CDCBE282AA1FA8100A60D85 /* ActivityViewController.swift */,
+				1C32DCFF2AD290E100750945 /* ActivityViewModel.swift */,
 				1CDCBE272AA1FA7200A60D85 /* View */,
 			);
 			path = "Activity ";
@@ -833,17 +854,20 @@
 				1CE233052AB45AE9008590B0 /* FeedsModel.swift in Sources */,
 				1C3CEAA92A86590A00466A58 /* PasswordView.swift in Sources */,
 				1CDCBE0F2A99F5F800A60D85 /* LoginViewModel.swift in Sources */,
+				1C32DD022AD292C300750945 /* ActivityModel.swift in Sources */,
 				1CDCBE2D2AA1FB1900A60D85 /* CustomCommentsActivityCell.swift in Sources */,
 				1CDCBE1E2AA1DDE400A60D85 /* SomeoneProfileViewController.swift in Sources */,
 				1CAD5D2C2AA5DE720029C509 /* OTPViewModel.swift in Sources */,
 				1C7470DF2A8B704D00FAFA88 /* HomeView.swift in Sources */,
 				1C7470D92A88F2EC00FAFA88 /* CustomProfileCell.swift in Sources */,
 				1CDCBE202AA1DE1500A60D85 /* SomeoneProfileView.swift in Sources */,
+				1C32DD282AD80F8400750945 /* CustomFollowingCell.swift in Sources */,
 				1C3893B22A7A5B79003D2CC8 /* LoginViewController.swift in Sources */,
+				1C32DD042AD2FFAF00750945 /* CustomHomeFollowingCell.swift in Sources */,
 				1C7470DD2A8B704400FAFA88 /* HomeViewController.swift in Sources */,
 				1C3CEAAC2A8770C400466A58 /* TabBarController.swift in Sources */,
 				1CAD5D302AA5F6890029C509 /* UsersModel.swift in Sources */,
-				1C7470E12A90D12100FAFA88 /* CustomHomeCell.swift in Sources */,
+				1C7470E12A90D12100FAFA88 /* CustomHomeForYouCell.swift in Sources */,
 				1C3893AE2A7A5B79003D2CC8 /* AppDelegate.swift in Sources */,
 				1CE233112ABC4EE0008590B0 /* WriteViewModel.swift in Sources */,
 				1CAD5D2A2AA4937D0029C509 /* EditProfileSetPhotoViewModel.swift in Sources */,
@@ -853,6 +877,7 @@
 				1CDCBE162A9B4E9700A60D85 /* SearchView.swift in Sources */,
 				1CC198892A93B90D002DE8FC /* ReplyViewController.swift in Sources */,
 				1CE233022AB45A60008590B0 /* HomeViewModel.swift in Sources */,
+				1C32DD2C2AD811F100750945 /* FollowersViewModel.swift in Sources */,
 				1C3CEAA12A863E7400466A58 /* SignupViewController.swift in Sources */,
 				1C3CEAB02A87713C00466A58 /* ProfileViewController.swift in Sources */,
 				1CC2E0A02AC580CA0082FF8D /* ThreadViewModel.swift in Sources */,
@@ -866,6 +891,7 @@
 				1CAD5D392AAF02E20029C509 /* SearchGetDataViewModel.swift in Sources */,
 				1C7470D72A88CBDB00FAFA88 /* CustomBottomSheet.swift in Sources */,
 				1CE2330D2ABC43CA008590B0 /* WriteView.swift in Sources */,
+				1C32DD2A2AD80F9700750945 /* CustomPendingCell.swift in Sources */,
 				1C3893CA2A7A5DD6003D2CC8 /* LoginView.swift in Sources */,
 				1CC1988B2A93B91F002DE8FC /* ReplyView.swift in Sources */,
 				1CDCBE292AA1FA8100A60D85 /* ActivityViewController.swift in Sources */,
@@ -881,6 +907,7 @@
 				1CDCBE112A9B374D00A60D85 /* CustomReplyCell.swift in Sources */,
 				1CAA2BE92A8237D600C3FD70 /* ForgotView.swift in Sources */,
 				1CAA2BF12A83889000C3FD70 /* OTPView.swift in Sources */,
+				1C32DD262AD7FE2500750945 /* CustomFollowersCell.swift in Sources */,
 				1CDCBE0D2A99DD1600A60D85 /* Service.swift in Sources */,
 				1C3893B02A7A5B79003D2CC8 /* SceneDelegate.swift in Sources */,
 				1CAD5D332AA98D9B0029C509 /* SignupConfirmEmailViewModel.swift in Sources */,
@@ -893,6 +920,7 @@
 				1CAA2BE22A82352600C3FD70 /* Extenisons + NSObject.swift in Sources */,
 				1CC198852A92042F002DE8FC /* CustomThreadCell.swift in Sources */,
 				1C098A612A90D8D10073446D /* ThreadView.swift in Sources */,
+				1C32DD002AD290E100750945 /* ActivityViewModel.swift in Sources */,
 				1CAD5D372AA9B2BC0029C509 /* ProfileLogoutViewModel.swift in Sources */,
 				1CC2E0A62AC694A70082FF8D /* FollowersViewController.swift in Sources */,
 				1C7470D42A879E5900FAFA88 /* BorderedTextField.swift in Sources */,

@@ -12,12 +12,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+//        guard let _ = (scene as? UIWindowScene) else { return }
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = UINavigationController(rootViewController: TabBarController())
-//        window?.rootViewController = UINavigationController(rootViewController: LoginViewController (loginProtocol: LoginViewModel()))
-//        window?.rootViewController = UINavigationController(rootViewController: HomeViewController(feedsProtocol: HomeViewModel()))
+//        window?.rootViewController = UINavigationController(rootViewController: TabBarController())
+        window?.rootViewController = UINavigationController(rootViewController: LoginViewController (loginProtocol: LoginViewModel()))
+//        window?.rootViewController = UINavigationController(rootViewController: ProfileViewController(profileProtocol: ProfileViewModel()))
         window?.makeKeyAndVisible()
     }
 

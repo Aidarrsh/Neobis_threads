@@ -108,4 +108,8 @@ class ForgotView: UIView {
             make.bottom.equalToSuperview().inset(flexibleHeight(to: 411))
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.endEditing(true)
+    }
 }
